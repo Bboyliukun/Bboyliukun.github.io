@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Cn">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="js,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言看到英文技术文档、快哭了。含着泪也要把他读完。原文How I Structure My JavaScript File 内容很多人都在问我怎么写我的JavaScript——好吧，这是一个谎言，没人问我，但是如果他们这么做了，我想指出这篇文章。在使用了多年的PHP之后，在阅读了干净代码(和其他书籍)之后，我在多年中采用了我的代码风格。是的，PHP，不要敲它，它有一个伟大的社区和伟大的编码标准。当">
+<meta name="keywords" content="js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="译：如何构造我的JavaScript文件?">
+<meta property="og:url" content="http://yoursite.com/2018/05/16/fanyi/index.html">
+<meta property="og:site_name" content="小小坤">
+<meta property="og:description" content="前言看到英文技术文档、快哭了。含着泪也要把他读完。原文How I Structure My JavaScript File 内容很多人都在问我怎么写我的JavaScript——好吧，这是一个谎言，没人问我，但是如果他们这么做了，我想指出这篇文章。在使用了多年的PHP之后，在阅读了干净代码(和其他书籍)之后，我在多年中采用了我的代码风格。是的，PHP，不要敲它，它有一个伟大的社区和伟大的编码标准。当">
+<meta property="og:locale" content="zh-Cn">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/16/16366cd94d58104b?w=945&h=738&f=png&s=46614">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/16/16366cfb16e2e4ea?w=827&h=211&f=png&s=8988">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/16/16366d09cb84511b?w=871&h=158&f=png&s=7726">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/16/16366d4c7b58bf0b?w=980&h=163&f=png&s=9574">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/16/16366d6053bdb4b0?w=957&h=189&f=png&s=8592">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/16/16366d7248f64337?w=978&h=343&f=png&s=29738">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/16/16366d832841c15e?w=1081&h=826&f=png&s=49122">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/16/16366da0d8aa4241?w=884&h=260&f=png&s=14030">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/16/16366dabd6dd82ed?w=1015&h=525&f=png&s=27605">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/16/16366dbab502bf1f?w=992&h=573&f=png&s=35270">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/16/16366dc7c2379da7?w=1028&h=505&f=png&s=30527">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/16/16366dd4427b4752?w=858&h=233&f=png&s=18784">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/16/16366dd6ead74ded?w=909&h=254&f=png&s=15393">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/11/28/167592f13078d6a8?w=800&h=600&f=jpeg&s=184358">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/4/14/162c4b13a41e4a3a?w=323&h=311&f=png&s=83969">
+<meta property="og:updated_time" content="2018-11-28T07:21:47.202Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="译：如何构造我的JavaScript文件?">
+<meta name="twitter:description" content="前言看到英文技术文档、快哭了。含着泪也要把他读完。原文How I Structure My JavaScript File 内容很多人都在问我怎么写我的JavaScript——好吧，这是一个谎言，没人问我，但是如果他们这么做了，我想指出这篇文章。在使用了多年的PHP之后，在阅读了干净代码(和其他书籍)之后，我在多年中采用了我的代码风格。是的，PHP，不要敲它，它有一个伟大的社区和伟大的编码标准。当">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/5/16/16366cd94d58104b?w=945&h=738&f=png&s=46614">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/16/fanyi/">
+
+
+
+
+
+  <title>译：如何构造我的JavaScript文件? | 小小坤</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小小坤</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">是你改变了世界还是世界被你改变</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于我">
+          <a href="/2018/11/16/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/16/fanyi/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小小坤">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/log.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小小坤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">译：如何构造我的JavaScript文件?</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-16T16:30:00+08:00">
+                2018-05-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>看到英文技术文档、快哭了。含着泪也要把他读完。<br>原文<a href="https://dev.to/antjanus/how-i-structure-my-javascript-file-2clc" target="_blank" rel="noopener">How I Structure My JavaScript File</a></p>
+<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><p>很多人都在问我怎么写我的JavaScript——好吧，这是一个谎言，没人问我，但是如果他们这么做了，我想指出这篇文章。在使用了多年的PHP之后，在阅读了干净代码(和其他书籍)之后，我在多年中采用了我的代码风格。是的，PHP，不要敲它，它有一个伟大的社区和伟大的编码标准。当然，多年来和别人一起写作，跟随不同公司的风格。</p>
+<p>结构并不依赖于JS模块，但我现在倾向于只编写JS模块，所以我将使用这些模块。</p>
+<p>结构，总结如下:</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/5/16/16366cd94d58104b?w=945&amp;h=738&amp;f=png&amp;s=46614" alt=""><br>入口</p>
+<p>在文件的顶部是导入。这是有道理的，他们比其他任何东西都要高。进口的顺序无关紧要，除非你使用一些挂钩(比如babel hook)，所以我倾向于选择:</p>
+<ol>
+<li><p>本地模块-节点本地的东西。</p>
+</li>
+<li><p>库模块- lodash, knex，等等。</p>
+</li>
+<li><p>本地库——比如../db。</p>
+</li>
+<li><p>本地文件- like ./helper或类似的。</p>
+</li>
+</ol>
+<p>让我的模块保持有序，让我更容易看到我在导入什么，以及我实际上在使用什么。当我开始编写代码时，我也倾向于以这种方式编写依赖关系。</p>
+<p>我倾向于不关心字母排序(除了破坏导入之外)，我也没有看到它的一个点。</p>
+<p>本地模块<br>我倾向于将本地模块放在最上面，并以这样的主题保持一个清晰的组织:</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/5/16/16366cfb16e2e4ea?w=827&amp;h=211&amp;f=png&amp;s=8988" alt=""><br>如果我在浏览器中，显然跳过这一步。</p>
+<p>库模块</p>
+<p>我尽可能只从库中导入我需要的东西，但是，我又一次将它们分组到某个主题中。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/5/16/16366d09cb84511b?w=871&amp;h=158&amp;f=png&amp;s=7726" alt=""><br>我还注意到，如果我正在执行一个默认的导入(例如。我倾向于把它放在我的库模块的顶部，并将被破坏的导入降低。没有必要，但我喜欢它的视觉效果。</p>
+<p>Local/Internal libraries</p>
+<p>在本地库中，我指的是本地共享的模块，比如db。设置与书架连接的js文件。或者，在我的工作中，我们有几个库处理我们产品中使用的数字和计算。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/5/16/16366d4c7b58bf0b?w=980&amp;h=163&amp;f=png&amp;s=9574" alt=""><br>Local files<br>最后，我导入本地文件，这些文件通常与我正在处理的文件或一个目录(最多)在同一个文件夹中。例如，我为Redux写了一个减速器，并把它放在一个单独的文件夹中。在该文件夹中，我还保留了一个助手文件，通常命名为[reducer name]Helpers.js:</p>
+<p>Constants</p>
+<p>在导入所有依赖项之后，我通常会做一些前期工作，这些工作将在模块的其余部分中使用。例如，我从书架实例中提取了knex。或者我可以设置值常数。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/5/16/16366d6053bdb4b0?w=957&amp;h=189&amp;f=png&amp;s=8592" alt=""><br>使用非常量通常表示我依赖于某种类型的单例。我尽量避免使用它们，但有时它是必要的，因为没有简单的其他方法来完成它，或者它不重要(比如一次性命令行脚本)。<br>Exports</p>
+<p>在我基本设置了所有模块级别的依赖项之后:无论它们是常量值还是导入库，我都试着将我的导出分组到文件的顶部。基本上，这就是我把功能作为模块的粘合剂，实现模块的最终目的。</p>
+<p>在Redux的情况下，我可能导出一个单一的减速器，然后将工作分解并调用相关的逻辑。在ExpressJS的情况下，我可能在这里导出所有的路由，而实际的路由逻辑在下面。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/5/16/16366d7248f64337?w=978&amp;h=343&amp;f=png&amp;s=29738" alt=""><br>我想说的是，这并不是我出口功能的唯一部分。</p>
+<p>我感觉模块系统的工作方式使得在暴露最窄的API和导出函数在测试中使用它们之间的界限变得有点困难。</p>
+<p>例如，在上面的例子中，我从来不想在模块之外使用calculateSomething。我不完全确定OOP语言是如何处理测试私有函数的，但这是一个类似的问题。<br>Core Logic</p>
+<p>这看起来很奇怪，但核心逻辑对我来说是最重要的。我完全理解当人们翻转导出和核心逻辑时，但这对我来说很有效，原因有很多。</p>
+<p>当我打开一个文件时，顶层函数会告诉我抽象步骤中将会发生什么。我很喜欢这样。我一眼就能看出文件的作用。我做了大量的CSV操作，并将其插入到DB中，而顶级函数始终是一个容易理解的流程，它有一个类似的流程:fetchCSV aggregateData insertData terminate script。</p>
+<p>核心逻辑总是包括从上到下的出口。在内联的例子中，我们有这样的东西:</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/5/16/16366d832841c15e?w=1081&amp;h=826&amp;f=png&amp;s=49122" alt=""><br>注意，readCSV没有。这听起来很普通，我应该把它放到一个helper文件中，然后将它导入上面。除此之外，你可以看到我的出口，而不是进退两难。我不希望在模块外部提供聚合数据，但我仍然希望测试它。</p>
+<p>在此之外，我倾向于把“meatier”函数放在上面，下面的函数更小。如果我有一个特定于模块的实用函数，一个我在多个地方使用的函数，但只在模块中使用，我将把它们放在底部。基本上，我的命令是:复杂性+使用。</p>
+<p>所以顺序是:</p>
+<ol>
+<li><p>核心逻辑函数——由顶级导出使用的函数。</p>
+</li>
+<li><p>更简单/更小的函数——核心逻辑函数使用的函数。</p>
+</li>
+<li><p>实用函数——模块周围多个地方使用的小函数(但不导出)</p>
+</li>
+</ol>
+<p>Core-logic functions<br>核心逻辑函数就像我导出的函数的“sub-glue”。根据模块的复杂性，这些可能存在，也可能不存在。功能的分解不是必需的，但是如果一个模块足够大，核心逻辑函数就像主函数中的步骤。</p>
+<p>如果你写的是反应或角度，这些你的组件将是我上面提到的出口函数。但是，核心逻辑函数将是各种侦听器或数据处理器的实现。用Express，这些将是您的特定路线。在一个Redux减速器中，这些将是在链条上足够远的单独的减速器，没有一个开关/case语句。</p>
+<p>如果您处于角度，那么在类中组织这些函数而不是在整个文件的范围内是完全公平的。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/5/16/16366da0d8aa4241?w=884&amp;h=260&amp;f=png&amp;s=14030" alt=""><br>Simpler/Smaller functions</p>
+<p>这些函数通常是核心逻辑和纯实用程序之间的中间步骤。你可能会用到它们，或者它们可能只是一个比效用函数更复杂的tad。我可能会删除这个类别，并说“写你的功能，以减少复杂性或工作量”。</p>
+<p>这里没有提及。也许onHandleInput事件监听器需要一些逻辑来处理$event数据，所以如果它是纯的，您可以将它从类中删除，如果不是，您可以在类中保留它:</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/5/16/16366dabd6dd82ed?w=1015&amp;h=525&amp;f=png&amp;s=27605" alt=""><br>Utility functions</p>
+<p>最后,效用函数。我倾向于组织最接近我使用它们的工具。在相同的文件中，或者相同的文件夹(必要时)，相同的模块，等等。每次使用从文件中扩展到项目的根或它自己的NPM模块时，我都将函数移出一个级别。</p>
+<p>在我看来，效用函数应该始终是一种纯方法，这意味着它不应该在它的范围之外访问变量，而且应该只依赖传递到它的数据，而且不需要任何形式的副作用。除非使用实用程序函数来访问API或访问数据库。因为这些被认为是副作用，所以我认为它们是唯一的例外。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/5/16/16366dbab502bf1f?w=992&amp;h=573&amp;f=png&amp;s=35270" alt=""><br>Anything else?<br>当然!我认为每个人都有自己独特的书写方式。上面所描述的结构在我多年来每天编写大量代码的过程中非常有效。最终，许多细微的差别开始出现，我发现自己编写代码更快，更喜欢它，并且更容易调试和测试。</p>
+<p>在我完成这篇文章之前，我想和大家分享一些我已经习惯了的编码，它们与文档结构的关系更少，更多的是在编写实际代码时更倾向于使用小的偏好。</p>
+<p>早期的回报</p>
+<p>当我发现早期的回报时，那是一瞬间。当您可以提前返回时，为什么要在else语句中封装大量代码?</p>
+<p>我的经验法则是，如果早期的返回条件小于其余的代码，那么我将写早期的返回，但是如果不是，我将颠倒代码，这样较小的代码块总是提前返回。<br><img src="https://user-gold-cdn.xitu.io/2018/5/16/16366dc7c2379da7?w=1028&amp;h=505&amp;f=png&amp;s=30527" alt=""><br>早期的回报在交换机上也很出色，我是Redux的超级粉丝。</p>
+<p>分号块</p>
+<p>虽然我不再使用它(没有更漂亮的支持)，但我总是用分号来终止函数链接，在一个单独的行上，一个缩进到链的缩进的左边。这就创建了一个整洁的代码块，代码不只是挂在那里。</p>
+<p>当然，这意味着我也喜欢用分号来代替。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/5/16/16366dd4427b4752?w=858&amp;h=233&amp;f=png&amp;s=18784" alt=""><br>Or better written, it might look like this:</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/5/16/16366dd6ead74ded?w=909&amp;h=254&amp;f=png&amp;s=15393" alt=""></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>使用的是有道在线翻译，如有不正确之处还望大佬指出。</p>
+<p>打赏通道–我觉得不会有打赏。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/28/167592f13078d6a8?w=800&amp;h=600&amp;f=jpeg&amp;s=184358" alt=""></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/4/14/162c4b13a41e4a3a?w=323&amp;h=311&amp;f=png&amp;s=83969" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/14/zhongjianjian/" rel="next" title="写一个简单vue 中间件，$emit、$on">
+                <i class="fa fa-chevron-left"></i> 写一个简单vue 中间件，$emit、$on
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/16/dingyue/" rel="prev" title="发布订阅">
+                发布订阅 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/log.jpg" alt="小小坤">
+            
+              <p class="site-author-name" itemprop="name">小小坤</p>
+              <p class="site-description motion-element" itemprop="description">前端技术文章，JavaScript设计模式，专注前端10年。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">Artikel</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">Tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内容"><span class="nav-number">2.</span> <span class="nav-text">内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小小坤</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

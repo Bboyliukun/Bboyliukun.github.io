@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Cn">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="大量数据,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="简介事情的由来是这样紫的，目前我负责公司内部的核心业务Gis天眼系统开发，遇到一个问题就是：后端返回几千条数据导致浏览器渲染失败，浏览器几乎是停滞状态。后来没有想到合适的解决方案，临时渲染少量数据解决了。我记得清清楚楚，我已经看过关于这样的问题怎么解决，可惜我没有使用，原因是学而不思，看而不用。后来由于家里有些事情，我请假回家休假休息了一段时间。回来之后开了一次会议，说我同事 实现了一个上述问题，">
+<meta name="keywords" content="大量数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="渲染大量数据我是这样操作的">
+<meta property="og:url" content="http://yoursite.com/2018/02/06/bigDate/index.html">
+<meta property="og:site_name" content="小小坤">
+<meta property="og:description" content="简介事情的由来是这样紫的，目前我负责公司内部的核心业务Gis天眼系统开发，遇到一个问题就是：后端返回几千条数据导致浏览器渲染失败，浏览器几乎是停滞状态。后来没有想到合适的解决方案，临时渲染少量数据解决了。我记得清清楚楚，我已经看过关于这样的问题怎么解决，可惜我没有使用，原因是学而不思，看而不用。后来由于家里有些事情，我请假回家休假休息了一段时间。回来之后开了一次会议，说我同事 实现了一个上述问题，">
+<meta property="og:locale" content="zh-Cn">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/2/4/161618939ab00638?w=1347&h=618&f=png&s=203850">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/2/6/1616b6d785a975c4?w=564&h=348&f=png&s=17074">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/2/6/1616b6dc9bae345e?w=1042&h=571&f=png&s=161543">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/2/6/1616b6ee19d38ff9?w=480&h=379&f=png&s=17825">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/2/6/1616b6f1f38646ac?w=952&h=601&f=png&s=64735">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/11/28/167592f13078d6a8?w=800&h=600&f=jpeg&s=184358">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/4/14/162c4b13a41e4a3a?w=323&h=311&f=png&s=83969">
+<meta property="og:updated_time" content="2018-11-28T07:21:22.278Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="渲染大量数据我是这样操作的">
+<meta name="twitter:description" content="简介事情的由来是这样紫的，目前我负责公司内部的核心业务Gis天眼系统开发，遇到一个问题就是：后端返回几千条数据导致浏览器渲染失败，浏览器几乎是停滞状态。后来没有想到合适的解决方案，临时渲染少量数据解决了。我记得清清楚楚，我已经看过关于这样的问题怎么解决，可惜我没有使用，原因是学而不思，看而不用。后来由于家里有些事情，我请假回家休假休息了一段时间。回来之后开了一次会议，说我同事 实现了一个上述问题，">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/2/4/161618939ab00638?w=1347&h=618&f=png&s=203850">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/06/bigDate/">
+
+
+
+
+
+  <title>渲染大量数据我是这样操作的 | 小小坤</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小小坤</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">是你改变了世界还是世界被你改变</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于我">
+          <a href="/2018/11/16/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/06/bigDate/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小小坤">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/log.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小小坤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">渲染大量数据我是这样操作的</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-06T13:06:00+08:00">
+                2018-02-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>事情的由来是这样紫的，目前我负责公司内部的核心业务Gis天眼系统开发，遇到一个问题就是：后端返回几千条数据导致浏览器渲染失败，浏览器几乎是停滞状态。后来没有想到合适的解决方案，临时渲染少量数据解决了。我记得清清楚楚，我已经看过关于这样的问题怎么解决，可惜我没有使用，原因是<strong>学而不思，看而不用</strong>。后来由于家里有些事情，我请假回家休假休息了一段时间。回来之后开了一次会议，说我同事 实现了一个上述问题，用到了js线程。然后我就针对此问题开始了二次思考。就有了本文。</p>
+<h2 id="JS线程"><a href="#JS线程" class="headerlink" title="JS线程"></a>JS线程</h2><p>浏览器内分js线程、GUI渲染线程、事件触发线程、等。大家都知道JS是单线程，但是问题来了，单线程如何实现异步，比如说我们经常使用的Ajax是怎么实现的呢？当你真正了解JS的Event Loop你就会明白！哦：原来如此。这里我就对线程进行抛砖引玉，如果想深入学习可以看一下这篇文章：<a href="https://segmentfault.com/a/1190000012806637" target="_blank" rel="noopener">https://segmentfault.com/a/1190000012806637</a></p>
+<h2 id="如何渲染大量数据"><a href="#如何渲染大量数据" class="headerlink" title="如何渲染大量数据"></a>如何渲染大量数据</h2><p>渲染大量数据肯定会涉及到GUI渲染线程与js线程。如下简单的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--</span><br><span class="line">  dom 节点</span><br><span class="line">--&gt;</span><br><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">			</span><br><span class="line">&lt;/div&gt;	</span><br><span class="line"></span><br><span class="line">//js代码			</span><br><span class="line">var app=document.getElementById(&quot;app&quot;);			</span><br><span class="line">for(var i=0;i&lt;100;i++)&#123;</span><br><span class="line">	var span=document.createElement(&quot;span&quot;);</span><br><span class="line">	span.innerHTML = i;</span><br><span class="line">	app.appendChild(span);//例子才会这样写的</span><br><span class="line">	/**</span><br><span class="line">	*工作中会 这样写，拼接字符串，for循环结束后一次性appendChild</span><br><span class="line">	*/</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从上面代码可以分析、每次for循环使用dom进行渲染。浏览器是怎么渲染的呢？JS线程是单线程，它如果执行js线程，GUI渲染线程肯定会等候，这样一来渲染大量数据就会造成页面卡顿，甚至停滞、奔溃。页面显示效果就是一下子这些dom节点全部渲染出来。知道了这一点，我们就可以想办法解决它（渲染大量数据）。</p>
+<h2 id="初探代码执行方式"><a href="#初探代码执行方式" class="headerlink" title="初探代码执行方式"></a>初探代码执行方式</h2><p>如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">console.log(1);</span><br><span class="line">setTimeout(function()&#123;</span><br><span class="line">	console.log(2);</span><br><span class="line">&#125;,100);</span><br><span class="line">console.log(3);</span><br></pre></td></tr></table></figure>
+<p>大家肯定会说这个很简单，输出1  3   2。我想说的是大家看JS的Event Loop了吗？看了肯定知道其原理。</p>
+<ol>
+<li>首先判断JS是同步还是异步,同步就进入主进程,异步就进入event table</li>
+<li>异步任务在event table中注册函数,当满足触发条件后,被推入event queue</li>
+<li>同步任务进入主线程后一直执行,直到主线程空闲时,才会去event queue中查看是否有可执行的异步任务,如果有就推入主进程中。<h2 id="第一版本"><a href="#第一版本" class="headerlink" title="第一版本"></a>第一版本</h2></li>
+</ol>
+<p><img src="https://user-gold-cdn.xitu.io/2018/2/4/161618939ab00638?w=1347&amp;h=618&amp;f=png&amp;s=203850" alt=""><br>我使用了递归调用实现如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">var app=document.getElementById(&quot;app&quot;);</span><br><span class="line"></span><br><span class="line">var j=1;</span><br><span class="line">/**</span><br><span class="line"> * 渲染方式</span><br><span class="line"> * </span><br><span class="line"> * @number &#123;number&#125; 数量</span><br><span class="line"> * */</span><br><span class="line">function showDom(number)&#123;</span><br><span class="line">	console.log(&apos;渲染&apos;+(j++)+&quot;次&quot;);</span><br><span class="line">	for(var i=0;i&lt;number;i++)&#123;</span><br><span class="line">		var span=document.createElement(&quot;span&quot;);</span><br><span class="line">		span.innerHTML = i;</span><br><span class="line">		app.appendChild(span);//例子才会这样写的</span><br><span class="line">		/**</span><br><span class="line">    	*工作中会 这样写，拼接字符串，for循环结束后一次性appendChild</span><br><span class="line">    	*/</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 渲染大数据量的dom节点</span><br><span class="line"> * </span><br><span class="line"> * @count &#123;number&#125; 总数量</span><br><span class="line"> * </span><br><span class="line"> * */</span><br><span class="line">function init(count)&#123;</span><br><span class="line">	if(typeof count!==&quot;number&quot;) &#123;</span><br><span class="line">		console.warn(count+&quot;类型不是：Number&quot;);</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	if(count&gt;500)&#123;</span><br><span class="line">		setTimeout(function()&#123;</span><br><span class="line">			showDom(500);</span><br><span class="line">			init(count-500);</span><br><span class="line">		&#125;,200);</span><br><span class="line">	&#125;else&#123;</span><br><span class="line">		showDom(count);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">init(4000);</span><br></pre></td></tr></table></figure></p>
+<p>可以看出利用上述方式可以简单轻松实现渲染大量数据，给用户的感觉是，当前数据很多，我需要一步一步渲染。比之前一下子渲染几千条数据导致GUI渲染引擎卡顿、甚至停滞强多啦。</p>
+<h2 id="第二版本"><a href="#第二版本" class="headerlink" title="第二版本"></a>第二版本</h2><p>接下来我又参考书籍使用了下面的代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 分时函数</span><br><span class="line"> * @ary &#123;Arry&#125; 数据</span><br><span class="line"> * @callback &#123;Function&#125; 回掉函数，一个参数，当前数据项</span><br><span class="line"> * @count &#123;Number&#125; 数量</span><br><span class="line"> * </span><br><span class="line"> * */</span><br><span class="line">function timeChunk(ary,callback,count)&#123;</span><br><span class="line">	var objTs=Object.prototype.toString,//检测类型</span><br><span class="line">	t;//定时器</span><br><span class="line">	if(objTs.call(ary)!==&quot;[object Array]&quot;)&#123;</span><br><span class="line">		return console.warn(ary+&quot;---》应该是Arry类型&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	if(objTs.call(callback)!==&quot;[object Function]&quot;)&#123;</span><br><span class="line">		return console.warn(callback+&quot;---》应该是回掉函数&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	if(objTs.call(count)!==&quot;[object Number]&quot;)&#123;</span><br><span class="line">		return console.warn(count+&quot;---》应该是Number类型&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	//开始执行函数    </span><br><span class="line">	function start()&#123;</span><br><span class="line">		for(var i=0;i&lt;Math.min(count||1,ary.length);i++)&#123;</span><br><span class="line">			callback(ary.shift());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return function()&#123;</span><br><span class="line">		t=setInterval(function()&#123;</span><br><span class="line">			if(ary.length===0)&#123;</span><br><span class="line">			 </span><br><span class="line">				return clearInterval(t);</span><br><span class="line">			&#125;</span><br><span class="line">			start();</span><br><span class="line">		&#125;,200);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">//后端返回数据</span><br><span class="line"></span><br><span class="line">var ayy=[];</span><br><span class="line">for (var a=0;a&lt;50000;a++) &#123;</span><br><span class="line">	ayy.push(a);</span><br><span class="line">&#125;</span><br><span class="line">//开始使用 分时函数</span><br><span class="line">var init=timeChunk(ayy,function(i)&#123;</span><br><span class="line">	var span=document.createElement(&quot;span&quot;);</span><br><span class="line">	span.innerHTML = i;</span><br><span class="line">	app.appendChild(span);</span><br><span class="line">&#125;,500);</span><br><span class="line">//开始渲染大数据</span><br><span class="line">init();</span><br></pre></td></tr></table></figure>
+<h2 id="参考demo"><a href="#参考demo" class="headerlink" title="参考demo"></a>参考demo</h2><p>dome1 <a href="http://sandbox.runjs.cn/show/154bzaip" target="_blank" rel="noopener">http://sandbox.runjs.cn/show/154bzaip</a></p>
+<p>dome2 <a href="http://sandbox.runjs.cn/show/hne29nn0" target="_blank" rel="noopener">http://sandbox.runjs.cn/show/hne29nn0</a></p>
+<h2 id="2018-02-06更新"><a href="#2018-02-06更新" class="headerlink" title="2018-02-06更新"></a>2018-02-06更新</h2><ol>
+<li><p>document.createDocumentFragment是最完美的选择。</p>
+</li>
+<li><p>for循环内appendChild到底会不会引起浏览器渲染—-我的回答：不会。<br>因为js线程一直占用，GUI渲染线程等待，只有js线程空闲，GUI渲染线程才会渲染。</p>
+</li>
+<li><p>setInterval不是最优选择，应该使用setTimeout实现setInterval</p>
+</li>
+<li><p>什么时候会出现内存泄漏？</p>
+</li>
+</ol>
+<h3 id="这是两种不同的渲染方式"><a href="#这是两种不同的渲染方式" class="headerlink" title="这是两种不同的渲染方式"></a>这是两种不同的渲染方式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">var app=document.getElementById(&quot;app&quot;);</span><br><span class="line">var fragment=document.createDocumentFragment();</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 渲染方式1</span><br><span class="line"> * 使用createDocumentFragment</span><br><span class="line"> * </span><br><span class="line"> * @number &#123;number&#125; 数量</span><br><span class="line"> * */</span><br><span class="line">function showDom(number)&#123;</span><br><span class="line"></span><br><span class="line">	for(var i=0;i&lt;number;i++)&#123;</span><br><span class="line">		var span=document.createElement(&quot;span&quot;);</span><br><span class="line">		span.innerHTML = i;</span><br><span class="line">		//app.appendChild(span);</span><br><span class="line">		fragment.appendChild(span);</span><br><span class="line">	&#125;</span><br><span class="line">	app.appendChild(fragment);</span><br><span class="line">&#125;</span><br><span class="line">showDom(10000);</span><br><span class="line">/**</span><br><span class="line"> * 渲染方式2</span><br><span class="line"> * 使用appendChild</span><br><span class="line"> * </span><br><span class="line"> * @number &#123;number&#125; 数量</span><br><span class="line"> * */</span><br><span class="line">function showDom1(number)&#123;</span><br><span class="line"></span><br><span class="line">	for(var i=0;i&lt;number;i++)&#123;</span><br><span class="line">		var span=document.createElement(&quot;span&quot;);</span><br><span class="line">		span.innerHTML = i;</span><br><span class="line">		app.appendChild(span);</span><br><span class="line">		//fragment.appendChild(span);</span><br><span class="line">	&#125;</span><br><span class="line">	//app.appendChild(fragment);</span><br><span class="line">&#125;</span><br><span class="line">//showDom1(10000); </span><br><span class="line">//可以使用Chrome浏览器 TimeLine查看js线程与渲染线程占用时间。</span><br></pre></td></tr></table></figure>
+<p>这是直接使用appendChild方法<br><img src="https://user-gold-cdn.xitu.io/2018/2/6/1616b6d785a975c4?w=564&amp;h=348&amp;f=png&amp;s=17074" alt=""><br>这是结果<br><img src="https://user-gold-cdn.xitu.io/2018/2/6/1616b6dc9bae345e?w=1042&amp;h=571&amp;f=png&amp;s=161543" alt=""><br>这是使用createDocumentFragment方法</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/2/6/1616b6ee19d38ff9?w=480&amp;h=379&amp;f=png&amp;s=17825" alt=""><br>这是结果</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/2/6/1616b6f1f38646ac?w=952&amp;h=601&amp;f=png&amp;s=64735" alt=""></p>
+<h2 id="谢谢大家的宝贵意见"><a href="#谢谢大家的宝贵意见" class="headerlink" title="谢谢大家的宝贵意见"></a>谢谢大家的宝贵意见</h2><p>谢谢大家能够提出这些宝贵的意见，希望大家能够理性评论、互动。每个人掌握的知识点都是有限的，只有大家一起讨论才会发现问题，解决问题。希望大家能够理解。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>要在学习中思考，在项目中实战。总有一天你会变得更加厉害！</p>
+<p>打赏通道–我觉得不会有打赏。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/28/167592f13078d6a8?w=800&amp;h=600&amp;f=jpeg&amp;s=184358" alt=""></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/4/14/162c4b13a41e4a3a?w=323&amp;h=311&amp;f=png&amp;s=83969" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/大量数据/" rel="tag"># 大量数据</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/06/es6toes5/" rel="next" title="ES6函数比对ES5函数">
+                <i class="fa fa-chevron-left"></i> ES6函数比对ES5函数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/11/map/" rel="prev" title="如何实现一个地图库封装，可以快速切换地图">
+                如何实现一个地图库封装，可以快速切换地图 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/log.jpg" alt="小小坤">
+            
+              <p class="site-author-name" itemprop="name">小小坤</p>
+              <p class="site-description motion-element" itemprop="description">前端技术文章，JavaScript设计模式，专注前端10年。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">Artikel</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">Tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS线程"><span class="nav-number">2.</span> <span class="nav-text">JS线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何渲染大量数据"><span class="nav-number">3.</span> <span class="nav-text">如何渲染大量数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初探代码执行方式"><span class="nav-number">4.</span> <span class="nav-text">初探代码执行方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一版本"><span class="nav-number">5.</span> <span class="nav-text">第一版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二版本"><span class="nav-number">6.</span> <span class="nav-text">第二版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考demo"><span class="nav-number">7.</span> <span class="nav-text">参考demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-02-06更新"><span class="nav-number">8.</span> <span class="nav-text">2018-02-06更新</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#这是两种不同的渲染方式"><span class="nav-number">8.1.</span> <span class="nav-text">这是两种不同的渲染方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#谢谢大家的宝贵意见"><span class="nav-number">9.</span> <span class="nav-text">谢谢大家的宝贵意见</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">10.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小小坤</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

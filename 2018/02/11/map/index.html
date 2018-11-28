@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Cn">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="地图,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言日前在公司负责的主要业务是gis开发相关，现在使用的是百度地图，百度地图相比高德地图总有些缓慢、卡顿、因此才想到了这个方案。实现一个自己的库，可以快速切换百度地图与高德地图。 思路有了上面这个需求，我们就在考虑这个需求涉及到的功能点，然后如何去实现它。 123一：配置项，一键配置可以选择加载。比如maptype=1：加载百度地图，maptype=2：加载高德地图二：百度如何平滑切换到高德  三">
+<meta name="keywords" content="地图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何实现一个地图库封装，可以快速切换地图">
+<meta property="og:url" content="http://yoursite.com/2018/02/11/map/index.html">
+<meta property="og:site_name" content="小小坤">
+<meta property="og:description" content="前言日前在公司负责的主要业务是gis开发相关，现在使用的是百度地图，百度地图相比高德地图总有些缓慢、卡顿、因此才想到了这个方案。实现一个自己的库，可以快速切换百度地图与高德地图。 思路有了上面这个需求，我们就在考虑这个需求涉及到的功能点，然后如何去实现它。 123一：配置项，一键配置可以选择加载。比如maptype=1：加载百度地图，maptype=2：加载高德地图二：百度如何平滑切换到高德  三">
+<meta property="og:locale" content="zh-Cn">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/28/1626a7a63f452ac6?w=644&h=821&f=png&s=61322">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/11/28/167592f13078d6a8?w=800&h=600&f=jpeg&s=184358">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/4/14/162c4b13a41e4a3a?w=323&h=311&f=png&s=83969">
+<meta property="og:updated_time" content="2018-11-28T07:21:19.845Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何实现一个地图库封装，可以快速切换地图">
+<meta name="twitter:description" content="前言日前在公司负责的主要业务是gis开发相关，现在使用的是百度地图，百度地图相比高德地图总有些缓慢、卡顿、因此才想到了这个方案。实现一个自己的库，可以快速切换百度地图与高德地图。 思路有了上面这个需求，我们就在考虑这个需求涉及到的功能点，然后如何去实现它。 123一：配置项，一键配置可以选择加载。比如maptype=1：加载百度地图，maptype=2：加载高德地图二：百度如何平滑切换到高德  三">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/3/28/1626a7a63f452ac6?w=644&h=821&f=png&s=61322">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/11/map/">
+
+
+
+
+
+  <title>如何实现一个地图库封装，可以快速切换地图 | 小小坤</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小小坤</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">是你改变了世界还是世界被你改变</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于我">
+          <a href="/2018/11/16/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/11/map/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小小坤">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/log.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小小坤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">如何实现一个地图库封装，可以快速切换地图</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-11T13:50:01+08:00">
+                2018-02-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>日前在公司负责的主要业务是gis开发相关，现在使用的是百度地图，百度地图相比高德地图总有些缓慢、卡顿、因此才想到了这个方案。实现一个自己的库，可以快速切换百度地图与高德地图。</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>有了上面这个需求，我们就在考虑这个需求涉及到的功能点，然后如何去实现它。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">一：配置项，一键配置可以选择加载。比如maptype=1：加载百度地图，maptype=2：加载高德地图</span><br><span class="line">二：百度如何平滑切换到高德  </span><br><span class="line">三：百度提供的构造函数与map下的方法如何兼容高德</span><br></pre></td></tr></table></figure>
+<h2 id="最初架构"><a href="#最初架构" class="headerlink" title="最初架构"></a>最初架构</h2><p>有了上述需求和思路，接下来就是使用代码来实现，首先我想到的是，既然是一个库，那肯定要避免全局变量污染，还有就是可拓展性要强，代码整体性能要高。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 作者：java-script@qq.com</span><br><span class="line"> * 时间：2018-03-14</span><br><span class="line"> * 描述：百度与高德地图简单封装实现快速切换</span><br><span class="line"> * 版本：1.0.0.1</span><br><span class="line"> * </span><br><span class="line"> * */</span><br><span class="line">;(function()&#123;</span><br><span class="line">	&apos;use strict&apos;;</span><br><span class="line">	var arg = arguments,</span><br><span class="line">		win = arg[0] || window,</span><br><span class="line">		mapLsit = arg[1] || [];</span><br><span class="line">		</span><br><span class="line">&#125;)(window,[function()&#123;</span><br><span class="line">	</span><br><span class="line">&#125;,function()&#123;</span><br><span class="line">	</span><br><span class="line">&#125;]);</span><br></pre></td></tr></table></figure>
+<p>上述架构只是一个立即执行函数，两个参数，第一个是window对象，第二个是数组，数组内是两个函数。第一个函数是//百度地图相关方法封装，第二个函数是//高德地图相关方法封装，也许以后还有实现腾讯地图封装。所有这里可以很简单的拓展。</p>
+<h2 id="总体代码"><a href="#总体代码" class="headerlink" title="总体代码"></a>总体代码</h2><p>这是总体代码设计，代码还不是很完善，有的控件需要单独封装成工具，有的百度地图提供的插件高德没有提供，需要自己手写。比如下面都有自己手写的在地图上拉框进行搜索。拉框完毕触发回调，返回你拉框的区域位置，你可以在回调中处理你相关操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br><span class="line">518</span><br><span class="line">519</span><br><span class="line">520</span><br><span class="line">521</span><br><span class="line">522</span><br><span class="line">523</span><br><span class="line">524</span><br><span class="line">525</span><br><span class="line">526</span><br><span class="line">527</span><br><span class="line">528</span><br><span class="line">529</span><br><span class="line">530</span><br><span class="line">531</span><br><span class="line">532</span><br><span class="line">533</span><br><span class="line">534</span><br><span class="line">535</span><br><span class="line">536</span><br><span class="line">537</span><br><span class="line">538</span><br><span class="line">539</span><br><span class="line">540</span><br><span class="line">541</span><br><span class="line">542</span><br><span class="line">543</span><br><span class="line">544</span><br><span class="line">545</span><br><span class="line">546</span><br><span class="line">547</span><br><span class="line">548</span><br><span class="line">549</span><br><span class="line">550</span><br><span class="line">551</span><br><span class="line">552</span><br><span class="line">553</span><br><span class="line">554</span><br><span class="line">555</span><br><span class="line">556</span><br><span class="line">557</span><br><span class="line">558</span><br><span class="line">559</span><br><span class="line">560</span><br><span class="line">561</span><br><span class="line">562</span><br><span class="line">563</span><br><span class="line">564</span><br><span class="line">565</span><br><span class="line">566</span><br><span class="line">567</span><br><span class="line">568</span><br><span class="line">569</span><br><span class="line">570</span><br><span class="line">571</span><br><span class="line">572</span><br><span class="line">573</span><br><span class="line">574</span><br><span class="line">575</span><br><span class="line">576</span><br><span class="line">577</span><br><span class="line">578</span><br><span class="line">579</span><br><span class="line">580</span><br><span class="line">581</span><br><span class="line">582</span><br><span class="line">583</span><br><span class="line">584</span><br><span class="line">585</span><br><span class="line">586</span><br><span class="line">587</span><br><span class="line">588</span><br><span class="line">589</span><br><span class="line">590</span><br><span class="line">591</span><br><span class="line">592</span><br><span class="line">593</span><br><span class="line">594</span><br><span class="line">595</span><br><span class="line">596</span><br><span class="line">597</span><br><span class="line">598</span><br><span class="line">599</span><br><span class="line">600</span><br><span class="line">601</span><br><span class="line">602</span><br><span class="line">603</span><br><span class="line">604</span><br><span class="line">605</span><br><span class="line">606</span><br><span class="line">607</span><br><span class="line">608</span><br><span class="line">609</span><br><span class="line">610</span><br><span class="line">611</span><br><span class="line">612</span><br><span class="line">613</span><br><span class="line">614</span><br><span class="line">615</span><br><span class="line">616</span><br><span class="line">617</span><br><span class="line">618</span><br><span class="line">619</span><br><span class="line">620</span><br><span class="line">621</span><br><span class="line">622</span><br><span class="line">623</span><br><span class="line">624</span><br><span class="line">625</span><br><span class="line">626</span><br><span class="line">627</span><br><span class="line">628</span><br><span class="line">629</span><br><span class="line">630</span><br><span class="line">631</span><br><span class="line">632</span><br><span class="line">633</span><br><span class="line">634</span><br><span class="line">635</span><br><span class="line">636</span><br><span class="line">637</span><br><span class="line">638</span><br><span class="line">639</span><br><span class="line">640</span><br><span class="line">641</span><br><span class="line">642</span><br><span class="line">643</span><br><span class="line">644</span><br><span class="line">645</span><br><span class="line">646</span><br><span class="line">647</span><br><span class="line">648</span><br><span class="line">649</span><br><span class="line">650</span><br><span class="line">651</span><br><span class="line">652</span><br><span class="line">653</span><br><span class="line">654</span><br><span class="line">655</span><br><span class="line">656</span><br><span class="line">657</span><br><span class="line">658</span><br><span class="line">659</span><br><span class="line">660</span><br><span class="line">661</span><br><span class="line">662</span><br><span class="line">663</span><br><span class="line">664</span><br><span class="line">665</span><br><span class="line">666</span><br><span class="line">667</span><br><span class="line">668</span><br><span class="line">669</span><br><span class="line">670</span><br><span class="line">671</span><br><span class="line">672</span><br><span class="line">673</span><br><span class="line">674</span><br><span class="line">675</span><br><span class="line">676</span><br><span class="line">677</span><br><span class="line">678</span><br><span class="line">679</span><br><span class="line">680</span><br><span class="line">681</span><br><span class="line">682</span><br><span class="line">683</span><br><span class="line">684</span><br><span class="line">685</span><br><span class="line">686</span><br><span class="line">687</span><br><span class="line">688</span><br><span class="line">689</span><br><span class="line">690</span><br><span class="line">691</span><br><span class="line">692</span><br><span class="line">693</span><br><span class="line">694</span><br><span class="line">695</span><br><span class="line">696</span><br><span class="line">697</span><br><span class="line">698</span><br><span class="line">699</span><br><span class="line">700</span><br><span class="line">701</span><br><span class="line">702</span><br><span class="line">703</span><br><span class="line">704</span><br><span class="line">705</span><br><span class="line">706</span><br><span class="line">707</span><br><span class="line">708</span><br><span class="line">709</span><br><span class="line">710</span><br><span class="line">711</span><br><span class="line">712</span><br><span class="line">713</span><br><span class="line">714</span><br><span class="line">715</span><br><span class="line">716</span><br><span class="line">717</span><br><span class="line">718</span><br><span class="line">719</span><br><span class="line">720</span><br><span class="line">721</span><br><span class="line">722</span><br><span class="line">723</span><br><span class="line">724</span><br><span class="line">725</span><br><span class="line">726</span><br><span class="line">727</span><br><span class="line">728</span><br><span class="line">729</span><br><span class="line">730</span><br><span class="line">731</span><br><span class="line">732</span><br><span class="line">733</span><br><span class="line">734</span><br><span class="line">735</span><br><span class="line">736</span><br><span class="line">737</span><br><span class="line">738</span><br><span class="line">739</span><br><span class="line">740</span><br><span class="line">741</span><br><span class="line">742</span><br><span class="line">743</span><br><span class="line">744</span><br><span class="line">745</span><br><span class="line">746</span><br><span class="line">747</span><br><span class="line">748</span><br><span class="line">749</span><br><span class="line">750</span><br><span class="line">751</span><br><span class="line">752</span><br><span class="line">753</span><br><span class="line">754</span><br><span class="line">755</span><br><span class="line">756</span><br><span class="line">757</span><br><span class="line">758</span><br><span class="line">759</span><br><span class="line">760</span><br><span class="line">761</span><br><span class="line">762</span><br><span class="line">763</span><br><span class="line">764</span><br><span class="line">765</span><br><span class="line">766</span><br><span class="line">767</span><br><span class="line">768</span><br><span class="line">769</span><br><span class="line">770</span><br><span class="line">771</span><br><span class="line">772</span><br><span class="line">773</span><br><span class="line">774</span><br><span class="line">775</span><br><span class="line">776</span><br><span class="line">777</span><br><span class="line">778</span><br><span class="line">779</span><br><span class="line">780</span><br><span class="line">781</span><br><span class="line">782</span><br><span class="line">783</span><br><span class="line">784</span><br><span class="line">785</span><br><span class="line">786</span><br><span class="line">787</span><br><span class="line">788</span><br><span class="line">789</span><br><span class="line">790</span><br><span class="line">791</span><br><span class="line">792</span><br><span class="line">793</span><br><span class="line">794</span><br><span class="line">795</span><br><span class="line">796</span><br><span class="line">797</span><br><span class="line">798</span><br><span class="line">799</span><br><span class="line">800</span><br><span class="line">801</span><br><span class="line">802</span><br><span class="line">803</span><br><span class="line">804</span><br><span class="line">805</span><br><span class="line">806</span><br><span class="line">807</span><br><span class="line">808</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 作者：java-script@qq.com</span><br><span class="line"> * 时间：2018-03-14</span><br><span class="line"> * 描述：百度与高德地图简单封装实现快速切换</span><br><span class="line"> * 版本：1.0.0.1</span><br><span class="line"> * </span><br><span class="line"> * */</span><br><span class="line">;</span><br><span class="line">(function() &#123;</span><br><span class="line">	&apos;use strict&apos;;</span><br><span class="line">	var arg = arguments,</span><br><span class="line">		win = arg[0] || window,</span><br><span class="line">		mapLsit = arg[1] || [];</span><br><span class="line"></span><br><span class="line">	//console.log(mapLsit);</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 挂载window</span><br><span class="line">	 * */</span><br><span class="line">	var map = win.Gis_Map = &#123;&#125;;</span><br><span class="line">	/**</span><br><span class="line">	 * 配置项</span><br><span class="line">	 * */</span><br><span class="line">	map.config = &#123;</span><br><span class="line">		maptype: 0, //0:代表百度地图，1：高德地图，2：腾讯地图</span><br><span class="line">	&#125;;</span><br><span class="line">	//地图实例之后的所有方法</span><br><span class="line">	map.pulic = &#123;</span><br><span class="line"></span><br><span class="line">	&#125;;</span><br><span class="line">	/**</span><br><span class="line">	 * 主函数</span><br><span class="line">	 * </span><br><span class="line">	 * */</span><br><span class="line">	map.init = function() &#123;</span><br><span class="line">		main();</span><br><span class="line">	&#125;;</span><br><span class="line">	/**</span><br><span class="line">	 * 根据配置文件选择加载相应的地图</span><br><span class="line">	 * </span><br><span class="line">	 * */</span><br><span class="line">	function main() &#123;</span><br><span class="line"></span><br><span class="line">		switch(map.config.maptype) &#123;</span><br><span class="line">			case 0:</span><br><span class="line">				casemap(0);</span><br><span class="line">				break;</span><br><span class="line">			case 1:</span><br><span class="line">				casemap(1);</span><br><span class="line">				break;</span><br><span class="line">			case 2:</span><br><span class="line">				casemap(2);</span><br><span class="line">				break;</span><br><span class="line">			default:</span><br><span class="line"></span><br><span class="line">		&#125;;</span><br><span class="line">		/**</span><br><span class="line">		 * 选择加载</span><br><span class="line">		 * @n &#123;number&#125; 根据类型加载地图</span><br><span class="line">		 * </span><br><span class="line">		 * */</span><br><span class="line">		function casemap(n) &#123;</span><br><span class="line">			var fn = null;</span><br><span class="line">			if(mapLsit.length) &#123;</span><br><span class="line">				fn = mapLsit[n];</span><br><span class="line">				mapLsit = null;</span><br><span class="line">				fn.call(map);</span><br><span class="line">				//console.log(fn.call(map),&apos;加载百度地图成功！&apos;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 把地图实例的方法进行统一</span><br><span class="line">	 * @n &#123;number&#125; 0:代表百度地图，1：代表高德地图</span><br><span class="line">	 * */</span><br><span class="line">	map.setpulic = function(n) &#123;</span><br><span class="line">		var map_pulic = this.pulic;</span><br><span class="line">		if(n === 0) &#123;</span><br><span class="line"></span><br><span class="line">		&#125; else if(n === 1) &#123;</span><br><span class="line">			//兼容高德设置中心点位与缩放大小</span><br><span class="line">			/**</span><br><span class="line">			 * @point &#123;point&#125; 点位</span><br><span class="line">			 * @level &#123;number&#125; 缩放大小等级</span><br><span class="line">			 * */</span><br><span class="line">			map_pulic.centerAndZoom = function(point, level) &#123;</span><br><span class="line">				this.setZoomAndCenter(level, point);</span><br><span class="line">			&#125;</span><br><span class="line">			/**</span><br><span class="line">			 * 启用缩放</span><br><span class="line">			 * </span><br><span class="line">			 * */</span><br><span class="line">			map_pulic.enableScrollWheelZoom = function() &#123;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">			//兼容高德的绑定事件</span><br><span class="line">			map_pulic.addEventListener = map_pulic.on;</span><br><span class="line">			//兼容高德的添加覆盖物</span><br><span class="line">			map_pulic.addOverlay = map_pulic.add;</span><br><span class="line">			//清除 覆盖物</span><br><span class="line">			map_pulic.removeOverlay = map_pulic.remove;</span><br><span class="line">			//获取两点间距离 需要插件提供	</span><br><span class="line">			//map_pulic.getDistance=</span><br><span class="line"></span><br><span class="line">			//关闭window 窗体 </span><br><span class="line">			map_pulic.closeInfoWindow = map_pulic.clearInfoWindow;</span><br><span class="line"></span><br><span class="line">			/**</span><br><span class="line">			 * 地图经纬度坐标转换为平面地图像素坐标</span><br><span class="line">			 * lnglatToPixel</span><br><span class="line">			 * @point &#123;Point&#125; 点位</span><br><span class="line">			 * */</span><br><span class="line">			map_pulic.pointToPixel = function(point) &#123;</span><br><span class="line">				return map_pulic.lnglatToPixel(point, 10);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			/**</span><br><span class="line">			 * 获取两点间的距离</span><br><span class="line">			 * @start &#123;Point&#125; 开始点位</span><br><span class="line">			 * @end &#123;Point&#125; 结束点位</span><br><span class="line">			 * */</span><br><span class="line">			map_pulic.getDistance = function(start, end) &#123;</span><br><span class="line">				return start.distance(end);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		//console.log(map_pulic,&apos;map_pulic&apos;);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;)(window, [function() &#123;</span><br><span class="line">	&apos;use strict&apos;;</span><br><span class="line">	//百度地图相关方法封装</span><br><span class="line">	if(!BMap) &#123;</span><br><span class="line">		console.error(&apos;请检查config配置项与加载的地图js是否正确!&apos;);</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	//验证数据类型</span><br><span class="line">	var _toString = Object.prototype.toString;</span><br><span class="line">	/**</span><br><span class="line">	 * 在指定的容器内创建地图实例，之后需要调用Map.centerAndZoom()方法对地图进行初始化。未进行初始化的地图将不能进行任何操作</span><br><span class="line">	 * @container &#123;String | HTMLElement&#125; </span><br><span class="line">	 * @opt &#123;</span><br><span class="line">	 * 	属性	              类型	                                   描述</span><br><span class="line">		minZoom	Number	地图允许展示的最小级别</span><br><span class="line">		maxZoom	Number	地图允许展示的最大级别</span><br><span class="line">		mapType	MapType	地图类型，默认为BMAP_NORMAL_MAP</span><br><span class="line">		enableHighResolution	Boolean	是否启用使用高分辨率地图。在iPhone4及其后续设备上，可以通过开启此选项获取更高分辨率的底图，v1.2,v1.3版本默认不开启，v1.4默认为开启状态</span><br><span class="line">		enableAutoResize	Boolean	是否自动适应地图容器变化，默认启用</span><br><span class="line">		enableMapClick	Boolean	是否开启底图可点功能，默认启用</span><br><span class="line">		PanOptions</span><br><span class="line">	 * &#125; 此类表示Map构造函数的可选参数。它没有构造函数，但可通过对象字面量形式表示。</span><br><span class="line">	 * */</span><br><span class="line">	this.Map = function(container, opt) &#123;</span><br><span class="line">		var that = this.pulic = new BMap.Map(container, opt);</span><br><span class="line">		//触发实例方法进行重写</span><br><span class="line">		this.setpulic(0);</span><br><span class="line">		return that;</span><br><span class="line">	&#125;</span><br><span class="line">	/**</span><br><span class="line">	 * 创建点位</span><br><span class="line">	 * @lng &#123;Number&#125;  地理经度</span><br><span class="line">	 * @lat &#123;Number&#125;  地理纬度</span><br><span class="line">	 * */</span><br><span class="line">	this.Point = function(lng, lat) &#123;</span><br><span class="line">		return new BMap.Point(lng, lat); //创建点位</span><br><span class="line">	&#125;</span><br><span class="line">	/**</span><br><span class="line">	 * 创建圆</span><br><span class="line">	 * </span><br><span class="line">	 * @center &#123;点位坐标 Point &#125; 以指定的经度和纬度创建一个地理点坐标</span><br><span class="line">	 * @radius &#123;Number&#125; 半径单位米</span><br><span class="line">	 * @opts  &#123;</span><br><span class="line">	 * 	strokeColor	String	圆形边线颜色</span><br><span class="line">		fillColor	String	圆形填充颜色。当参数为空时，圆形将没有填充效果</span><br><span class="line">		strokeWeight	Number	圆形边线的宽度，以像素为单位</span><br><span class="line">		strokeOpacity	Number	圆形边线透明度，取值范围0 - 1</span><br><span class="line">		fillOpacity	Number	圆形填充的透明度，取值范围0 - 1</span><br><span class="line">		strokeStyle	String	圆形边线的样式，solid或dashed</span><br><span class="line">		enableMassClear	Boolean	是否在调用map.clearOverlays清除此覆盖物，默认为true</span><br><span class="line">		enableEditing	Boolean	是否启用线编辑，默认为false</span><br><span class="line">		enableClicking	Boolean	是否响应点击事件，默认为true</span><br><span class="line">	 * &#125;</span><br><span class="line">	 * </span><br><span class="line">	 * */</span><br><span class="line">	this.Circle = function(center, radius, opts) &#123;</span><br><span class="line">		return new BMap.Circle(center, radius, opts);</span><br><span class="line">	&#125;</span><br><span class="line">	/**</span><br><span class="line">	 * 创建一个图像标注实例。point参数指定了图像标注所在的地理位置</span><br><span class="line">	 * @point &#123;点位坐标  Point&#125; 以指定的经度和纬度创建一个地理点坐标</span><br><span class="line">	 * @opts &#123;</span><br><span class="line">	 * 	offset	Size	标注的位置偏移值</span><br><span class="line">		icon	Icon	标注所用的图标对象</span><br><span class="line">		enableMassClear	Boolean	是否在调用map.clearOverlays清除此覆盖物，默认为true</span><br><span class="line">		enableDragging	Boolean	是否启用拖拽，默认为false</span><br><span class="line">		enableClicking	Boolean	是否响应点击事件。默认为true</span><br><span class="line">		raiseOnDrag	Boolean	拖拽标注时，标注是否开启离开地图表面效果。默认为false</span><br><span class="line">		draggingCursor	String	拖拽标注时的鼠标指针样式。此属性值需遵循CSS的cursor属性规范</span><br><span class="line">		rotation	Number	旋转角度</span><br><span class="line">		shadow	Icon	阴影图标</span><br><span class="line">		title	String	鼠标移到marker上的显示内容</span><br><span class="line">	 * &#125;</span><br><span class="line">	 * */</span><br><span class="line">	this.Marker = function(point, opts) &#123;</span><br><span class="line">		return new BMap.Marker(point, opts);</span><br><span class="line">	&#125;</span><br><span class="line">	/**</span><br><span class="line">	 * 创建折线覆盖物对象</span><br><span class="line">	 * @points &#123;Array&lt;Point&gt;&#125; 点位数组</span><br><span class="line">	 * @opts &#123;</span><br><span class="line">	 * 	strokeColor	String	折线颜色</span><br><span class="line">		strokeWeight	Number	折线的宽度，以像素为单位</span><br><span class="line">		strokeOpacity	Number	折线的透明度，取值范围0 - 1</span><br><span class="line">		strokeStyle	String	折线的样式，solid或dashed</span><br><span class="line">		enableMassClear	Boolean	是否在调用map.clearOverlays清除此覆盖物，默认为true</span><br><span class="line">		enableEditing	Boolean	是否启用线编辑，默认为false</span><br><span class="line">		enableClicking	Boolean	是否响应点击事件，默认为true</span><br><span class="line">		icons	Array&lt;IconSequence&gt;	配置贴合折线的图标</span><br><span class="line">	 * &#125;</span><br><span class="line">	 * */</span><br><span class="line">	this.Polyline = function(points, opts) &#123;</span><br><span class="line">		return new BMap.Polyline(points, opts);</span><br><span class="line">	&#125;</span><br><span class="line">	/**</span><br><span class="line">	 * 以给定的图像地址和大小创建图标对象实例</span><br><span class="line">	 * @url &#123;String&#125; url地址</span><br><span class="line">	 * @size &#123;Size&#125; 大小</span><br><span class="line">	 * @opts &#123;</span><br><span class="line">	 * 	anchor	Size	图标的定位锚点。此点用来决定图标与地理位置的关系，是相对于图标左上角的偏移值，默认等于图标宽度和高度的中间值</span><br><span class="line">		imageOffset	Size	图片相对于可视区域的偏移值</span><br><span class="line">		infoWindowAnchor	Size	信息窗口定位锚点。开启信息窗口时，信息窗口底部尖角相对于图标左上角的位置，默认等于图标的anchor</span><br><span class="line">		printImageUrl	String	用于打印的图片，此属性只适用于IE6，为了解决IE6在包含滤镜的情况下打印样式不正确的问题</span><br><span class="line">	 * &#125;</span><br><span class="line">	 * */</span><br><span class="line">	this.Icon = function(url, size, opts) &#123;</span><br><span class="line">		return new BMap.Icon(url, size, opts);</span><br><span class="line">	&#125;</span><br><span class="line">	/**</span><br><span class="line">	 * 以指定的宽度和高度创建一个矩形区域大小对象</span><br><span class="line">	 * @width &#123;Number&#125; 水平方向的数值</span><br><span class="line">	 * @height &#123;Number&#125; 竖直方向的数值</span><br><span class="line">	 * */</span><br><span class="line">	this.Size = function(width, height) &#123;</span><br><span class="line">		return new BMap.Size(width, height)</span><br><span class="line">	&#125;</span><br><span class="line">	/**</span><br><span class="line">	 * Autocomplete是结果提示、自动完成类。</span><br><span class="line">	 * @options &#123;</span><br><span class="line">	 * 	location	String | Map | Point	设定返回结果的所属范围。例如“北京市”</span><br><span class="line">		types	Array&lt;String&gt;	返回数据类型。两种设置方式，第一种为默认值（即设置值为空），将返回所有数据。如地图初始化为北京，在输入框中输入“小”，输入框下会出现包含“小”关键字的多种类型（如餐饮、地名等）的提示词条。第二种设置值为&quot;city&quot;，将返回省市区县乡镇街道地址类型数据。如地图初始化为北京，在输入框中输入“小”，输入框下会出现“小金县”的地点名称类的提示词条</span><br><span class="line">		onSearchComplete	Function	在input框中输入字符后，发起列表检索，完成后的回调函数。 参数：AutocompleteResult</span><br><span class="line">		input	String | HTMLElement	文本输入框元素或其id</span><br><span class="line">	 * &#125;</span><br><span class="line">	 * */</span><br><span class="line">	this.Autocomplete = function(options) &#123;</span><br><span class="line">		return new BMap.Autocomplete(options);</span><br><span class="line">	&#125;</span><br><span class="line">	/**</span><br><span class="line">	 * 用于位置检索、周边检索和范围检索。</span><br><span class="line">	 * @location &#123;Map | Point | String&#125;</span><br><span class="line">	 * @opts &#123;</span><br><span class="line">	 * 	renderOptions	LocalRenderOptions	结果呈现设置</span><br><span class="line">		onMarkersSet	Function	标注添加完成后的回调函数。 参数： pois: Array，通过marker属性可得到其对应的标注</span><br><span class="line">		onInfoHtmlSet	Function	标注气泡内容创建后的回调函数。 参数： poi: LocalResultPoi，通过其marker属性可得到当前的标注。 html: HTMLElement，气泡内的Dom元素</span><br><span class="line">		onResultsHtmlSet	Function	结果列表添加完成后的回调函数。 参数： container: HTMLElement，结果列表所用的HTML元素</span><br><span class="line">		pageCapacity	Number	设置每页容量，取值范围：1 - 100，对于多关键字检索，容量表示每个关键字的数量，如果有2个关键字，则实际检索结果数量范围为：2 - 200</span><br><span class="line">		onSearchComplete	Function	检索完成后的回调函数。 参数：results: LocalResult或Array 如果是多关键字检索，回调函数参数返回一个LocalResult的数组，数组中的结果顺序和检索中多关键字数组中顺序一致</span><br><span class="line"></span><br><span class="line">	 * &#125;</span><br><span class="line">	 * */</span><br><span class="line">	this.LocalSearch = function(location, opts) &#123;</span><br><span class="line">		return new BMap.LocalSearch(location, opts);</span><br><span class="line">	&#125;</span><br><span class="line">	/**</span><br><span class="line">	 * 创建一个地址解析器的实例</span><br><span class="line">	 * </span><br><span class="line">	 * */</span><br><span class="line">	this.Geocoder = function() &#123;</span><br><span class="line">		return new BMap.Geocoder();</span><br><span class="line">	&#125;</span><br><span class="line">	/**</span><br><span class="line">	 * 创建Geolocation对象实例</span><br><span class="line">	 * </span><br><span class="line">	 * */</span><br><span class="line">	this.Geolocation = function() &#123;</span><br><span class="line">		return new BMap.Geolocation();</span><br><span class="line">	&#125;</span><br><span class="line">	/**</span><br><span class="line">	 * 此类表示地图上包含信息的窗口。</span><br><span class="line">	 * </span><br><span class="line">	 * @content &#123;string | HTMLElement&#125; 创建一个信息窗实例，其中content支持HTML内容。1.2版本开始content参数支持传入DOM结点</span><br><span class="line">	 * @opts </span><br><span class="line">	   &#123;  </span><br><span class="line">	 	width	Number	信息窗宽度，单位像素。取值范围：0, 220 - 730。如果您指定宽度为0，则信息窗口的宽度将按照其内容自动调整</span><br><span class="line">		height	Number	信息窗高度，单位像素。取值范围：0, 60 - 650。如果您指定高度为0，则信息窗口的高度将按照其内容自动调整</span><br><span class="line">		maxWidth	Number	信息窗最大化时的宽度，单位像素。取值范围：220 - 730</span><br><span class="line">		offset	Size	信息窗位置偏移值。默认情况下在地图上打开的信息窗底端的尖角将指向其地理坐标，在标注上打开的信息窗底端尖角的位置取决于标注所用图标的infoWindowOffset属性值，您可以为信息窗添加偏移量来改变默认位置</span><br><span class="line">		title	String	信息窗标题文字，支持HTML内容</span><br><span class="line">		enableAutoPan	Boolean	是否开启信息窗口打开时地图自动移动（默认开启）</span><br><span class="line">		enableCloseOnClick	Boolean	是否开启点击地图关闭信息窗口（默认开启）</span><br><span class="line">		enableMessage	Boolean	是否在信息窗里显示短信发送按钮（默认开启）</span><br><span class="line">		message	String	自定义部分的短信内容，可选项。完整的短信内容包括：自定义部分+位置链接，不设置时，显示默认短信内容。短信内容最长为140个字</span><br><span class="line">	 &#125;</span><br><span class="line">	 * */</span><br><span class="line">	this.InfoWindow = function(content, opts) &#123;</span><br><span class="line">		return new BMap.InfoWindow(content, opts)</span><br><span class="line">	&#125;</span><br><span class="line">	/**</span><br><span class="line">	 * 创建一个文本标注实例。point参数指定了文本标注所在的地理位置</span><br><span class="line">	 * @content &#123;String&#125;  标题内容</span><br><span class="line">	 * @opts &#123;</span><br><span class="line">	 * 	offset	Size	文本标注的位置偏移值</span><br><span class="line">		position	Point	文本标注的地理位置</span><br><span class="line">		enableMassClear	Boolean	是否在调用map.clearOverlays清除此覆盖物，默认为true</span><br><span class="line"></span><br><span class="line">	 * &#125;</span><br><span class="line">	 * */</span><br><span class="line">	this.Label = function(content, opts) &#123;</span><br><span class="line">		return new BMap.Label(content, opts);</span><br><span class="line">	&#125;</span><br><span class="line">	/**</span><br><span class="line">	 * 打开window 窗体</span><br><span class="line">	 * @infoWindow 实例化的 InfoWindow窗体</span><br><span class="line">	 * @point &#123;点位坐标  Point&#125; 以指定的经度和纬度创建一个地理点坐标</span><br><span class="line">	 * */</span><br><span class="line">	this.openInfoWindow = function(infoWindow, point) &#123;</span><br><span class="line">		this.pulic.openInfoWindow(infoWindow, point);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;, function() &#123;</span><br><span class="line">	&apos;use strict&apos;;</span><br><span class="line">	//高德地图相关方法封装</span><br><span class="line">	if(!AMap) &#123;</span><br><span class="line">		console.error(&apos;请检查config配置项与加载的地图js是否正确!&apos;);</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	//验证数据类型</span><br><span class="line">	var _toString = Object.prototype.toString;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 在指定的容器内创建地图实例，之后需要调用Map.centerAndZoom()方法对地图进行初始化。未进行初始化的地图将不能进行任何操作</span><br><span class="line">	 * @container &#123;String | HTMLElement&#125; </span><br><span class="line">	 * @opt &#123;</span><br><span class="line">	 * </span><br><span class="line">	 * //百度提供的参数</span><br><span class="line">	 * 	属性	              类型	                                   描述</span><br><span class="line">		minZoom	Number	地图允许展示的最小级别</span><br><span class="line">		maxZoom	Number	地图允许展示的最大级别</span><br><span class="line">		mapType	MapType	地图类型，默认为BMAP_NORMAL_MAP</span><br><span class="line">		enableHighResolution	Boolean	是否启用使用高分辨率地图。在iPhone4及其后续设备上，可以通过开启此选项获取更高分辨率的底图，v1.2,v1.3版本默认不开启，v1.4默认为开启状态</span><br><span class="line">		enableAutoResize	Boolean	是否自动适应地图容器变化，默认启用</span><br><span class="line">		enableMapClick	Boolean	是否开启底图可点功能，默认启用</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		//高德提供的参数</span><br><span class="line">		view    View2D  地图视口，用于控制影响地图静态显示的属性，如：地图中心点“center” 推荐直接使用zoom、center属性为地图指定级别和中心点 （自v1.3 新增）</span><br><span class="line">        layers  Array   地图图层数组，数组可以是图层 中的一个或多个，默认为普通二维地图。当叠加多个图层时，普通二维地图需通过实例化一个TileLayer类实现（自v1.3 新增）</span><br><span class="line">        zoom    Number  地图显示的缩放级别，若center与level未赋值，地图初始化默认显示用户所在城市范围3D地图下，zoom值，可以设置为浮点数。（在V1.3.0版本level参数调整为zoom，3D地图修改自V1.4.0开始生效）</span><br><span class="line">        center  LngLat  地图中心点坐标值 </span><br><span class="line">        labelzIndex   Number   地图标注显示顺序，大于110即可将底图上的默认标注显示在覆盖物（圆、折线、面）之上。</span><br><span class="line">        zooms   Array   地图显示的缩放级别范围在PC上，默认为[3,18]，取值范围[3-18]；在移动设备上，默认为[3,19],取值范围[3-19]</span><br><span class="line">        lang    String  地图语言类型可选值：zh_cn：中文简体，en：英文，zh_en：中英文对照默认为: zh_cn：中文简体注：由于图面内容限制，中文、英文 、中英文地图POI可能存在不一致的情况（自v1.3 新增）</span><br><span class="line">        defaultCursor   String   地图默认鼠标样式。参数defaultCursor应符合CSS的cursor属性规范</span><br><span class="line">        crs   String    地图显示的参考坐标系，取值：&apos;EPSG3857&apos;&apos;EPSG3395&apos;&apos;EPSG4326&apos;自V1.3.0移入view对象中</span><br><span class="line">        animateEnable   Boolean  地图平移过程中是否使用动画（如调用panBy、panTo、setCenter、setZoomAndCenter等函数，将对地图产生平移操作，是否使用动画平移的效果），默认为true，即使用动画</span><br><span class="line">        isHotspot  Boolean  是否开启地图热点，默认false 不打开（自v1.3 新增）</span><br><span class="line">        defaultLayer   TileLayer   当前地图中默认显示的图层。默认图层可以是TileLayer.Satellite等切片地图，也可以是通过TileLayer自定义的切片图层（自v1.3 废弃）</span><br><span class="line">        rotateEnable   Boolean   地图是否可旋转，默认false。3D视图默认为true，2D视图默认false。（V1.3版本新增，3D视图自V1.4.0开始支持）</span><br><span class="line">        resizeEnable   Boolean   是否监控地图容器尺寸变化，默认值为false</span><br><span class="line">        showIndoorMap  Boolean   是否在有矢量底图的时候自动展示室内地图，PC端默认是true，移动端默认是false</span><br><span class="line">        indoorMap      IndoorMap   在展示矢量图的时候自动展示室内地图图层，当地图complete之后可以获取到该对象</span><br><span class="line">        expandZoomRange   Boolean  是否支持可以扩展最大缩放级别,和zooms属性配合使用 设置为true的时候，zooms的最大级别在PC上可以扩大到20级，移动端还是高清19/非高清20</span><br><span class="line">        dragEnable   Boolean  地图是否可通过鼠标拖拽平移，默认为true。此属性可被setStatus/getStatus 方法控制</span><br><span class="line">        zoomEnable   Boolean  地图是否可缩放，默认值为true。此属性可被setStatus/getStatus 方法控制</span><br><span class="line">        doubleClickZoom   Boolean  地图是否可通过双击鼠标放大地图，默认为true。此属性可被setStatus/getStatus 方法控制</span><br><span class="line">        keyboardEnable  Boolean  地图是否可通过键盘控制,默认为true 方向键控制地图平移，&quot;+&quot;和&quot;-&quot;可以控制地图的缩放， Ctrl+“→”顺时针旋转，Ctrl+“←”逆时针旋转。此属性可被setStatus/getStatus 方法控制</span><br><span class="line">        jogEnable   Boolean   地图是否使用缓动效果，默认值为true。此属性可被setStatus/getStatus 方法控制</span><br><span class="line">        scrollWheel  Boolean  地图是否可通过鼠标滚轮缩放浏览，默认为true。此属性可被setStatus/getStatus 方法控制</span><br><span class="line">        touchZoom   Boolean   地图在移动终端上是否可通过多点触控缩放浏览地图，默认为true。关闭手势缩放地图，请设置为false。</span><br><span class="line">        touchZoomCenter  Number  可缺省，当touchZoomCenter=1的时候，手机端双指缩放的以地图中心为中心，否则默认以双指中间点为中心</span><br><span class="line">        mapStyle   String   设置地图的显示样式，目前支持两种地图样式： 第一种：自定义地图样式，如&quot;amap://styles/d6bf8c1d69cea9f5c696185ad4ac4c86&quot;可前往地图自定义平台定制自己的个性地图样式；第二种：官方样式模版,如&quot;amap://styles/grey&quot;。其他模版样式及自定义地图的使用说明见开发指南</span><br><span class="line">        features   Array   设置地图上显示的元素种类 支持&apos;bg&apos;（地图背景）、&apos;point&apos;（POI点）、&apos;road&apos;（道路）、&apos;building&apos;（建筑物）</span><br><span class="line">        showBuildingBlock  Boolean  设置地图显示3D楼块效果，移动端也可使用。推荐使用。</span><br><span class="line">        viewMode  String  默认为‘2D’，可选’3D’，选择‘3D’会显示 3D 地图效果。（自V1.4.0开始支持）</span><br><span class="line">        pitch  Number  俯仰角度，默认0，[0,83]，2D地图下无效 。（自V1.4.0开始支持）</span><br><span class="line">        pitchEnable  Boolean  是否允许设置俯仰角度，3D视图下为true，2D视图下无效。（自V1.4.0开始支持）</span><br><span class="line">        buildingAnimation  Boolean  楼块出现和消失的时候是否显示动画过程，3D视图有效，PC端默认true，手机端默认false。（自V1.4.0开始支持）</span><br><span class="line">        skyColor  String  调整天空颜色，配合自定义地图，3D视图有效，如‘#ff0000’。（自V1.4.0开始支持）	</span><br><span class="line">	 * &#125; 此类表示Map构造函数的可选参数。它没有构造函数，但可通过对象字面量形式表示。</span><br><span class="line">	 * */</span><br><span class="line">	this.Map = function(container, opt) &#123;</span><br><span class="line">		var that = this.pulic = new AMap.Map(container, opt);</span><br><span class="line">		//触发实例方法进行重写</span><br><span class="line">		this.setpulic(1);</span><br><span class="line">		return that;</span><br><span class="line">	&#125;;</span><br><span class="line">	/**</span><br><span class="line">	 * 创建maker覆盖物</span><br><span class="line">	 * @point &#123;点位坐标  Point&#125; 以指定的经度和纬度创建一个地理点坐标</span><br><span class="line">	 * @opts &#123;</span><br><span class="line">	 *  //百度参数</span><br><span class="line">	 * 	offset	Size	标注的位置偏移值</span><br><span class="line">		icon	Icon	标注所用的图标对象</span><br><span class="line">		enableMassClear	Boolean	是否在调用map.clearOverlays清除此覆盖物，默认为true</span><br><span class="line">		enableDragging	Boolean	是否启用拖拽，默认为false</span><br><span class="line">		enableClicking	Boolean	是否响应点击事件。默认为true</span><br><span class="line">		raiseOnDrag	Boolean	拖拽标注时，标注是否开启离开地图表面效果。默认为false</span><br><span class="line">		draggingCursor	String	拖拽标注时的鼠标指针样式。此属性值需遵循CSS的cursor属性规范</span><br><span class="line">		rotation	Number	旋转角度</span><br><span class="line">		shadow	Icon	阴影图标</span><br><span class="line">		title	String	鼠标移到marker上的显示内容</span><br><span class="line">		</span><br><span class="line">		//高德参数</span><br><span class="line">		map	Map	要显示该marker的地图对象</span><br><span class="line">		position	LngLat	点标记在地图上显示的位置，默认为地图中心点</span><br><span class="line">		offset	Pixel	点标记显示位置偏移量，默认值为Pixel(-10,-34)。Marker指定position后，默认以marker左上角位置为基准点，对准所给定的position位置，若需使marker指定位置对准在position处，需根据marker的尺寸设置一定的偏移量。</span><br><span class="line">		icon	String/Icon	需在点标记中显示的图标。可以是一个本地图标地址，或者Icon对象。有合法的content内容时，此属性无效</span><br><span class="line">		content	String/Object	点标记显示内容，可以是HTML要素字符串或者HTML DOM对象。content有效时，icon属性将被覆盖</span><br><span class="line">		topWhenClick	Boolean	鼠标点击时marker是否置顶，默认false ，不置顶 （自v1.3 新增）</span><br><span class="line">		bubble	Boolean	是否将覆盖物的鼠标或touch等事件冒泡到地图上 （自v1.3 新增）</span><br><span class="line">		默认值：false</span><br><span class="line">		draggable	Boolean	设置点标记是否可拖拽移动，默认为false</span><br><span class="line">		raiseOnDrag	Boolean	设置拖拽点标记时是否开启点标记离开地图的效果</span><br><span class="line">		cursor	String	指定鼠标悬停时的鼠标样式，自定义cursor，IE仅支持cur/ani/ico格式，Opera不支持自定义cursor</span><br><span class="line">		visible	Boolean	点标记是否可见，默认为true</span><br><span class="line">		zIndex	Number	点标记的叠加顺序。地图上存在多个点标记叠加时，通过该属性使级别较高的点标记在上层显示</span><br><span class="line">		默认zIndex：100</span><br><span class="line">		angle	Number	点标记的旋转角度，广泛用于改变车辆行驶方向</span><br><span class="line">		注：angle属性是使用CSS3来实现的，支持IE9及以上版本</span><br><span class="line">		autoRotation	Boolean	是否自动旋转。点标记在使用moveAlong动画时，路径方向若有变化，点标记是否自动调整角度，默认为false。广泛用于自动调节车辆行驶方向。</span><br><span class="line">		IE8以下不支持旋转，autoRotation属性无效</span><br><span class="line">		animation	String	点标记的动画效果，默认值：</span><br><span class="line">		“AMAP_ANIMATION_NONE” </span><br><span class="line">		可选值： </span><br><span class="line">		“AMAP_ANIMATION_NONE”，无动画效果 </span><br><span class="line">		“AMAP_ANIMATION_DROP”，点标掉落效果 </span><br><span class="line">		“AMAP_ANIMATION_BOUNCE”，点标弹跳效果 </span><br><span class="line">		shadow	Icon	点标记阴影，不设置该属性则点标记无阴影</span><br><span class="line">		title	String	鼠标滑过点标记时的文字提示，不设置则鼠标滑过点标无文字提示</span><br><span class="line">		clickable	Boolean	点标记是否可点击</span><br><span class="line">		shape	MarkerShape	设置Marker的可点击区域，在定义的区域内可触发Marker的鼠标点击事件</span><br><span class="line">		extData	Any	用户自定义属性，支持JavaScript API任意数据类型，如Marker的id等</span><br><span class="line">		label	&#123;content,offset&#125;	添加文本标注，content为文本标注的内容，offset为偏移量，左上角为偏移量为（0,0）</span><br><span class="line">	 * &#125;</span><br><span class="line">	 * */</span><br><span class="line">	this.Marker = function(point, opts) &#123;</span><br><span class="line">		opts = opts || &#123;&#125;;</span><br><span class="line">		//opts.map=this.pulic;</span><br><span class="line">		opts.position = point;</span><br><span class="line">		AMap.Marker.prototype.addEventListener = AMap.Marker.prototype.on;</span><br><span class="line">		return new AMap.Marker(opts);</span><br><span class="line">	&#125;</span><br><span class="line">	/**</span><br><span class="line">	 * //百度的参数</span><br><span class="line">	 * @url &#123;String&#125; url地址</span><br><span class="line">	 * @size &#123;Size&#125; 大小</span><br><span class="line">	 * @opts &#123;</span><br><span class="line">	 * 	anchor	Size	图标的定位锚点。此点用来决定图标与地理位置的关系，是相对于图标左上角的偏移值，默认等于图标宽度和高度的中间值</span><br><span class="line">		imageOffset	Size	图片相对于可视区域的偏移值</span><br><span class="line">		infoWindowAnchor	Size	信息窗口定位锚点。开启信息窗口时，信息窗口底部尖角相对于图标左上角的位置，默认等于图标的anchor</span><br><span class="line">		printImageUrl	String	用于打印的图片，此属性只适用于IE6，为了解决IE6在包含滤镜的情况下打印样式不正确的问题</span><br><span class="line">	 * &#125;</span><br><span class="line">	 * </span><br><span class="line">	 * //高德参数</span><br><span class="line">	 * size	Size	图标尺寸，默认值(36,36)</span><br><span class="line">	   imageOffset	Pixel	图标取图偏移量。当image中指定了一个大图时，可通过size和imageOffset配合，显示图标的指定范围</span><br><span class="line">	   image	String	图标的取图地址。默认为蓝色图钉图片</span><br><span class="line">	   imageSize	Size	图标所用图片大小，根据所设置的大小拉伸或压缩图片，等同于CSS中的background-size属性。可用于实现高清屏的高清效果</span><br><span class="line">	 * */</span><br><span class="line">	this.Icon = function(url, size, opts) &#123;</span><br><span class="line">		opts = opts || &#123;&#125;;</span><br><span class="line">		url ? opts.image = url : &quot;&quot;;</span><br><span class="line">		opts.size = size;</span><br><span class="line">		return new AMap.Icon(opts);</span><br><span class="line">	&#125;</span><br><span class="line">	/**</span><br><span class="line">	 * 以指定的宽度和高度创建一个矩形区域大小对象</span><br><span class="line">	 * @width &#123;Number&#125; 水平方向的数值</span><br><span class="line">	 * @height &#123;Number&#125; 竖直方向的数值</span><br><span class="line">	 * */</span><br><span class="line">	this.Size = function(width, height) &#123;</span><br><span class="line">		return new AMap.Size(width, height);</span><br><span class="line">	&#125;</span><br><span class="line">	/**</span><br><span class="line">	 * 创建点位</span><br><span class="line">	 * @lng &#123;Number&#125;  地理经度</span><br><span class="line">	 * @lat &#123;Number&#125;  地理纬度</span><br><span class="line">	 * */</span><br><span class="line">	this.Point = function(lng, lat) &#123;</span><br><span class="line">		return new AMap.LngLat(lng, lat);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 创建一个地址解析器的实例</span><br><span class="line">	 * */</span><br><span class="line">	this.Geocoder = function() &#123;</span><br><span class="line">		if(!AMap.Geocoder) &#123;</span><br><span class="line">			console.error(&apos;使用高德地图Geocoder需要加载插件支持&apos;);</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line">		return new AMap.Geocoder(&#123; lang: &apos;zh_cn&apos; &#125;)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * @content &#123;string | HTMLElement&#125; 创建一个信息窗实例，其中content支持HTML内容。1.2版本开始content参数支持传入DOM结点</span><br><span class="line">	 * @opts</span><br><span class="line">	 &#123;</span><br><span class="line">	 	isCustom  Boolean  是否自定义窗体。设为true时，信息窗体外框及内容完全按照content所设的值添加（默认为false，即在系统默认的信息窗体外框中显示content内容）</span><br><span class="line">        autoMove  Boolean  是否自动调整窗体到视野内（当信息窗体超出视野范围时，通过该属性设置是否自动平移地图，使信息窗体完全显示）</span><br><span class="line">        closeWhenClickMap  Boolean  控制是否在鼠标点击地图后关闭信息窗体，默认false，鼠标点击地图后不关闭信息窗体</span><br><span class="line">        content  String/HTMLElement  显示内容，可以是HTML要素字符串或者HTMLElement对象，自定义窗体示例</span><br><span class="line">        size  Size  信息窗体尺寸（isCustom为true时，该属性无效）</span><br><span class="line">        offset  Pixel  相对于基点的偏移量。默认情况是信息窗体的底部中心点(BOTTOM_CENTER) 和基点之间的偏移量</span><br><span class="line">        position  LngLat  信息窗体显示基点位置 （自v1.2 新增）</span><br><span class="line">        showShadow  Boolean  Boolean 控制是否显示信息窗体阴影，取值false时不显示窗体阴影，取值true时显示窗体阴影 默认值：false</span><br><span class="line">	 &#125;</span><br><span class="line">	 * */</span><br><span class="line">	this.InfoWindow = function(content, opts) &#123;</span><br><span class="line">		opts = opts || &#123;&#125;;</span><br><span class="line">		opts.content = content;</span><br><span class="line">		opts.isCustom = false;</span><br><span class="line">		opts.size = this.Size(opts.width, opts.height);</span><br><span class="line">		opts.showShadow = false;</span><br><span class="line">		return new AMap.InfoWindow(opts)</span><br><span class="line">	&#125;</span><br><span class="line">	/**</span><br><span class="line">	 * 使用</span><br><span class="line">	 * @infoWindow 实例化的 InfoWindow窗体</span><br><span class="line">	 * @point &#123;点位坐标  Point&#125; 以指定的经度和纬度创建一个地理点坐标</span><br><span class="line">	 * */</span><br><span class="line">	this.openInfoWindow = function(infoWindow, point) &#123;</span><br><span class="line">		infoWindow.open(this.pulic, point);</span><br><span class="line">	&#125;</span><br><span class="line">	/**</span><br><span class="line">	 * 创建圆覆盖物</span><br><span class="line">	 * @center &#123;Point&#125; 圆心</span><br><span class="line">	 * @radius &#123;Number&#125; 半径米</span><br><span class="line">	 * @opts &#123;</span><br><span class="line">	 	* //百度接收的参数</span><br><span class="line">	 * 	    strokeColor	String	圆形边线颜色</span><br><span class="line">			fillColor	String	圆形填充颜色。当参数为空时，圆形将没有填充效果</span><br><span class="line">			strokeWeight	Number	圆形边线的宽度，以像素为单位</span><br><span class="line">			strokeOpacity	Number	圆形边线透明度，取值范围0 - 1</span><br><span class="line">			fillOpacity	Number	圆形填充的透明度，取值范围0 - 1</span><br><span class="line">			strokeStyle	String	圆形边线的样式，solid或dashed</span><br><span class="line">			enableMassClear	Boolean	是否在调用map.clearOverlays清除此覆盖物，默认为true</span><br><span class="line">			enableEditing	Boolean	是否启用线编辑，默认为false</span><br><span class="line">			enableClicking	Boolean	是否响应点击事件，默认为true</span><br><span class="line">			</span><br><span class="line">			//高德地图</span><br><span class="line">			</span><br><span class="line">			map	Map	要显示该circle的地图对象 （自v1.2 新增）</span><br><span class="line">			zIndex	Number	层叠顺序</span><br><span class="line">			默认zIndex:10</span><br><span class="line">			center	LngLat	圆心位置</span><br><span class="line">			bubble	Boolean	是否将覆盖物的鼠标或touch等事件冒泡到地图上 （自v1.3 新增）默认值：false</span><br><span class="line">			cursor	String	指定鼠标悬停时的鼠标样式，自定义cursor，IE仅支持cur/ani/ico格式，Opera不支持自定义cursor</span><br><span class="line">			radius	Number	圆半径，单位:米</span><br><span class="line">			strokeColor	String	线条颜色，使用16进制颜色代码赋值。默认值为#006600</span><br><span class="line">			strokeOpacity	Float	轮廓线透明度，取值范围[0,1]，0表示完全透明，1表示不透明。默认为0.9</span><br><span class="line">			strokeWeight	Number	轮廓线宽度</span><br><span class="line">			fillColor	String	圆形填充颜色,使用16进制颜色代码赋值。默认值为#006600</span><br><span class="line">			fillOpacity	Float	圆形填充透明度，取值范围[0,1]，0表示完全透明，1表示不透明。默认为0.9</span><br><span class="line">			strokeStyle	String	轮廓线样式，实线:solid，虚线:dashed</span><br><span class="line">			extData	Any	用户自定义属性，支持JavaScript API任意数据类型，如Circle的id等</span><br><span class="line">			strokeDasharray	Array	勾勒形状轮廓的虚线和间隙的样式，此属性在strokeStyle 为dashed 时有效， 此属性在ie9+浏览器有效 取值： 实线：[0,0,0] 虚线：[10,10] ，[10,10] 表示10 个像素的实线和10 个像素的空白（如此反复）组成的虚线点画线：[10,2,10]， [10,2,10] 表示10 个像素的实线和2 个像素的空白 + 10 个像素的实线和10 个像素的空白 （如此反复）组成的虚线</span><br><span class="line">	 * &#125;</span><br><span class="line">	 * */</span><br><span class="line">	this.Circle = function(center, radius, opts) &#123;</span><br><span class="line">		opts = opts || &#123;&#125;;</span><br><span class="line">		opts.center = center;</span><br><span class="line">		opts.radius = radius;</span><br><span class="line">		return new AMap.Circle(opts);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 创建折线覆盖物对象</span><br><span class="line">	 * @points &#123;Array&lt;Point&gt;&#125;</span><br><span class="line">	 * @opts &#123;</span><br><span class="line">	 	//百度参数</span><br><span class="line">	   	strokeColor	String	折线颜色</span><br><span class="line">		strokeWeight	Number	折线的宽度，以像素为单位</span><br><span class="line">		strokeOpacity	Number	折线的透明度，取值范围0 - 1</span><br><span class="line">		strokeStyle	String	折线的样式，solid或dashed</span><br><span class="line">		enableMassClear	Boolean	是否在调用map.clearOverlays清除此覆盖物，默认为true</span><br><span class="line">		enableEditing	Boolean	是否启用线编辑，默认为false</span><br><span class="line">		enableClicking	Boolean	是否响应点击事件，默认为true</span><br><span class="line">		icons	Array&lt;IconSequence&gt;	配置贴合折线的图标</span><br><span class="line">		</span><br><span class="line">		//高德参数</span><br><span class="line">		map	Map	要显示该polyline的地图对象</span><br><span class="line">		zIndex	Number	折线覆盖物的叠加顺序。默认叠加顺序，先添加的线在底层，后添加的线在上层。通过该属性可调整叠加顺序，使级别较高的折线覆盖物在上层显示默认zIndex：50</span><br><span class="line">		bubble	Boolean	是否将覆盖物的鼠标或touch等事件冒泡到地图上 （自v1.3 新增）默认值：false</span><br><span class="line">		cursor	String	指定鼠标悬停时的鼠标样式，自定义cursor，IE仅支持cur/ani/ico格式，Opera不支持自定义cursor</span><br><span class="line">		geodesic	Boolean	是否绘制成大地线，默认false相关示例</span><br><span class="line">		isOutline	Boolean	线条是否带描边，默认false</span><br><span class="line">		borderWeight	Number	描边的宽度，默认为1</span><br><span class="line">		outlineColor	String	线条描边颜色，此项仅在isOutline为true时有效，默认：#000000</span><br><span class="line">		path	Array	折线的节点坐标数组</span><br><span class="line">		strokeColor	String	线条颜色，使用16进制颜色代码赋值。默认值为#006600</span><br><span class="line">		strokeOpacity	Number	线条透明度，取值范围[0,1]，0表示完全透明，1表示不透明。默认为0.9</span><br><span class="line">		strokeWeight	Number	线条宽度，单位：像素</span><br><span class="line">		strokeStyle	String	线样式，实线:solid，虚线:dashed</span><br><span class="line">		strokeDasharray	Array	勾勒形状轮廓的虚线和间隙的样式，此属性在strokeStyle 为dashed 时有效， 此属性在ie9+浏览器有效 取值： 实线：[0,0,0] 虚线：[10,10] ，[10,10] 表示10个像素的实线和10个像素的空白（如此反复）组成的虚线点画线：[10,2,10]， [10,2,10] 表示10个像素的实线和2个像素的空白 + 10个像素的实线和10个像素的空白 （如此反复）组成的虚线</span><br><span class="line">		lineJoin	String	折线拐点的绘制样式，默认值为&apos;miter&apos;尖角，其他可选值：&apos;round&apos;圆角、&apos;bevel&apos;斜角</span><br><span class="line">		lineCap	String	折线两端线帽的绘制样式，默认值为&apos;butt&apos;无头，其他可选值：&apos;round&apos;圆头、&apos;square&apos;方头</span><br><span class="line">		draggable	Boolean	设置折线是否可拖拽移动，默认为false</span><br><span class="line">		extData	Any	用户自定义属性，支持JavaScript API任意数据类型，如Polyline的id等</span><br><span class="line">		showDir	Boolean	是否延路径显示白色方向箭头,默认false。Canvas绘制时有效，建议折线宽度大于6时使用；在3D视图下不支持显示方向箭头（自V1.4.0版本参数效果变更）</span><br><span class="line">	 * &#125;</span><br><span class="line">	 * */</span><br><span class="line">	this.Polyline = function(points, opts) &#123;</span><br><span class="line">		opts = opts || &#123;&#125;;</span><br><span class="line">		if(_toString.call(points) === &quot;[object Array]&quot;) &#123;</span><br><span class="line">			for(var i = 0; i &lt; points.length; i++) &#123;</span><br><span class="line"></span><br><span class="line">				if(_toString.call(points[i]) === &quot;[object Object]&quot;) &#123;</span><br><span class="line">					points[i] = [points[i].lng, points[i].lat];</span><br><span class="line"></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		if(_toString.call(points) === &quot;[object Object]&quot;) &#123;</span><br><span class="line">			var ns = [points.lng, points.lat];</span><br><span class="line">			points = ns;</span><br><span class="line">		&#125;</span><br><span class="line">		if(ns) &#123;</span><br><span class="line">			opts.path = [points];</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			opts.path = points;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		//opts.map=this.pulic;</span><br><span class="line">		return new AMap.Polyline(opts);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 创建一个文本标注实例。point参数指定了文本标注所在的地理位置</span><br><span class="line">	 * @content &#123;String&#125;  标题内容</span><br><span class="line">	 * @opts &#123;</span><br><span class="line">	    //百度参数</span><br><span class="line">	 * 	offset	Size	文本标注的位置偏移值</span><br><span class="line">		position	Point	文本标注的地理位置</span><br><span class="line">		enableMassClear	Boolean	是否在调用map.clearOverlays清除此覆盖物，默认为true</span><br><span class="line">		//高德参数</span><br><span class="line">	 * &#125;</span><br><span class="line">	 * */</span><br><span class="line">	this.Label = function(content, opts) &#123;</span><br><span class="line">		opts = opts || &#123;&#125;;</span><br><span class="line">		//opts.map=this.pulic;</span><br><span class="line">		opts.text = content;</span><br><span class="line">		return new AMap.Text(opts);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 *构造一个像素坐标对象。 </span><br><span class="line">	 * @x&#123;Number&#125; 设置X方向像素坐标</span><br><span class="line">	 * @y&#123;Number&#125; 设置Y方向像素坐标</span><br><span class="line">	 * */</span><br><span class="line">	this.Pixel = function(x, y) &#123;</span><br><span class="line">		return new AMap.Pixel(x, y);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">      * 智能搜索</span><br><span class="line">      * @map &#123;地图&#125; </span><br><span class="line">      * @obts &#123;</span><br><span class="line">      * 	input	&#123;string&#125; 输入设置input</span><br><span class="line">      *     output  &#123;String／HTMLDivElement&#125;  输出设置</span><br><span class="line">			callback Function	搜索结果的回调</span><br><span class="line">      * &#125;</span><br><span class="line">      * */</span><br><span class="line">	this.LocalSearch = function(map, opts) &#123;</span><br><span class="line">		opts = opts || &#123;&#125;;</span><br><span class="line">		var that = opts;</span><br><span class="line">		//建立智能填充</span><br><span class="line">		if(!AMap.Autocomplete) &#123;</span><br><span class="line">			console.error(&apos;使用高德地图LocalSearch需要加载插件支持&apos;);</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line">		var auto = new AMap.Autocomplete(&#123;</span><br><span class="line">			input: opts.input,</span><br><span class="line">			output: opts.output</span><br><span class="line">		&#125;);</span><br><span class="line">		var placeSearch = new AMap.PlaceSearch(&#123;</span><br><span class="line">			map: map</span><br><span class="line">		&#125;); //构造地点查询类</span><br><span class="line">		AMap.event.addListener(auto, &quot;select&quot;, function(e) &#123;</span><br><span class="line">			if(that &amp;&amp; that.callback) &#123;</span><br><span class="line">				that.callback(e);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;); //注册监听，当选中某条记录时会触发</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 区域搜索</span><br><span class="line">	 * Rectangle</span><br><span class="line">	 * </span><br><span class="line">	 * */</span><br><span class="line">	this.SearchInRectangle = function(d) &#123;</span><br><span class="line"></span><br><span class="line">		var map = this.pulic, //地图实例</span><br><span class="line">			southWest = null, //开始位置</span><br><span class="line">			rectangle = null; //区域搜索</span><br><span class="line">		/**</span><br><span class="line">		 * 解绑事件</span><br><span class="line">		 * */</span><br><span class="line">		!function removeListener() &#123;</span><br><span class="line">            map.off(&apos;mousedown&apos;, mousedownfn);</span><br><span class="line">            map.off(&apos;mousemove&apos;, mousemovefn);</span><br><span class="line">            map.off(&apos;mouseup&apos;, mouseupfn);</span><br><span class="line">            document.removeEventListener(&apos;mouseup&apos;, mouseupfn,false);</span><br><span class="line">        &#125;();</span><br><span class="line">		/**</span><br><span class="line">		 * 鼠标按下事件函数</span><br><span class="line">		 * */</span><br><span class="line">		function mousedownfn(e) &#123;</span><br><span class="line">			//设置鼠标不可以拖拽</span><br><span class="line">			map.setStatus(&#123;</span><br><span class="line">				dragEnable: false //true 可以拖拽</span><br><span class="line">			&#125;);</span><br><span class="line">			southWest = new AMap.LngLat(e.lnglat.lng, e.lnglat.lat);</span><br><span class="line">			//console.log(&apos;鼠标mousedown&apos;,e.lnglat.lng+&apos;||&apos;+e.lnglat.lat );</span><br><span class="line">			rectangle = new AMap.Rectangle(&#123;</span><br><span class="line">				map: map,</span><br><span class="line">				bounds: new AMap.Bounds(southWest, southWest),</span><br><span class="line">				strokeColor: d.strokeColor || &quot;#1791fc&quot;,</span><br><span class="line">				strokeOpacity: d.strokeOpacity || 0.8,</span><br><span class="line">				strokeWeight: d.strokeWeight || 2,</span><br><span class="line">				fillColor: d.fillColor || &quot;#1791fc&quot;,</span><br><span class="line">				fillOpacity: d.fillOpacity || 0.35,</span><br><span class="line">				dragEnable: !1,</span><br><span class="line">				strokeStyle: d.strokeStyle || &quot;solid&quot;,</span><br><span class="line">				strokeDasharray: d.strokeDasharray || [10, 5],</span><br><span class="line">				zIndex: d.zIndex || 10,</span><br><span class="line">				bubble: !0,</span><br><span class="line">				cursor: &apos;pointer&apos;,</span><br><span class="line">			&#125;);</span><br><span class="line">			// console.log(southWest.rectZoomIn,&apos;southWest&apos;);   </span><br><span class="line">		&#125;</span><br><span class="line">		//绑定鼠标移动事件</span><br><span class="line">		map.on(&apos;mousemove&apos;, mousemovefn);</span><br><span class="line">		/**</span><br><span class="line">		 * 鼠标移动事件函数</span><br><span class="line">		 * */</span><br><span class="line">		function mousemovefn(e) &#123;</span><br><span class="line">			//console.log(southWest);</span><br><span class="line">			if(southWest) &#123;</span><br><span class="line">				//console.log(&apos;鼠标mousemove&apos;,e.lnglat.lng+&apos;||&apos;+e.lnglat.lat );</span><br><span class="line">				var northEast = new AMap.LngLat(e.lnglat.lng, e.lnglat.lat); //结束位置</span><br><span class="line">				var Bounds = new AMap.Bounds(southWest, northEast); //矩形范围</span><br><span class="line">				//设置矩形设置矩形的范围</span><br><span class="line">				rectangle &amp;&amp; rectangle.setBounds(Bounds);</span><br><span class="line">			</span><br><span class="line">				if(mouseupfn.isclear) &#123;</span><br><span class="line">					mouseupfn.isclear = 0;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			// console.log(map.getBounds());</span><br><span class="line">		&#125;</span><br><span class="line">		//绑定鼠标弹起事件</span><br><span class="line">		map.on(&apos;mouseup&apos;, mouseupfn);</span><br><span class="line">		/**</span><br><span class="line">		 * 鼠标弹起事件函数</span><br><span class="line">		 * */</span><br><span class="line">		function mouseupfn(e) &#123;</span><br><span class="line">			if(mouseupfn.isclear) &#123;</span><br><span class="line">				return false;</span><br><span class="line">			&#125;</span><br><span class="line">			mouseupfn.isclear = 1;</span><br><span class="line">			//设置鼠标不可以拖拽</span><br><span class="line">			map.setStatus(&#123;</span><br><span class="line">				dragEnable: true //true 可以拖拽</span><br><span class="line">			&#125;);</span><br><span class="line"></span><br><span class="line">			//删除覆盖物</span><br><span class="line">			setTimeout(function() &#123;</span><br><span class="line">				if(rectangle) &#123;</span><br><span class="line">					map.remove(rectangle);</span><br><span class="line">					rectangle = null;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;, 200);</span><br><span class="line"></span><br><span class="line">			southWest = null;</span><br><span class="line">			//执行回调</span><br><span class="line">			if(d.callback) d.callback(rectangle.getBounds());</span><br><span class="line">			//console.log(&apos;鼠标mouseup&apos;,e.lnglat.lng+&apos;||&apos;+e.lnglat.lat );</span><br><span class="line">		&#125;</span><br><span class="line">		//绑定鼠标按下事件</span><br><span class="line">		map.on(&apos;mousedown&apos;, mousedownfn);</span><br><span class="line">		//给document绑定mouseup事件</span><br><span class="line">		document.addEventListener(&apos;mouseup&apos;, mouseupfn, false);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	/**</span><br><span class="line">	 * 坐标转换</span><br><span class="line">	 * 百度to高德</span><br><span class="line">	 * @lnglat&#123;LngLat|Array.&lt;LngLat&gt;&#125; 经纬度</span><br><span class="line">	 * @type &#123;String&#125;  gps:GPS原始坐标；baidu：百度经纬度；mapbar：图吧经纬度；</span><br><span class="line">	 * */</span><br><span class="line">	this.convertFrom = function(lnglat, callback) &#123;</span><br><span class="line"></span><br><span class="line">		AMap.convertFrom(lnglat, &quot;baidu&quot;, callback)</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;]);</span><br></pre></td></tr></table></figure>
+<p>上述代码基本实现了日前我们的需求，代码性能还需优化，比如实例点位，实例圆形，都可以进行缓存。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//缓存</span><br><span class="line">var d=function()&#123;</span><br><span class="line">	var cache=&#123;</span><br><span class="line">		</span><br><span class="line">	&#125;;//缓存列表</span><br><span class="line">	function sum()&#123;</span><br><span class="line">		var arg=[].slice.call(arguments);</span><br><span class="line">		args=arg.join(),</span><br><span class="line">		l=arguments.length;</span><br><span class="line">		if(cache[args])&#123;</span><br><span class="line">			return cache[args];</span><br><span class="line">		&#125;</span><br><span class="line">		var n=0;</span><br><span class="line">		while(--l)&#123;</span><br><span class="line">			n+=arguments[l];</span><br><span class="line">		&#125;</span><br><span class="line">		console.log(&apos;-----------只计算第一次-------&apos;)</span><br><span class="line">		cache[args]=n;</span><br><span class="line">		return n;</span><br><span class="line">	&#125;</span><br><span class="line">	return &#123;</span><br><span class="line">		sum:sum,</span><br><span class="line">	&#125;</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
+<p>利用闭包特性进行缓存数据，以更快速反馈给用户。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/3/28/1626a7a63f452ac6?w=644&amp;h=821&amp;f=png&amp;s=61322" alt=""><br>上面代码如何使用：<br>第一步确定使用哪类地图，这个值可以是后台模板输出。通过这个值加载相应的地图。<br>第二步引入刚刚实现的库<br>第三步使用咱们自己实现的库<br>HTML<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;Map&quot; style=&quot;height:500px;&quot;&gt;</span><br><span class="line">			</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br></pre></td><td class="code"><pre><span class="line">//配置默认项</span><br><span class="line">Gis_Map.config = &#123;</span><br><span class="line">	maptype: 1, //0:代表百度地图，1：高德地图，2：腾讯地图</span><br><span class="line">&#125;</span><br><span class="line">var maps = null;</span><br><span class="line">//执行主函数。</span><br><span class="line">Gis_Map.init();</span><br><span class="line">maps = Gis_Map.Map(&apos;Map&apos;, &#123; enableMapClick: false, minZoom: 5, &#125;);</span><br><span class="line">//console.log(Gis_Map.pulic.centerAndZoom,&apos;Gis_Map.pulic.centerAndZoom&apos;);</span><br><span class="line">var point = Gis_Map.Point(116.404, 39.915);</span><br><span class="line">//使用返回实例 也可以实现    </span><br><span class="line">maps.centerAndZoom(point, 5);</span><br><span class="line">//是否启用缩放设置</span><br><span class="line">maps.enableScrollWheelZoom(true);</span><br><span class="line">//console.log(maps);</span><br><span class="line">/**</span><br><span class="line"> * 给地图绑定点击事件</span><br><span class="line"> * */</span><br><span class="line">maps.addEventListener(&apos;click&apos;, function(e) &#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line">//创建icon</span><br><span class="line">var icons = Gis_Map.Icon(&apos;js/map_js/icon.png&apos;, Gis_Map.Size(48, 53));</span><br><span class="line">//创建maker</span><br><span class="line">var maker = Gis_Map.Marker(Gis_Map.Point(112.361031, 36.391437), &#123; title: &apos;maker&apos;, icon: icons &#125;);</span><br><span class="line"></span><br><span class="line">Gis_Map.convertFrom(Gis_Map.Point(114.469026, 35.45613), function(a, b) &#123;</span><br><span class="line">	console.log(a, b);</span><br><span class="line">	if(b.info === &apos;ok&apos;) &#123;</span><br><span class="line"></span><br><span class="line">		var maker_1 = Gis_Map.Marker(Gis_Map.Point(b.locations[0].lng, b.locations[0].lat), &#123; title: &apos;maker_1&apos;, icon: icons &#125;);</span><br><span class="line">		maps.addOverlay(maker_1);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">maker.addEventListener(&apos;click&apos;, function(e) &#123;</span><br><span class="line">	var p = e.target;</span><br><span class="line">	var point = Gis_Map.Point(p.getPosition().lng, p.getPosition().lat);</span><br><span class="line"></span><br><span class="line">	var winfor = Gis_Map.InfoWindow(&apos;&lt;div class=&quot;InfoWindow&quot;&gt;InfoWindow 当前经度：&apos; + p.getPosition().lng + &apos;        当前纬度：&apos; + p.getPosition().lat + &apos;     &lt;div&gt;&apos;, &#123;</span><br><span class="line">		width: 400,</span><br><span class="line">		height: 200</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">	Gis_Map.openInfoWindow(winfor, point);</span><br><span class="line">&#125;);</span><br><span class="line">//添加标注</span><br><span class="line">maps.addOverlay(maker);</span><br><span class="line"></span><br><span class="line">var yuan = Gis_Map.Circle(Gis_Map.Point(116.404, 39.915), 200000, &#123;</span><br><span class="line">	fillColor: &quot;blue&quot;, //填充颜色</span><br><span class="line">	strokeWeight: 1, //描边粗细</span><br><span class="line">	fillOpacity: 0.3, //填充透明度</span><br><span class="line">	strokeOpacity: 0.3 //描边透明度</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">maps.addOverlay(yuan);</span><br><span class="line"></span><br><span class="line">var p1 = [116.148568, 37.904113];</span><br><span class="line">var p2 = [116.167794, 37.934447];</span><br><span class="line">var p3 = [116.230965, 37.960437];</span><br><span class="line">var p4 = [116.277657, 37.990748];</span><br><span class="line">var p5 = [116.373788, 38.014555];</span><br><span class="line"></span><br><span class="line">var xian = Gis_Map.Polyline([p1, p2, p3, p4, p5], &#123;</span><br><span class="line">	strokeColor: &quot;#000000&quot;, //设置颜色</span><br><span class="line">	strokeWeight: 10, //宽度  </span><br><span class="line">	strokeOpacity: 1, //透明度</span><br><span class="line">	strokeStyle: &quot;solid&quot;</span><br><span class="line">&#125;);</span><br><span class="line">// console.log(xian);</span><br><span class="line">maps.addOverlay(xian);</span><br><span class="line"></span><br><span class="line">var label = Gis_Map.Label(&apos;测试数据&apos;, &#123;</span><br><span class="line">	offset: Gis_Map.Pixel(2, 5),</span><br><span class="line">	position: [112.361031, 36.391437],</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">maps.addOverlay(label);</span><br><span class="line"></span><br><span class="line">var text = new AMap.Text(&#123;</span><br><span class="line">	text: &apos;纯文本标记&apos;,</span><br><span class="line">	textAlign: &apos;center&apos;, // &apos;left&apos; &apos;right&apos;, &apos;center&apos;,</span><br><span class="line">	verticalAlign: &apos;middle&apos;, //middle 、bottom</span><br><span class="line">	draggable: true,</span><br><span class="line">	cursor: &apos;pointer&apos;,</span><br><span class="line">	angle: 10,</span><br><span class="line">	style: &#123;</span><br><span class="line">		&apos;background-color&apos;: &apos;yellow&apos;,</span><br><span class="line">		&apos;border&apos;: &apos;solid 1px #0088ff&apos;,</span><br><span class="line">		&apos;padding&apos;: &apos;10px 20px&apos;</span><br><span class="line">	&#125;,</span><br><span class="line">	position: [116.396923, 39.918203]</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">//地址搜索</span><br><span class="line">Gis_Map.LocalSearch(maps, &#123;</span><br><span class="line">	input: &apos;search&apos;,</span><br><span class="line">	output: &apos;list&apos;,</span><br><span class="line">	callback: function(e) &#123;</span><br><span class="line">		console.log(e);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">var point1 = Gis_Map.Point(116.368904, 39.923423);</span><br><span class="line">var point2 = Gis_Map.Point(116.387271, 39.922501);</span><br><span class="line">console.log(maps.getDistance(point1, point2), &apos;=====两点间的距离&apos;);</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 在地图上拉框 返回拉的框坐标位置</span><br><span class="line"> * 参数</span><br><span class="line"> *  map	Map	要显示该rectangle的地图对象</span><br><span class="line">	zIndex	Number	层叠顺序</span><br><span class="line">	默认zIndex:10</span><br><span class="line">	bounds	Bounds	矩形的范围</span><br><span class="line">	bubble	Boolean	是否将覆盖物的鼠标或touch等事件冒泡到地图上 </span><br><span class="line">	默认值：false</span><br><span class="line">	cursor	String	指定鼠标悬停时的鼠标样式，自定义cursor，IE仅支持cur/ani/ico格式，Opera不支持自定义cursor</span><br><span class="line">	strokeColor	String	线条颜色，使用16进制颜色代码赋值。默认值为#006600</span><br><span class="line">	strokeOpacity	Float	轮廓线透明度，取值范围[0,1]，0表示完全透明，1表示不透明。默认为0.9</span><br><span class="line">	strokeWeight	Number	轮廓线宽度</span><br><span class="line">	fillColor	String	矩形填充颜色,使用16进制颜色代码赋值。默认值为#006600</span><br><span class="line">	fillOpacity	Float	矩形填充透明度，取值范围[0,1]，0表示完全透明，1表示不透明。默认为0.9</span><br><span class="line">	strokeStyle	String	轮廓线样式，实线:solid，虚线:dashed</span><br><span class="line">	extData	Any	用户自定义属性，支持JavaScript API任意数据类型，如Rectangle的id等</span><br><span class="line">	strokeDasharray	Array	勾勒形状轮廓的虚线和间隙的样式，此属性在strokeStyle 为dashed 时有效， 此属性在ie9+浏览器有效 取值： </span><br><span class="line">	实线：[0,0,0] </span><br><span class="line">	虚线：[10,10] ，[10,10] 表示10 个像素的实线和10 个像素的空白（如此反复）组成的虚线</span><br><span class="line">	点画线：[10,2,10]， [10,2,10] 表示10 个像素的实线和2 个像素的空白 + 10 个像素的实线和10 个像素的空白 （如此反复）组成的虚线</span><br><span class="line"> * </span><br><span class="line"> * */</span><br><span class="line">Gis_Map.SearchInRectangle(&#123;</span><br><span class="line">	callback: function(e) &#123;</span><br><span class="line">		//矩形的 Bounds【范围】</span><br><span class="line">		console.log(&apos;SearchInRectangle=====callback&apos;, e);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>有时候改轮子也好造轮子也罢！只有你能驾驭他们那你就是成功的。通过上边此次代码编写，让自己在架构上走了一步。只有自己不断学习，不断尝试，才能实现自己的职业规划。</p>
+<p>打赏通道–我觉得不会有打赏。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/28/167592f13078d6a8?w=800&amp;h=600&amp;f=jpeg&amp;s=184358" alt=""></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/4/14/162c4b13a41e4a3a?w=323&amp;h=311&amp;f=png&amp;s=83969" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/地图/" rel="tag"># 地图</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/06/bigDate/" rel="next" title="渲染大量数据我是这样操作的">
+                <i class="fa fa-chevron-left"></i> 渲染大量数据我是这样操作的
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/12/reander/" rel="prev" title="写一个简单vue 中间件，$emit、$on">
+                写一个简单vue 中间件，$emit、$on <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/log.jpg" alt="小小坤">
+            
+              <p class="site-author-name" itemprop="name">小小坤</p>
+              <p class="site-description motion-element" itemprop="description">前端技术文章，JavaScript设计模式，专注前端10年。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">Artikel</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">Tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最初架构"><span class="nav-number">3.</span> <span class="nav-text">最初架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总体代码"><span class="nav-number">4.</span> <span class="nav-text">总体代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小小坤</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

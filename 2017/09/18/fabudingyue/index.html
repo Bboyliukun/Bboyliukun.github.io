@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Cn">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="设计模式,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="简介  发布-订阅模式又叫观察者模式,它定义对象间的一种一对多的依赖关系,当一个对象的状态发生改变时,所有依赖于它的对象都将得到通知。JavaScript开发中我们一般用事件模型来代替传统的发布-订阅模式 案例介绍1小明最近喜欢上吃老北京烧饼,可是到了卖烧饼的地方发现已经卖完了,而且排队的人还很多.幸运的是卖烧饼那个MM看小明长得帅,告诉小明等一会就有烧饼吃啦!可是小明现在还有约会要去,不知道烧饼">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="发布订阅模式">
+<meta property="og:url" content="http://yoursite.com/2017/09/18/fabudingyue/index.html">
+<meta property="og:site_name" content="小小坤">
+<meta property="og:description" content="简介  发布-订阅模式又叫观察者模式,它定义对象间的一种一对多的依赖关系,当一个对象的状态发生改变时,所有依赖于它的对象都将得到通知。JavaScript开发中我们一般用事件模型来代替传统的发布-订阅模式 案例介绍1小明最近喜欢上吃老北京烧饼,可是到了卖烧饼的地方发现已经卖完了,而且排队的人还很多.幸运的是卖烧饼那个MM看小明长得帅,告诉小明等一会就有烧饼吃啦!可是小明现在还有约会要去,不知道烧饼">
+<meta property="og:locale" content="zh-Cn">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/9/18/d107c914ae84c7a30bc25f7cfcd02448">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/11/28/167592f13078d6a8?w=800&h=600&f=jpeg&s=184358">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/4/14/162c4b13a41e4a3a?w=323&h=311&f=png&s=83969">
+<meta property="og:updated_time" content="2018-11-28T07:21:52.718Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="发布订阅模式">
+<meta name="twitter:description" content="简介  发布-订阅模式又叫观察者模式,它定义对象间的一种一对多的依赖关系,当一个对象的状态发生改变时,所有依赖于它的对象都将得到通知。JavaScript开发中我们一般用事件模型来代替传统的发布-订阅模式 案例介绍1小明最近喜欢上吃老北京烧饼,可是到了卖烧饼的地方发现已经卖完了,而且排队的人还很多.幸运的是卖烧饼那个MM看小明长得帅,告诉小明等一会就有烧饼吃啦!可是小明现在还有约会要去,不知道烧饼">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2017/9/18/d107c914ae84c7a30bc25f7cfcd02448">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/09/18/fabudingyue/">
+
+
+
+
+
+  <title>发布订阅模式 | 小小坤</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小小坤</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">是你改变了世界还是世界被你改变</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于我">
+          <a href="/2018/11/16/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/18/fabudingyue/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小小坤">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/log.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小小坤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">发布订阅模式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-18T16:50:01+08:00">
+                2017-09-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>  发布-订阅模式又叫观察者模式,它定义对象间的一种一对多的依赖关系,当一个对象的状态发生改变时,所有依赖于它的对象都将得到通知。JavaScript开发中我们一般用事件模型来代替传统的发布-订阅模式</p>
+<h2 id="案例介绍1"><a href="#案例介绍1" class="headerlink" title="案例介绍1"></a>案例介绍1</h2><p>小明最近喜欢上吃老北京烧饼,可是到了卖烧饼的地方发现已经卖完了,而且排队的人还很多.幸运的是卖烧饼那个MM看小明长得帅,告诉小明等一会就有烧饼吃啦!可是小明现在还有约会要去,不知道烧饼能什么时候出锅,总不能因为吃烧饼而不去约会吧!这时候小明灵机一动,说烧饼MM把你电话给我吧!我先去忙,等会打电话问你烧饼好了没有。烧饼MM也没想太多,把电话给小明了。后来小龙也来买烧饼，情况跟小明差不多,小龙也把烧饼MM的电话要走了。可是问题就这来了,小明、小龙一会儿打一个电话给烧饼MM,导致烧饼MM很烦,辞职走了不干了。<br>通过上边的事情我们可以发现,存在好多问题<br>   第一:卖烧饼的MM应该充当发布者<br>   第二:小明小龙的电话应该保存在卖烧饼的用户列表中,如果卖烧饼的MM离职,这用户就会丢失<br>   第三:实际上没有这么笨蛋的销售方式的</p>
+<p>卖烧饼的店主可以把小明、小龙的电话记录下来,等店里有烧饼了在通知小龙小明来拿这就是所谓的发布-订阅模式，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">/*烧饼店*/        </span><br><span class="line">var Sesamecakeshop=&#123;</span><br><span class="line">    clienlist:[],//缓存列表</span><br><span class="line">    addlisten:function(fn)&#123;//增加订阅者</span><br><span class="line">        this.clienlist.push(fn);</span><br><span class="line">    &#125;,</span><br><span class="line">    trigger:function()&#123;//发布消息</span><br><span class="line">        for(var i=0,fn;fn=this.clienlist[i++];)&#123;</span><br><span class="line">            fn.apply(this,arguments);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/*小明发布订阅*/</span><br><span class="line">Sesamecakeshop.addlisten(function(price,taste)&#123;</span><br><span class="line">    console.log(&quot;小明发布的&quot;+price+&quot;元，&quot;+taste+&quot;味道的&quot;);</span><br><span class="line">&#125;);</span><br><span class="line">/*小龙发布订阅*/</span><br><span class="line">Sesamecakeshop.addlisten(function(price,taste)&#123;</span><br><span class="line">    console.log(&quot;小龙发布的&quot;+price+&quot;元，&quot;+taste+&quot;味道的&quot;);</span><br><span class="line">&#125;);        </span><br><span class="line"></span><br><span class="line">Sesamecakeshop.trigger(10,&quot;椒盐&quot;);</span><br></pre></td></tr></table></figure>
+<p> 从代码中可以看出，只有小明，小龙预定了烧饼，烧饼店就可以发布消息告诉小龙与小明。但是有个问题不知道大家发现了没有。小明只喜欢椒盐味道的。而小龙只喜欢焦糖味道的。上面的代码就满足不了客户的需求，给客户一种感觉就是，不管我喜欢不喜欢，你都会发给我。如果发布比较多，客户就会感到厌烦，甚至会想删除订阅。下边是对代码进行改良大家可以看看。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">/*烧饼店*/        </span><br><span class="line">var Sesamecakeshop=&#123;</span><br><span class="line">    clienlist:&#123;&#125;,/*缓存列表*/</span><br><span class="line">    /**</span><br><span class="line">     * 增加订阅者</span><br><span class="line">     * @key &#123;String&#125; 类型</span><br><span class="line">     * @fn &#123;Function&#125; 回掉函数</span><br><span class="line">     * */</span><br><span class="line">    addlisten:function(key,fn)&#123;</span><br><span class="line">        if(!this.clienlist[key])&#123;</span><br><span class="line">            this.clienlist[key]=[];</span><br><span class="line">        &#125;</span><br><span class="line">        this.clienlist[key].push(fn);</span><br><span class="line">    &#125;,</span><br><span class="line">    /**</span><br><span class="line">     * 发布消息</span><br><span class="line">     * */</span><br><span class="line">    trigger:function()&#123;</span><br><span class="line">        var key=[].shift.call(arguments),//取出消息类型</span><br><span class="line">            fns=this.clienlist[key];//取出该类型的对应的消息集合</span><br><span class="line">        if(!fns || fns.length===0)&#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        for(var i=0,fn;fn=fns[i++];)&#123;</span><br><span class="line">            fn.apply(this,arguments);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    /**</span><br><span class="line">     * 删除订阅</span><br><span class="line">     * @key &#123;String&#125; 类型</span><br><span class="line">     * @fn &#123;Function&#125; 回掉函数</span><br><span class="line">     * */</span><br><span class="line">    remove:function(key,fn)&#123;</span><br><span class="line">        var fns=this.clienlist[key];//取出该类型的对应的消息集合</span><br><span class="line">        if(!fns)&#123;//如果对应的key没有订阅直接返回</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        if(!fn)&#123;//如果没有传入具体的回掉，则表示需要取消所有订阅</span><br><span class="line">            fns &amp;&amp; (fns.length=0);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            for(var l=fns.length-1;l&gt;=0;l--)&#123;//遍历回掉函数列表</span><br><span class="line">                if(fn===fns[l])&#123;</span><br><span class="line">                    fns.splice(l,1);//删除订阅者的回掉</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/*小明发布订阅*/</span><br><span class="line">Sesamecakeshop.addlisten(&quot;焦糖&quot;,fn1=function(price,taste)&#123;</span><br><span class="line">    console.log(&quot;小明发布的&quot;+price+&quot;元，&quot;+taste+&quot;味道的&quot;);</span><br><span class="line">&#125;);</span><br><span class="line">/*小龙发布订阅*/</span><br><span class="line">Sesamecakeshop.addlisten(&quot;椒盐&quot;,function(price,taste)&#123;</span><br><span class="line">    console.log(&quot;小龙发布的&quot;+price+&quot;元，&quot;+taste+&quot;味道的&quot;);</span><br><span class="line">&#125;);        </span><br><span class="line"></span><br><span class="line">Sesamecakeshop.trigger(&quot;椒盐&quot;,10,&quot;椒盐&quot;);</span><br><span class="line"></span><br><span class="line">Sesamecakeshop.remove(&quot;焦糖&quot;,fn1);//注意这里是按照地址引用的。如果传入匿名函数则删除不了        </span><br><span class="line">            </span><br><span class="line">Sesamecakeshop.trigger(&quot;焦糖&quot;,40,&quot;焦糖&quot;);</span><br></pre></td></tr></table></figure>
+<p> 删除的时候需要注意的是，如果订阅的时候传递的是匿名函数，删除的时候如果传入的也是匿名函数。则删除不了。因为删除时候是按照地址引用删除的。传进去的两个匿名函数，对应的地址引用是不同的。</p>
+<h2 id="案例介绍2"><a href="#案例介绍2" class="headerlink" title="案例介绍2"></a>案例介绍2</h2><p> 比如咱们常见的用户身份分别有不同的功能，超级管理员拥有最高权限，可以删除修改任意用户。而普通用户则只能修改自己的账户信息。首先是用户身份验证，验证通过之后对应功能才可以显示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">//登录发布-订阅模式</span><br><span class="line">login=&#123;</span><br><span class="line">    clienlist:&#123;&#125;,/*缓存列表*/</span><br><span class="line">    /**</span><br><span class="line">     * 增加订阅者</span><br><span class="line">     * @key &#123;String&#125; 类型</span><br><span class="line">     * @fn &#123;Function&#125; 回掉函数</span><br><span class="line">     * */</span><br><span class="line">    addlisten:function(key,fn)&#123;</span><br><span class="line">        if(!this.clienlist[key])&#123;</span><br><span class="line">            this.clienlist[key]=[];</span><br><span class="line">        &#125;</span><br><span class="line">        this.clienlist[key].push(fn);</span><br><span class="line">    &#125;,</span><br><span class="line">    /**</span><br><span class="line">     * 发布消息</span><br><span class="line">     * */</span><br><span class="line">    trigger:function()&#123;</span><br><span class="line">        var key=[].shift.call(arguments),//取出消息类型</span><br><span class="line">            fns=this.clienlist[key];//取出该类型的对应的消息集合</span><br><span class="line">        if(!fns || fns.length===0)&#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        for(var i=0,fn;fn=fns[i++];)&#123;</span><br><span class="line">            fn.apply(this,arguments);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//超级管理员修改所有用户</span><br><span class="line">var editall=(function()&#123;</span><br><span class="line">    login.addlisten(&quot;loginsucc&quot;,function(data)&#123;</span><br><span class="line">        editall.setview(data);</span><br><span class="line">    &#125;);</span><br><span class="line">    return&#123;</span><br><span class="line">        setview:function(data)&#123;</span><br><span class="line">            console.log(data);</span><br><span class="line">            console.log(&quot;超级管理员修改所有用户&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">//仅仅修改自己</span><br><span class="line">var editOwn=(function()&#123;</span><br><span class="line">    login.addlisten(&quot;loginsucc&quot;,function(data)&#123;</span><br><span class="line">        editOwn.setview(data);</span><br><span class="line">    &#125;);</span><br><span class="line">    return&#123;</span><br><span class="line">        setview:function(data)&#123;</span><br><span class="line">            console.log(data);</span><br><span class="line">            console.log(&quot;仅仅修改自己&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>发布-订阅模式简单封装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">var _Event=(function()&#123;</span><br><span class="line">    var clienlist=&#123;&#125;,</span><br><span class="line">    addlisten,trigger,remove;</span><br><span class="line">    /**</span><br><span class="line">     * 增加订阅者</span><br><span class="line">     * @key &#123;String&#125; 类型</span><br><span class="line">     * @fn &#123;Function&#125; 回掉函数</span><br><span class="line">     * */</span><br><span class="line">    addlisten=function(key,fn)&#123;</span><br><span class="line">        if(!clienlist[key])&#123;</span><br><span class="line">            clienlist[key]=[];</span><br><span class="line">        &#125;</span><br><span class="line">        clienlist[key].push(fn);</span><br><span class="line">    &#125;;</span><br><span class="line">    /**</span><br><span class="line">     * 发布消息</span><br><span class="line">     * */</span><br><span class="line">    trigger=function()&#123;</span><br><span class="line">        var key=[].shift.call(arguments),//取出消息类型</span><br><span class="line">            fns=clienlist[key];//取出该类型的对应的消息集合</span><br><span class="line">        if(!fns || fns.length===0)&#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        for(var i=0,fn;fn=fns[i++];)&#123;</span><br><span class="line">            fn.apply(this,arguments);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    /**</span><br><span class="line">     * 删除订阅</span><br><span class="line">     * @key &#123;String&#125; 类型</span><br><span class="line">     * @fn &#123;Function&#125; 回掉函数</span><br><span class="line">     * */</span><br><span class="line">    remove=function(key,fn)&#123;</span><br><span class="line">        var fns=clienlist[key];//取出该类型的对应的消息集合</span><br><span class="line">        if(!fns)&#123;//如果对应的key没有订阅直接返回</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        if(!fn)&#123;//如果没有传入具体的回掉，则表示需要取消所有订阅</span><br><span class="line">            fns &amp;&amp; (fns.length=0);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            for(var l=fns.length-1;l&gt;=0;l--)&#123;//遍历回掉函数列表</span><br><span class="line">                if(fn===fns[l])&#123;</span><br><span class="line">                    fns.splice(l,1);//删除订阅者的回掉</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    return&#123;</span><br><span class="line">        addlisten:addlisten,</span><br><span class="line">        trigger:trigger,</span><br><span class="line">        remove:remove</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">_Event.addlisten(&quot;jianbing&quot;,function(d,all)&#123;</span><br><span class="line">    console.log(&quot;发布的消息来自：&quot;+d+&quot;，具体信息：&quot;+all);</span><br><span class="line">&#125;);</span><br><span class="line">_Event.addlisten(&quot;jianbing&quot;,function(d,all)&#123;</span><br><span class="line">    console.log(&quot;发布的消息来自：&quot;+d+&quot;，具体信息：&quot;+all);</span><br><span class="line">&#125;)</span><br><span class="line">_Event.trigger(&quot;jianbing&quot;,&quot;小小坤&quot;,&quot;前端工程师，擅长JavaScript，喜欢结交更多的前端技术人员，欢迎喜欢技术的你加QQ群：198303871&quot;)</span><br></pre></td></tr></table></figure>
+<p><img src="https://user-gold-cdn.xitu.io/2017/9/18/d107c914ae84c7a30bc25f7cfcd02448" alt=""></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p> 发布-订阅模式就是常说的观察者模式，在实际开发中非常有用。它的优点是为时间是解耦，为对象之间解构，它的应用非常广泛，既可以在异步编程中也可以帮助我们完成更松的解耦。发布-订阅模式还可以帮助我们实现设计模式，从架构上来看，无论MVC还是MVVC都少不了发布-订阅模式的参与。然而发布-订阅模式也存在一些缺点，创建订阅本身会消耗一定的时间与内存，也许当你订阅一个消息之后，之后可能就不会发生。发布-订阅模式虽然它弱化了对象与对象之间的关系，但是如果过度使用，对象与对象的必要联系就会被深埋，会导致程序难以跟踪与维护。</p>
+<p>打赏通道–我觉得不会有打赏。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/28/167592f13078d6a8?w=800&amp;h=600&amp;f=jpeg&amp;s=184358" alt=""></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/4/14/162c4b13a41e4a3a?w=323&amp;h=311&amp;f=png&amp;s=83969" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/06/mingling/" rel="next" title="命令模式">
+                <i class="fa fa-chevron-left"></i> 命令模式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/02/css/" rel="prev" title="css小技巧">
+                css小技巧 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/log.jpg" alt="小小坤">
+            
+              <p class="site-author-name" itemprop="name">小小坤</p>
+              <p class="site-description motion-element" itemprop="description">前端技术文章，JavaScript设计模式，专注前端10年。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">Artikel</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">Tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#案例介绍1"><span class="nav-number">2.</span> <span class="nav-text">案例介绍1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#案例介绍2"><span class="nav-number">3.</span> <span class="nav-text">案例介绍2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小小坤</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

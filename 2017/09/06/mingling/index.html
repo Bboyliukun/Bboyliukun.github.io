@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Cn">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="设计模式,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="简介命令模式是最简单和优雅的模式之一，命令模式中的命令指的是一个执行某些特定的事情的命令。命令模式最常见的应用场景是：有时候需要向某些对象发送请求，但是并不知道请求的接收方是谁，也不知道被请求的操作是什么。此时希望用一种松耦合的方式来设计程序，使得请求发送者与请求接受者能够消除彼此之间的耦合关系。 下面带大家做一个案例： 12345//假设设计一个计算器,包含四个按钮,加,减,乘,除/*** 第一">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="命令模式">
+<meta property="og:url" content="http://yoursite.com/2017/09/06/mingling/index.html">
+<meta property="og:site_name" content="小小坤">
+<meta property="og:description" content="简介命令模式是最简单和优雅的模式之一，命令模式中的命令指的是一个执行某些特定的事情的命令。命令模式最常见的应用场景是：有时候需要向某些对象发送请求，但是并不知道请求的接收方是谁，也不知道被请求的操作是什么。此时希望用一种松耦合的方式来设计程序，使得请求发送者与请求接受者能够消除彼此之间的耦合关系。 下面带大家做一个案例： 12345//假设设计一个计算器,包含四个按钮,加,减,乘,除/*** 第一">
+<meta property="og:locale" content="zh-Cn">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/11/28/167592f13078d6a8?w=800&h=600&f=jpeg&s=184358">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/4/14/162c4b13a41e4a3a?w=323&h=311&f=png&s=83969">
+<meta property="og:updated_time" content="2018-11-28T07:21:19.055Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="命令模式">
+<meta name="twitter:description" content="简介命令模式是最简单和优雅的模式之一，命令模式中的命令指的是一个执行某些特定的事情的命令。命令模式最常见的应用场景是：有时候需要向某些对象发送请求，但是并不知道请求的接收方是谁，也不知道被请求的操作是什么。此时希望用一种松耦合的方式来设计程序，使得请求发送者与请求接受者能够消除彼此之间的耦合关系。 下面带大家做一个案例： 12345//假设设计一个计算器,包含四个按钮,加,减,乘,除/*** 第一">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/11/28/167592f13078d6a8?w=800&h=600&f=jpeg&s=184358">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/09/06/mingling/">
+
+
+
+
+
+  <title>命令模式 | 小小坤</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小小坤</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">是你改变了世界还是世界被你改变</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于我">
+          <a href="/2018/11/16/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/06/mingling/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小小坤">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/log.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小小坤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">命令模式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-06T16:50:01+08:00">
+                2017-09-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>命令模式是最简单和优雅的模式之一，命令模式中的命令指的是一个执行某些特定的事情的命令。命令模式最常见的应用场景是：有时候需要向某些对象发送请求，但是并不知道请求的接收方是谁，也不知道被请求的操作是什么。此时希望用一种松耦合的方式来设计程序，使得请求发送者与请求接受者能够消除彼此之间的耦合关系。</p>
+<pre><code>下面带大家做一个案例：
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//假设设计一个计算器,包含四个按钮,加,减,乘,除</span><br><span class="line">/**</span><br><span class="line">* 第一步肯定是需要四个按钮</span><br><span class="line">* 第二步则是，给按钮绑定事件</span><br><span class="line">* */</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//传统的书写方式</span><br><span class="line">var plusbtn=document.getElementById(&quot;plus&quot;);//获取加按钮</span><br><span class="line">var reducebtn=document.getElementById(&quot;reduce&quot;);//获取减按钮</span><br><span class="line">var ridebtn=document.getElementById(&quot;ride&quot;);//获取乘按钮</span><br><span class="line">var exceptbtn=document.getElementById(&quot;except&quot;);//获取除按钮</span><br><span class="line"></span><br><span class="line">plusbtn.onclick=function()&#123;</span><br><span class="line">    console.log(&quot;加按钮处理的事情&quot;);</span><br><span class="line">&#125;</span><br><span class="line">reducebtn.onclick=function()&#123;</span><br><span class="line">    console.log(&quot;减按钮处理的事情&quot;);</span><br><span class="line">&#125;</span><br><span class="line">ridebtn.onclick=function()&#123;</span><br><span class="line">    console.log(&quot;乘按钮处理的事情&quot;);</span><br><span class="line">&#125;</span><br><span class="line">exceptbtn.onclick=function()&#123;</span><br><span class="line">    console.log(&quot;除按钮处理的事情&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种方式简单易懂，事件与dom耦合在一起，拓展，修改，只能去修改源码。下面看一下稍微好一点的代码。</p>
+<h2 id="简单的命令模式"><a href="#简单的命令模式" class="headerlink" title="简单的命令模式"></a>简单的命令模式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">var plusbtn=document.getElementById(&quot;plus&quot;);//获取加按钮</span><br><span class="line">var reducebtn=document.getElementById(&quot;reduce&quot;);//获取减按钮</span><br><span class="line">var ridebtn=document.getElementById(&quot;ride&quot;);//获取乘按钮</span><br><span class="line">var exceptbtn=document.getElementById(&quot;except&quot;);//获取除按钮</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 绑定事件</span><br><span class="line"> * @btn &#123;dom&#125; 按钮</span><br><span class="line"> * @command &#123;Object&#125; 事件集合</span><br><span class="line"> * */</span><br><span class="line">function setComd(btn,command)&#123;</span><br><span class="line">    btn.onclick=function()&#123;</span><br><span class="line">        command.execute();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 事件处理集合</span><br><span class="line"> * */</span><br><span class="line">var receiver=&#123;</span><br><span class="line">    plusfn:function()&#123;</span><br><span class="line">       console.log(&quot;加按钮处理的事情&quot;);    </span><br><span class="line">    &#125;,</span><br><span class="line">    reducefn:function()&#123;</span><br><span class="line">       console.log(&quot;减按钮处理的事情&quot;);    </span><br><span class="line">    &#125;,</span><br><span class="line">    ridefn:function()&#123;</span><br><span class="line">       console.log(&quot;乘按钮处理的事情&quot;);    </span><br><span class="line">    &#125;,</span><br><span class="line">    excepfn:function()&#123;</span><br><span class="line">       console.log(&quot;除按钮处理的事情&quot;);    </span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 加函数</span><br><span class="line"> * @receiver &#123;Object&#125; 事件集合</span><br><span class="line"> * */</span><br><span class="line">var plusfn=function(receiver)&#123;</span><br><span class="line">    this.receiver=receiver;</span><br><span class="line">&#125;</span><br><span class="line">plusfn.prototype.execute=function()&#123;</span><br><span class="line">    this.receiver.plusfn();</span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 减函数</span><br><span class="line"> * @receiver &#123;Object&#125; 事件集合</span><br><span class="line"> * */</span><br><span class="line">var reducefn=function(receiver)&#123;</span><br><span class="line">    this.receiver=receiver;</span><br><span class="line">&#125;</span><br><span class="line">reducefn.prototype.execute=function()&#123;</span><br><span class="line">    this.receiver.reducefn();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 乘函数</span><br><span class="line"> * @receiver &#123;Object&#125; 事件集合</span><br><span class="line"> * */</span><br><span class="line">var ridefn=function(receiver)&#123;</span><br><span class="line">    this.receiver=receiver;</span><br><span class="line">&#125;</span><br><span class="line">ridefn.prototype.execute=function()&#123;</span><br><span class="line">    this.receiver.ridefn();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 除函数</span><br><span class="line"> * @receiver &#123;Object&#125; 事件集合</span><br><span class="line"> * */</span><br><span class="line">var excepfn=function(receiver)&#123;</span><br><span class="line">    this.receiver=receiver;</span><br><span class="line">&#125;</span><br><span class="line">excepfn.prototype.execute=function()&#123;</span><br><span class="line">    this.receiver.excepfn();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var newplusfn=new plusfn(receiver);</span><br><span class="line">var newreducefn=new reducefn(receiver);</span><br><span class="line">var newridefn=new ridefn(receiver);</span><br><span class="line">var newexcepfn=new excepfn(receiver);</span><br><span class="line"></span><br><span class="line">setComd(plusbtn,newplusfn);</span><br><span class="line">setComd(reducebtn,newreducefn);</span><br><span class="line">setComd(ridebtn,newridefn);</span><br><span class="line">setComd(exceptbtn,newexcepfn);</span><br></pre></td></tr></table></figure>
+<p>这种面向对象方式书写，也是很简单的命令模式，setComd函数只负责绑定事件，其他事情不管，receiver对象则是事件处理集合，把事件绑定与事件处理很好的解耦。</p>
+<p>也许你就得书写这么多代码实现的功能跟上边的几行代码没有多大区别，你所说的是正确的。命令模式是将过程中的请求进行封装，通过封装调用execute方法，我们可以把运算块包装成型，receiver对象可以被四处传递，所以在调用命令的时候，客户不需要关心事情如何进行的。这就是命令模式。</p>
+<h2 id="撤销命令"><a href="#撤销命令" class="headerlink" title="撤销命令"></a>撤销命令</h2><p> 命令有发送出去的，但有时候由于命令表达不清楚，就会选择撤销。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">var plusbtn=document.getElementById(&quot;plus&quot;);//获取加按钮</span><br><span class="line">var Revoke=document.getElementById(&quot;Revoke&quot;);//获取撤销按钮</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 绑定事件</span><br><span class="line"> * @btn &#123;dom&#125; 按钮</span><br><span class="line"> * @command &#123;Object&#125; 事件集合</span><br><span class="line"> * */</span><br><span class="line">function setComd(btn,command)&#123;</span><br><span class="line">    btn.onclick=function()&#123;</span><br><span class="line">        command.execute();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 事件处理集合</span><br><span class="line"> * */</span><br><span class="line">var receiver=&#123;</span><br><span class="line">    plusfn:function(old,n)&#123;    </span><br><span class="line">       console.log(&quot;之前是:&quot;+old+&quot;加：&quot;+n);</span><br><span class="line">       return old*1+n*1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 加函数</span><br><span class="line"> * @receiver &#123;Object&#125; 事件集合</span><br><span class="line"> * </span><br><span class="line"> * */</span><br><span class="line">var plusfn=function(receiver)&#123;</span><br><span class="line">    this.receiver=receiver;  // </span><br><span class="line">    this._value=null;//最新的值</span><br><span class="line">    this.oldpos=null;//之前的值</span><br><span class="line">&#125;</span><br><span class="line">plusfn.prototype.execute=function()&#123;</span><br><span class="line">    this.oldpos=document.getElementById(&quot;oreder&quot;).innerHTML;//存储之前的值</span><br><span class="line">    this._value=this.receiver.plusfn(document.getElementById(&quot;first&quot;).value,document.getElementById(&quot;secend&quot;).value);//最新的值</span><br><span class="line">    document.getElementById(&quot;oreder&quot;).innerHTML=this._value;</span><br><span class="line">&#125;</span><br><span class="line">plusfn.prototype.undo=function()&#123;</span><br><span class="line">    this._value=this.oldpos;</span><br><span class="line">    console.log(&quot;撤回:&quot;+this._value);</span><br><span class="line">    document.getElementById(&quot;oreder&quot;).innerHTML=this._value;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var newplusfn=new plusfn(receiver);</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 适配器</span><br><span class="line"> * */</span><br><span class="line">var Adapter=&#123;</span><br><span class="line">    execute:function()&#123;</span><br><span class="line">        newplusfn.undo();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">setComd(plusbtn,newplusfn);</span><br><span class="line">   </span><br><span class="line">setComd(Revoke,Adapter);</span><br></pre></td></tr></table></figure>
+<p>这里涉及到知识的是适配器与撤回，撤回的意思就是在你计算之前，保存当前的一个新副本，点击撤销的时候，恢复到原状态。适配器顾名思义就是一个转接器，把两个相互不通的代码链接通。因为setComd函数接收的是一个对象，对象内包含execute方法，所以用Adapter做一个适配。</p>
+<h2 id="命令队列"><a href="#命令队列" class="headerlink" title="命令队列"></a>命令队列</h2><p>  就是把所有命令存放在数组之中，依次执行。现在来回一下，我们回到家里，首先是打开电视，打开音响，打开空调，关门，打开电脑，打开QQ，等一系列的命令，现在我们就来实现它。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 命令队列</span><br><span class="line"> * </span><br><span class="line"> * */</span><br><span class="line"></span><br><span class="line">var MacroCommand=function()&#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        commandList:[],</span><br><span class="line">        add:function(command)&#123;</span><br><span class="line">            this.commandList.push(command);</span><br><span class="line">        &#125;,</span><br><span class="line">        execute:function()&#123;</span><br><span class="line">            for(var i=0,command;command=this.commandList[i++];)&#123;</span><br><span class="line">                command.execute();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var opentv=&#123;</span><br><span class="line">    execute:function()&#123;</span><br><span class="line">        console.log(&quot;打开电视&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var opensound=&#123;</span><br><span class="line">    execute:function()&#123;</span><br><span class="line">        console.log(&quot;打开音响&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var open1=MacroCommand();</span><br><span class="line">open1.add(opentv);</span><br><span class="line">open1.add(opensound);</span><br><span class="line">open1.execute();</span><br></pre></td></tr></table></figure>
+<h2 id="宏命令"><a href="#宏命令" class="headerlink" title="宏命令"></a>宏命令</h2><p>宏命令其实就是命令队列的集合，可以依次执行一批命令。想象一下家里好多设备需要打开，我们则需要一个按钮的万能遥控器触发他们打开。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 强大的宏</span><br><span class="line"> * </span><br><span class="line"> * */</span><br><span class="line"></span><br><span class="line">var MacroCommand=function()&#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        commandList:[],</span><br><span class="line">        add:function(command)&#123;</span><br><span class="line">            this.commandList.push(command);</span><br><span class="line">        &#125;,</span><br><span class="line">        execute:function()&#123;</span><br><span class="line">            for(var i=0,command;command=this.commandList[i++];)&#123;</span><br><span class="line">                command.execute();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var opentv=&#123;</span><br><span class="line">    execute:function()&#123;</span><br><span class="line">        console.log(&quot;打开电视&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var open1=MacroCommand();</span><br><span class="line">open1.add(opentv);</span><br><span class="line"></span><br><span class="line">/*----------------他们是一起的-------------------*/</span><br><span class="line"></span><br><span class="line">var opensound=&#123;</span><br><span class="line">    execute:function()&#123;</span><br><span class="line">        console.log(&quot;打开音响&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var openkt=&#123;</span><br><span class="line">    execute:function()&#123;</span><br><span class="line">        console.log(&quot;打开空调&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var open2=MacroCommand();</span><br><span class="line">open2.add(opensound);</span><br><span class="line">open2.add(openkt);</span><br><span class="line">/*----------------他们是一起的-------------------*/</span><br><span class="line">var closedoor=&#123;</span><br><span class="line">    execute:function()&#123;</span><br><span class="line">        console.log(&quot;关门&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var opencomputer=&#123;</span><br><span class="line">    execute:function()&#123;</span><br><span class="line">        console.log(&quot;打开电脑&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">var openqq=&#123;</span><br><span class="line">    execute:function()&#123;</span><br><span class="line">        console.log(&quot;打开QQ&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var open3=MacroCommand();</span><br><span class="line">open3.add(closedoor);</span><br><span class="line">open3.add(opencomputer);    </span><br><span class="line">open3.add(openqq);</span><br><span class="line">            </span><br><span class="line">var openall=MacroCommand();            </span><br><span class="line">openall.add(open1);            </span><br><span class="line">openall.add(open2);    </span><br><span class="line">openall.add(open3);    </span><br><span class="line"></span><br><span class="line">openall.execute();</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>命令模式是简单设计模式，希望大家能够理解。</p>
+<p>打赏通道–我觉得不会有打赏。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/28/167592f13078d6a8?w=800&amp;h=600&amp;f=jpeg&amp;s=184358" alt=""></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/4/14/162c4b13a41e4a3a?w=323&amp;h=311&amp;f=png&amp;s=83969" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/06/daili/" rel="next" title="代理模式">
+                <i class="fa fa-chevron-left"></i> 代理模式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/18/fabudingyue/" rel="prev" title="发布订阅模式">
+                发布订阅模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/log.jpg" alt="小小坤">
+            
+              <p class="site-author-name" itemprop="name">小小坤</p>
+              <p class="site-description motion-element" itemprop="description">前端技术文章，JavaScript设计模式，专注前端10年。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">Artikel</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">Tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单的命令模式"><span class="nav-number">2.</span> <span class="nav-text">简单的命令模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#撤销命令"><span class="nav-number">3.</span> <span class="nav-text">撤销命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令队列"><span class="nav-number">4.</span> <span class="nav-text">命令队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#宏命令"><span class="nav-number">5.</span> <span class="nav-text">宏命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小小坤</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

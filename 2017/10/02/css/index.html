@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Cn">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="css,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言在开发项目书写css是必不可少的一部分，写好css能够有助于我们写js逻辑。我遵循的原则是能用css解决的事情坚决不使用js。现在就把我在项目中的使用技巧分享给大家希望能够相互学习共同进步。 选择在处理列表删除的时候，我们需要选择某一项列表，这时候我们的页面布局就大致如下 123456&amp;lt;ul class=&amp;quot;ul&amp;quot;&amp;gt;	&amp;lt;li class=&amp;quot;list">
+<meta name="keywords" content="css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css小技巧">
+<meta property="og:url" content="http://yoursite.com/2017/10/02/css/index.html">
+<meta property="og:site_name" content="小小坤">
+<meta property="og:description" content="前言在开发项目书写css是必不可少的一部分，写好css能够有助于我们写js逻辑。我遵循的原则是能用css解决的事情坚决不使用js。现在就把我在项目中的使用技巧分享给大家希望能够相互学习共同进步。 选择在处理列表删除的时候，我们需要选择某一项列表，这时候我们的页面布局就大致如下 123456&amp;lt;ul class=&amp;quot;ul&amp;quot;&amp;gt;	&amp;lt;li class=&amp;quot;list">
+<meta property="og:locale" content="zh-Cn">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/10/25/1d5f1d0a497c6218bcc7a1bf32a03e9c">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/2/5/16164ea8f56c90dd?w=330&h=82&f=png&s=1334">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/11/28/167592f13078d6a8?w=800&h=600&f=jpeg&s=184358">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/4/14/162c4b13a41e4a3a?w=323&h=311&f=png&s=83969">
+<meta property="og:updated_time" content="2018-11-28T07:21:56.907Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="css小技巧">
+<meta name="twitter:description" content="前言在开发项目书写css是必不可少的一部分，写好css能够有助于我们写js逻辑。我遵循的原则是能用css解决的事情坚决不使用js。现在就把我在项目中的使用技巧分享给大家希望能够相互学习共同进步。 选择在处理列表删除的时候，我们需要选择某一项列表，这时候我们的页面布局就大致如下 123456&amp;lt;ul class=&amp;quot;ul&amp;quot;&amp;gt;	&amp;lt;li class=&amp;quot;list">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2017/10/25/1d5f1d0a497c6218bcc7a1bf32a03e9c">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/02/css/">
+
+
+
+
+
+  <title>css小技巧 | 小小坤</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小小坤</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">是你改变了世界还是世界被你改变</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于我">
+          <a href="/2018/11/16/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/02/css/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小小坤">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/log.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小小坤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">css小技巧</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-02T16:50:01+08:00">
+                2017-10-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在开发项目书写css是必不可少的一部分，写好css能够有助于我们写js逻辑。我遵循的原则是能用css解决的事情坚决不使用js。现在就把我在项目中的使用技巧分享给大家希望能够相互学习共同进步。</p>
+<h2 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h2><p>在处理列表删除的时候，我们需要选择某一项列表，这时候我们的页面布局就大致如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul class=&quot;ul&quot;&gt;</span><br><span class="line">	&lt;li class=&quot;list&quot;&gt;&lt;span class=&quot;checkbox&quot;&gt;&lt;/span&gt;数据1 金额：&lt;span class=&quot;money&quot;&gt;100&lt;/span&gt;&lt;/li&gt;</span><br><span class="line">	&lt;li class=&quot;list&quot;&gt;&lt;span class=&quot;checkbox&quot;&gt;&lt;/span&gt;数据2 金额：&lt;span class=&quot;money&quot;&gt;200&lt;/span&gt;&lt;/li&gt;</span><br><span class="line">	&lt;li class=&quot;list&quot;&gt;&lt;span class=&quot;checkbox&quot;&gt;&lt;/span&gt;数据3 金额：&lt;span class=&quot;money&quot;&gt;300&lt;/span&gt;&lt;/li&gt;</span><br><span class="line">	&lt;li class=&quot;list&quot;&gt;&lt;span class=&quot;checkbox&quot;&gt;&lt;/span&gt;数据4 金额：&lt;span class=&quot;money&quot;&gt;400&lt;/span&gt;&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<p>span checkbox 代表多选按钮，一般人书写css肯定会是这样。给span 书写active css属性例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">li .active&#123;</span><br><span class="line">	 </span><br><span class="line">    /**样式*/</span><br><span class="line">    ........</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后是通过js获取checkbox，给它添加删除active。目前为止，我们书写js大致是这样的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;.checkbox&quot;).click(function()&#123;</span><br><span class="line">	$(&quot;.checkbox&quot;).removeClass(&quot;active&quot;);</span><br><span class="line">	$(this).addClass(&quot;active&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>如果上述，每次jQuery都有获取checkbox去逐个移除active，然后在添加到当前checkbox上面。假设已经选中，依旧会执行此操作。可见这样的操作是多余的。<br>我会这样写css</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">.ul&#123;</span><br><span class="line"> 	background-color: #F2F2F2;</span><br><span class="line">&#125;</span><br><span class="line">.ul li&#123;</span><br><span class="line">	border: 1px solid #00CC99;</span><br><span class="line">	line-height: 35px;</span><br><span class="line">	list-style: none;</span><br><span class="line">	margin: 10px 0;</span><br><span class="line">	padding-left: 10px;</span><br><span class="line">&#125;</span><br><span class="line">.checkbox&#123;</span><br><span class="line">	display: inline-block;</span><br><span class="line">	width: 18px;</span><br><span class="line">	height: 18px;</span><br><span class="line">	border-radius: 50px;</span><br><span class="line">	background-color: #666666;</span><br><span class="line">	vertical-align: -3px;</span><br><span class="line">    margin-right: 15px;</span><br><span class="line">    cursor: pointer;</span><br><span class="line">    position: relative;</span><br><span class="line">&#125;</span><br><span class="line">.ul .active .checkbox:before&#123;</span><br><span class="line">	content: &quot;&quot;;</span><br><span class="line">	position: absolute;</span><br><span class="line">	width: 8px;</span><br><span class="line">	height: 8px;</span><br><span class="line">	left: 5px;</span><br><span class="line">	top: 5px;</span><br><span class="line">	border-radius: 50px;</span><br><span class="line">	background-color: #F50909;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过css控制li的active来控制checkbox的选择。至于不了解css优先级的同学请自行学习。<br>然后的书写的js是这样的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;.list&quot;).click(function()&#123;</span><br><span class="line">	$(this).addClass(&quot;active&quot;).siblings(&quot;&quot;).removeClass(&quot;active&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>一句代码即可实现效果。</p>
+<h2 id="伪类"><a href="#伪类" class="headerlink" title="伪类"></a>伪类</h2><p>在开发过程中有时候我们需要用到单位，比如金钱，温度，等。页面布局大致如下所示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul class=&quot;ul&quot;&gt;</span><br><span class="line">	&lt;li class=&quot;list&quot;&gt;&lt;span class=&quot;checkbox&quot;&gt;&lt;/span&gt;数据1 金额：&lt;span class=&quot;money&quot;&gt;100&lt;/span&gt;&lt;/li&gt;</span><br><span class="line">	&lt;li class=&quot;list&quot;&gt;&lt;span class=&quot;checkbox&quot;&gt;&lt;/span&gt;数据2 金额：&lt;span class=&quot;money&quot;&gt;200&lt;/span&gt;&lt;/li&gt;</span><br><span class="line">	&lt;li class=&quot;list&quot;&gt;&lt;span class=&quot;checkbox&quot;&gt;&lt;/span&gt;数据3 金额：&lt;span class=&quot;money&quot;&gt;300&lt;/span&gt;&lt;/li&gt;</span><br><span class="line">	&lt;li class=&quot;list&quot;&gt;&lt;span class=&quot;checkbox&quot;&gt;&lt;/span&gt;数据4 金额：&lt;span class=&quot;money&quot;&gt;400&lt;/span&gt;&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<p>很简单，明了。金额单独用span包裹。如果我们每次渲染时候拼接dom或者直接用vue v-for 或者其他框架渲染时，span标签内是否要包括“￥”符号呢？我是不会这样做的。我借助伪元素生成这种符号。如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.list .money&#123;</span><br><span class="line">	color: #D40000;</span><br><span class="line">&#125;</span><br><span class="line">.list .money:before&#123;</span><br><span class="line">	content: &quot;￥&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样做的原因是，假设某一天你要获取span内的金额时，你获取的肯定是数值，不包含“￥”符号。</p>
+<h2 id="三角形tips"><a href="#三角形tips" class="headerlink" title="三角形tips"></a>三角形tips</h2><p>三角形的实现网上教程很多，实现的效果也就几种。设置div宽度高度为0px，设置border为solid设置boder-width:为固定数值，最后设置border颜色。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.triangle&#123;</span><br><span class="line">	width: 40px;</span><br><span class="line">	height: 40px;</span><br><span class="line">	border: 20px solid;</span><br><span class="line">	border-color: red blue orange yellow;</span><br><span class="line">&#125;</span><br><span class="line">.triangle1&#123;</span><br><span class="line">	width: 0;</span><br><span class="line">	height: 0;</span><br><span class="line">	border: 20px solid;</span><br><span class="line">	border-color: red transparent transparent transparent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://user-gold-cdn.xitu.io/2017/10/25/1d5f1d0a497c6218bcc7a1bf32a03e9c" alt=""><br>参考demo <a href="http://sandbox.runjs.cn/show/fdtnihiu" target="_blank" rel="noopener">http://sandbox.runjs.cn/show/fdtnihiu</a></p>
+<h2 id="div不定宽垂直居中"><a href="#div不定宽垂直居中" class="headerlink" title="div不定宽垂直居中"></a>div不定宽垂直居中</h2><p>兼容性很好。IE7以上浏览器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">	&lt;head&gt;</span><br><span class="line">		&lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">		&lt;title&gt;不定宽高-水平居中&lt;/title&gt;</span><br><span class="line">		&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">            html,body&#123;</span><br><span class="line">            	text-align: center;</span><br><span class="line">            	height: 100%;</span><br><span class="line">            	margin: 0;</span><br><span class="line">            &#125;</span><br><span class="line">            .layers-box&#123;</span><br><span class="line">            	height: 100%;</span><br><span class="line">            &#125;</span><br><span class="line">            .layers&#123;</span><br><span class="line">            	padding: 15px;</span><br><span class="line">            	display: inline-block;</span><br><span class="line">            	max-width: 60%;/**可以设置可以不设置--兼容性【IE7+】--**/</span><br><span class="line">            	vertical-align: middle;</span><br><span class="line">            	background-color: #717FA5;</span><br><span class="line">            	color: #E4E8F1;</span><br><span class="line">            &#125;</span><br><span class="line">            .layers-i&#123;</span><br><span class="line">            	display: inline-block;</span><br><span class="line">            	height: 100%;</span><br><span class="line">            	vertical-align: middle;</span><br><span class="line">            &#125;</span><br><span class="line">            #btn&#123;</span><br><span class="line">            	position: absolute;</span><br><span class="line">            	right: 5px;</span><br><span class="line">            	top: 5px;</span><br><span class="line">            &#125;</span><br><span class="line">		&lt;/style&gt;</span><br><span class="line">	&lt;/head&gt;</span><br><span class="line">	&lt;body&gt;</span><br><span class="line">		&lt;button id=&quot;btn&quot;&gt;更改文字&lt;/button&gt;</span><br><span class="line">		&lt;!--</span><br><span class="line">        	作者：java-script@qq.com</span><br><span class="line">        	时间：2017-12-06</span><br><span class="line">        	描述：不定宽高水平居中--盒子--star</span><br><span class="line">        --&gt;</span><br><span class="line">		&lt;div class=&quot;layers-box&quot;&gt;</span><br><span class="line">			&lt;!--</span><br><span class="line">	        	作者：java-script@qq.com</span><br><span class="line">	        	时间：2017-12-06</span><br><span class="line">	        	描述：不定宽高水平居中--要居中的元素--star</span><br><span class="line">	        --&gt;</span><br><span class="line">			&lt;span class=&quot;layers&quot; id=&quot;layers&quot;&gt;</span><br><span class="line">			 测试文字</span><br><span class="line">		    &lt;/span&gt;</span><br><span class="line">		    &lt;!--</span><br><span class="line">	        	作者：java-script@qq.com</span><br><span class="line">	        	时间：2017-12-06</span><br><span class="line">	        	描述：不定宽高水平居中--要居中的元素--end</span><br><span class="line">	        --&gt;</span><br><span class="line">	        </span><br><span class="line">	        </span><br><span class="line">		    &lt;!--</span><br><span class="line">	        	作者：java-script@qq.com</span><br><span class="line">	        	时间：2017-12-06</span><br><span class="line">	        	描述：不定宽高水平居中--辅助元素--star</span><br><span class="line">	        --&gt;</span><br><span class="line">		    &lt;i class=&quot;layers-i&quot;&gt;&lt;/i&gt;</span><br><span class="line">		    &lt;!--</span><br><span class="line">	        	作者：java-script@qq.com</span><br><span class="line">	        	时间：2017-12-06</span><br><span class="line">	        	描述：不定宽高水平居中--辅助元素--end</span><br><span class="line">	        --&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">		&lt;!--</span><br><span class="line">        	作者：java-script@qq.com</span><br><span class="line">        	时间：2017-12-06</span><br><span class="line">        	描述：不定宽高水平居中--盒子--end</span><br><span class="line">        --&gt;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        &lt;!--</span><br><span class="line">        	作者：java-script@qq.com</span><br><span class="line">        	时间：2017-12-06</span><br><span class="line">        	描述：我创建了一个web前端技术群</span><br><span class="line">        	          想入群的童鞋可以添加。</span><br><span class="line">        	          群号码：   198303871  </span><br><span class="line">        --&gt;</span><br><span class="line">		&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">			var i=0;</span><br><span class="line">			btn.onclick=function()&#123;</span><br><span class="line">				if(!i)&#123;</span><br><span class="line">					document.getElementById(&quot;layers&quot;).innerText=&quot;好多测试文字！好多测试文字！好多测试文字！好多测试文字！好多测试文字！好多测试文字！好多测试文字！好多测试文字！好多测试文字！好多测试文字！好多测试文字！&quot;;</span><br><span class="line">				    i=1;</span><br><span class="line">				&#125;else&#123;</span><br><span class="line">					document.getElementById(&quot;layers&quot;).innerText=&quot;很少的测试文字!&quot;;</span><br><span class="line">					i=0;</span><br><span class="line">				&#125;</span><br><span class="line">				</span><br><span class="line">			&#125;</span><br><span class="line">		&lt;/script&gt;</span><br><span class="line">	&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>参考链接：<a href="">http://sandbox.runjs.cn/show/w4djxrmw</a></p>
+<h2 id="奇怪的间隙"><a href="#奇怪的间隙" class="headerlink" title="奇怪的间隙"></a>奇怪的间隙</h2><p>平时在开发的时候我们使用display：inline-block;<br>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">/*--css代码--*/</span><br><span class="line">.ul&#123;</span><br><span class="line">	margin-left: 60px;</span><br><span class="line">&#125;</span><br><span class="line">.ul-li&#123;</span><br><span class="line">	display: inline-block;</span><br><span class="line">	width: 20px;</span><br><span class="line">	background-color: #fff;</span><br><span class="line">	color: #4B546C;</span><br><span class="line">	text-align: center;</span><br><span class="line">&#125;</span><br><span class="line">&lt;!--html代码--&gt;</span><br><span class="line">&lt;ul class=&quot;ul&quot;&gt;</span><br><span class="line">	&lt;li class=&quot;ul-li&quot;&gt;a&lt;/li&gt;</span><br><span class="line">	&lt;li class=&quot;ul-li&quot;&gt;b&lt;/li&gt;</span><br><span class="line">	&lt;li class=&quot;ul-li&quot;&gt;c&lt;/li&gt;</span><br><span class="line">	&lt;li class=&quot;ul-li&quot;&gt;d&lt;/li&gt;</span><br><span class="line">	&lt;li class=&quot;ul-li&quot;&gt;e&lt;/li&gt;</span><br><span class="line">	&lt;li class=&quot;ul-li&quot;&gt;f&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<p>渲染效果</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/2/5/16164ea8f56c90dd?w=330&amp;h=82&amp;f=png&amp;s=1334" alt="">有空白间隙。这些空白间隙就是虚拟空白节点。想要解决这个问题最简单的方式是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--html代码--&gt;</span><br><span class="line">&lt;ul class=&quot;ul&quot;&gt;</span><br><span class="line">   &lt;li class=&quot;ul-li&quot;&gt;a&lt;/li&gt;&lt;!--</span><br><span class="line"> --&gt;&lt;li class=&quot;ul-li&quot;&gt;b&lt;/li&gt;&lt;!--</span><br><span class="line"> --&gt;&lt;li class=&quot;ul-li&quot;&gt;c&lt;/li&gt;&lt;!--</span><br><span class="line"> --&gt;&lt;li class=&quot;ul-li&quot;&gt;d&lt;/li&gt;&lt;!--</span><br><span class="line"> --&gt;&lt;li class=&quot;ul-li&quot;&gt;e&lt;/li&gt;&lt;!--</span><br><span class="line"> --&gt;&lt;li class=&quot;ul-li&quot;&gt;f&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在书写css时，我们应该考虑我们对接数据时书写js，这样有目的是书写css会在你对接数据的时候书写js事半功倍。依旧是那就话能用css处理的何必动用js呢？</p>
+<p>打赏通道–我觉得不会有打赏。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/28/167592f13078d6a8?w=800&amp;h=600&amp;f=jpeg&amp;s=184358" alt=""></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/4/14/162c4b13a41e4a3a?w=323&amp;h=311&amp;f=png&amp;s=83969" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/css/" rel="tag"># css</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/18/fabudingyue/" rel="next" title="发布订阅模式">
+                <i class="fa fa-chevron-left"></i> 发布订阅模式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/26/padding/" rel="prev" title="padding-使用必记">
+                padding-使用必记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/log.jpg" alt="小小坤">
+            
+              <p class="site-author-name" itemprop="name">小小坤</p>
+              <p class="site-description motion-element" itemprop="description">前端技术文章，JavaScript设计模式，专注前端10年。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">Artikel</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">Tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择"><span class="nav-number">2.</span> <span class="nav-text">选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪类"><span class="nav-number">3.</span> <span class="nav-text">伪类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三角形tips"><span class="nav-number">4.</span> <span class="nav-text">三角形tips</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#div不定宽垂直居中"><span class="nav-number">5.</span> <span class="nav-text">div不定宽垂直居中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#奇怪的间隙"><span class="nav-number">6.</span> <span class="nav-text">奇怪的间隙</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小小坤</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

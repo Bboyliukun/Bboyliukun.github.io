@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Cn">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前端技术文章，JavaScript设计模式，专注前端10年。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="小小坤">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:site_name" content="小小坤">
+<meta property="og:description" content="前端技术文章，JavaScript设计模式，专注前端10年。">
+<meta property="og:locale" content="zh-Cn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="小小坤">
+<meta name="twitter:description" content="前端技术文章，JavaScript设计模式，专注前端10年。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/page/2/">
+
+
+
+
+
+  <title>小小坤</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小小坤</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">是你改变了世界还是世界被你改变</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于我">
+          <a href="/2018/11/16/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/26/padding/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小小坤">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/log.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小小坤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/26/padding/" itemprop="url">padding-使用必记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-26T16:50:01+08:00">
+                2017-10-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>说起了padding可谓是盒子模型中最常用的一个属性，你真的了解padding吗？那我请问您设置padding会影响盒子的宽度与高度吗？也许好多人会回答padding会影响到盒子的宽度与高度。在我看来，padding是不会影响盒子宽度与高度，padding会影响盒子宽度与高度的。前提是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、padding值暴走，一定会影响尺寸</span><br><span class="line">2、width非auto，padding影响尺寸</span><br><span class="line">3、width为auto 或者box-sizing为border-box，同时padding没有暴走，不影响尺寸</span><br><span class="line">                                            ------来源于--张鑫旭笔记-----</span><br></pre></td></tr></table></figure>
+<h2 id="一、padding值暴走，一定会影响尺寸"><a href="#一、padding值暴走，一定会影响尺寸" class="headerlink" title="一、padding值暴走，一定会影响尺寸"></a>一、padding值暴走，一定会影响尺寸</h2><p>接下来我们来看一看</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/**css代码*/</span><br><span class="line">.padd&#123;</span><br><span class="line">	width: 30px;</span><br><span class="line">	height: 30px;</span><br><span class="line">	margin: 0 auto;</span><br><span class="line">	padding: 60px;</span><br><span class="line">	background-color: red;</span><br><span class="line">&#125;</span><br><span class="line">&lt;!--</span><br><span class="line">	作者：java-script@qq.com</span><br><span class="line">	时间：2017-10-26</span><br><span class="line">	描述：html代码</span><br><span class="line">--&gt;</span><br><span class="line">&lt;div class=&quot;padd&quot;&gt;</span><br><span class="line">	</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>效果图：<br>没有padding值时候。<br><img src="https://user-gold-cdn.xitu.io/2017/10/26/86c3c446abe19c87ea0d14d1c2a4b3f6" alt=""><br>padding暴走</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/10/26/bd462d86b865ac5b588c6728851911c5" alt=""></p>
+<h2 id="二、-width非auto，padding影响尺寸"><a href="#二、-width非auto，padding影响尺寸" class="headerlink" title="二、 width非auto，padding影响尺寸"></a>二、 width非auto，padding影响尺寸</h2><p>定宽度的div，width不是auto则padding影响尺寸。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/**css代码*/</span><br><span class="line">.padd&#123;</span><br><span class="line">	width: 30px;</span><br><span class="line">	height: 30px;</span><br><span class="line">	margin: 0 auto;</span><br><span class="line">	padding: 10px;</span><br><span class="line">	background-color: red;</span><br><span class="line">&#125;</span><br><span class="line">&lt;!--</span><br><span class="line">	作者：java-script@qq.com</span><br><span class="line">	时间：2017-10-26</span><br><span class="line">	描述：html代码</span><br><span class="line">--&gt;</span><br><span class="line">&lt;div class=&quot;padd&quot;&gt;</span><br><span class="line">	</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>如图：<br>宽度为30px高度为30px,padding为10实际尺寸则为50px*50px<br><img src="https://user-gold-cdn.xitu.io/2017/10/26/a47557caf029a56c2681d3f979c07fb6" alt=""></p>
+<h2 id="三、width为auto-或者box-sizing为border-box，同时padding没有暴走，不影响尺寸"><a href="#三、width为auto-或者box-sizing为border-box，同时padding没有暴走，不影响尺寸" class="headerlink" title="三、width为auto 或者box-sizing为border-box，同时padding没有暴走，不影响尺寸"></a>三、width为auto 或者box-sizing为border-box，同时padding没有暴走，不影响尺寸</h2><p>先看看width为auto的时候。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">/**css代码*/</span><br><span class="line">html,body&#123;</span><br><span class="line">	padding: 0;</span><br><span class="line">	margin: 0;</span><br><span class="line">&#125;</span><br><span class="line">.contents&#123;</span><br><span class="line">	margin: 0 auto;</span><br><span class="line">	width: 400px;</span><br><span class="line">	height: 300px;</span><br><span class="line">	background-color: #4B546C;</span><br><span class="line">&#125;</span><br><span class="line">.body&#123;</span><br><span class="line">	padding: 100px;</span><br><span class="line">	height: 300px;</span><br><span class="line">	background-color: #717FA5;</span><br><span class="line">&#125;</span><br><span class="line">&lt;!--</span><br><span class="line">	作者：java-script@qq.com</span><br><span class="line">	时间：2017-10-26</span><br><span class="line">	描述：html代码</span><br><span class="line">--&gt;</span><br><span class="line">&lt;div class=&quot;contents&quot;&gt;</span><br><span class="line">	&lt;div class=&quot;body&quot;&gt;</span><br><span class="line">		小小坤--padding-使用必记</span><br><span class="line">	&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>如图：<br>没有设置padding值</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/10/26/79796308e96ff38bfdea0484470585ca" alt=""><br>设置padding值</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/10/26/4a86983765772a5207cac5599e44c018" alt=""><br>如果div父元素没有设置宽度高度，div设置padding值，width：auto，则不会影响尺寸。如果div父元素设置固定宽度高度，div设置padding则，父元素会受到高度影响。由于div没有设置宽度高度，它的宽度与父元素是相同的，高度也如此。<br>设置div的css box-sizing为border-box,是不会影响实际尺寸。如图</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/10/26/b9fea4f1e8d2762ed9e85ba6cc2ce9b4" alt=""></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过上边的案例得到 padding值影响尺寸的前提是，宽度，与padding暴走与box-sizing为border-box三要素。只要记住了上边三要素。麻麻再也不要担心padding值引起宽度改变啦！！！</p>
+<p>打赏通道–我觉得不会有打赏。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/28/167592f13078d6a8?w=800&amp;h=600&amp;f=jpeg&amp;s=184358" alt=""></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/4/14/162c4b13a41e4a3a?w=323&amp;h=311&amp;f=png&amp;s=83969" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/02/css/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小小坤">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/log.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小小坤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/02/css/" itemprop="url">css小技巧</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-02T16:50:01+08:00">
+                2017-10-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在开发项目书写css是必不可少的一部分，写好css能够有助于我们写js逻辑。我遵循的原则是能用css解决的事情坚决不使用js。现在就把我在项目中的使用技巧分享给大家希望能够相互学习共同进步。</p>
+<h2 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h2><p>在处理列表删除的时候，我们需要选择某一项列表，这时候我们的页面布局就大致如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul class=&quot;ul&quot;&gt;</span><br><span class="line">	&lt;li class=&quot;list&quot;&gt;&lt;span class=&quot;checkbox&quot;&gt;&lt;/span&gt;数据1 金额：&lt;span class=&quot;money&quot;&gt;100&lt;/span&gt;&lt;/li&gt;</span><br><span class="line">	&lt;li class=&quot;list&quot;&gt;&lt;span class=&quot;checkbox&quot;&gt;&lt;/span&gt;数据2 金额：&lt;span class=&quot;money&quot;&gt;200&lt;/span&gt;&lt;/li&gt;</span><br><span class="line">	&lt;li class=&quot;list&quot;&gt;&lt;span class=&quot;checkbox&quot;&gt;&lt;/span&gt;数据3 金额：&lt;span class=&quot;money&quot;&gt;300&lt;/span&gt;&lt;/li&gt;</span><br><span class="line">	&lt;li class=&quot;list&quot;&gt;&lt;span class=&quot;checkbox&quot;&gt;&lt;/span&gt;数据4 金额：&lt;span class=&quot;money&quot;&gt;400&lt;/span&gt;&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<p>span checkbox 代表多选按钮，一般人书写css肯定会是这样。给span 书写active css属性例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">li .active&#123;</span><br><span class="line">	 </span><br><span class="line">    /**样式*/</span><br><span class="line">    ........</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后是通过js获取checkbox，给它添加删除active。目前为止，我们书写js大致是这样的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;.checkbox&quot;).click(function()&#123;</span><br><span class="line">	$(&quot;.checkbox&quot;).removeClass(&quot;active&quot;);</span><br><span class="line">	$(this).addClass(&quot;active&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>如果上述，每次jQuery都有获取checkbox去逐个移除active，然后在添加到当前checkbox上面。假设已经选中，依旧会执行此操作。可见这样的操作是多余的。<br>我会这样写css</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">.ul&#123;</span><br><span class="line"> 	background-color: #F2F2F2;</span><br><span class="line">&#125;</span><br><span class="line">.ul li&#123;</span><br><span class="line">	border: 1px solid #00CC99;</span><br><span class="line">	line-height: 35px;</span><br><span class="line">	list-style: none;</span><br><span class="line">	margin: 10px 0;</span><br><span class="line">	padding-left: 10px;</span><br><span class="line">&#125;</span><br><span class="line">.checkbox&#123;</span><br><span class="line">	display: inline-block;</span><br><span class="line">	width: 18px;</span><br><span class="line">	height: 18px;</span><br><span class="line">	border-radius: 50px;</span><br><span class="line">	background-color: #666666;</span><br><span class="line">	vertical-align: -3px;</span><br><span class="line">    margin-right: 15px;</span><br><span class="line">    cursor: pointer;</span><br><span class="line">    position: relative;</span><br><span class="line">&#125;</span><br><span class="line">.ul .active .checkbox:before&#123;</span><br><span class="line">	content: &quot;&quot;;</span><br><span class="line">	position: absolute;</span><br><span class="line">	width: 8px;</span><br><span class="line">	height: 8px;</span><br><span class="line">	left: 5px;</span><br><span class="line">	top: 5px;</span><br><span class="line">	border-radius: 50px;</span><br><span class="line">	background-color: #F50909;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过css控制li的active来控制checkbox的选择。至于不了解css优先级的同学请自行学习。<br>然后的书写的js是这样的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;.list&quot;).click(function()&#123;</span><br><span class="line">	$(this).addClass(&quot;active&quot;).siblings(&quot;&quot;).removeClass(&quot;active&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>一句代码即可实现效果。</p>
+<h2 id="伪类"><a href="#伪类" class="headerlink" title="伪类"></a>伪类</h2><p>在开发过程中有时候我们需要用到单位，比如金钱，温度，等。页面布局大致如下所示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul class=&quot;ul&quot;&gt;</span><br><span class="line">	&lt;li class=&quot;list&quot;&gt;&lt;span class=&quot;checkbox&quot;&gt;&lt;/span&gt;数据1 金额：&lt;span class=&quot;money&quot;&gt;100&lt;/span&gt;&lt;/li&gt;</span><br><span class="line">	&lt;li class=&quot;list&quot;&gt;&lt;span class=&quot;checkbox&quot;&gt;&lt;/span&gt;数据2 金额：&lt;span class=&quot;money&quot;&gt;200&lt;/span&gt;&lt;/li&gt;</span><br><span class="line">	&lt;li class=&quot;list&quot;&gt;&lt;span class=&quot;checkbox&quot;&gt;&lt;/span&gt;数据3 金额：&lt;span class=&quot;money&quot;&gt;300&lt;/span&gt;&lt;/li&gt;</span><br><span class="line">	&lt;li class=&quot;list&quot;&gt;&lt;span class=&quot;checkbox&quot;&gt;&lt;/span&gt;数据4 金额：&lt;span class=&quot;money&quot;&gt;400&lt;/span&gt;&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<p>很简单，明了。金额单独用span包裹。如果我们每次渲染时候拼接dom或者直接用vue v-for 或者其他框架渲染时，span标签内是否要包括“￥”符号呢？我是不会这样做的。我借助伪元素生成这种符号。如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.list .money&#123;</span><br><span class="line">	color: #D40000;</span><br><span class="line">&#125;</span><br><span class="line">.list .money:before&#123;</span><br><span class="line">	content: &quot;￥&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样做的原因是，假设某一天你要获取span内的金额时，你获取的肯定是数值，不包含“￥”符号。</p>
+<h2 id="三角形tips"><a href="#三角形tips" class="headerlink" title="三角形tips"></a>三角形tips</h2><p>三角形的实现网上教程很多，实现的效果也就几种。设置div宽度高度为0px，设置border为solid设置boder-width:为固定数值，最后设置border颜色。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.triangle&#123;</span><br><span class="line">	width: 40px;</span><br><span class="line">	height: 40px;</span><br><span class="line">	border: 20px solid;</span><br><span class="line">	border-color: red blue orange yellow;</span><br><span class="line">&#125;</span><br><span class="line">.triangle1&#123;</span><br><span class="line">	width: 0;</span><br><span class="line">	height: 0;</span><br><span class="line">	border: 20px solid;</span><br><span class="line">	border-color: red transparent transparent transparent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://user-gold-cdn.xitu.io/2017/10/25/1d5f1d0a497c6218bcc7a1bf32a03e9c" alt=""><br>参考demo <a href="http://sandbox.runjs.cn/show/fdtnihiu" target="_blank" rel="noopener">http://sandbox.runjs.cn/show/fdtnihiu</a></p>
+<h2 id="div不定宽垂直居中"><a href="#div不定宽垂直居中" class="headerlink" title="div不定宽垂直居中"></a>div不定宽垂直居中</h2><p>兼容性很好。IE7以上浏览器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">	&lt;head&gt;</span><br><span class="line">		&lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">		&lt;title&gt;不定宽高-水平居中&lt;/title&gt;</span><br><span class="line">		&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">            html,body&#123;</span><br><span class="line">            	text-align: center;</span><br><span class="line">            	height: 100%;</span><br><span class="line">            	margin: 0;</span><br><span class="line">            &#125;</span><br><span class="line">            .layers-box&#123;</span><br><span class="line">            	height: 100%;</span><br><span class="line">            &#125;</span><br><span class="line">            .layers&#123;</span><br><span class="line">            	padding: 15px;</span><br><span class="line">            	display: inline-block;</span><br><span class="line">            	max-width: 60%;/**可以设置可以不设置--兼容性【IE7+】--**/</span><br><span class="line">            	vertical-align: middle;</span><br><span class="line">            	background-color: #717FA5;</span><br><span class="line">            	color: #E4E8F1;</span><br><span class="line">            &#125;</span><br><span class="line">            .layers-i&#123;</span><br><span class="line">            	display: inline-block;</span><br><span class="line">            	height: 100%;</span><br><span class="line">            	vertical-align: middle;</span><br><span class="line">            &#125;</span><br><span class="line">            #btn&#123;</span><br><span class="line">            	position: absolute;</span><br><span class="line">            	right: 5px;</span><br><span class="line">            	top: 5px;</span><br><span class="line">            &#125;</span><br><span class="line">		&lt;/style&gt;</span><br><span class="line">	&lt;/head&gt;</span><br><span class="line">	&lt;body&gt;</span><br><span class="line">		&lt;button id=&quot;btn&quot;&gt;更改文字&lt;/button&gt;</span><br><span class="line">		&lt;!--</span><br><span class="line">        	作者：java-script@qq.com</span><br><span class="line">        	时间：2017-12-06</span><br><span class="line">        	描述：不定宽高水平居中--盒子--star</span><br><span class="line">        --&gt;</span><br><span class="line">		&lt;div class=&quot;layers-box&quot;&gt;</span><br><span class="line">			&lt;!--</span><br><span class="line">	        	作者：java-script@qq.com</span><br><span class="line">	        	时间：2017-12-06</span><br><span class="line">	        	描述：不定宽高水平居中--要居中的元素--star</span><br><span class="line">	        --&gt;</span><br><span class="line">			&lt;span class=&quot;layers&quot; id=&quot;layers&quot;&gt;</span><br><span class="line">			 测试文字</span><br><span class="line">		    &lt;/span&gt;</span><br><span class="line">		    &lt;!--</span><br><span class="line">	        	作者：java-script@qq.com</span><br><span class="line">	        	时间：2017-12-06</span><br><span class="line">	        	描述：不定宽高水平居中--要居中的元素--end</span><br><span class="line">	        --&gt;</span><br><span class="line">	        </span><br><span class="line">	        </span><br><span class="line">		    &lt;!--</span><br><span class="line">	        	作者：java-script@qq.com</span><br><span class="line">	        	时间：2017-12-06</span><br><span class="line">	        	描述：不定宽高水平居中--辅助元素--star</span><br><span class="line">	        --&gt;</span><br><span class="line">		    &lt;i class=&quot;layers-i&quot;&gt;&lt;/i&gt;</span><br><span class="line">		    &lt;!--</span><br><span class="line">	        	作者：java-script@qq.com</span><br><span class="line">	        	时间：2017-12-06</span><br><span class="line">	        	描述：不定宽高水平居中--辅助元素--end</span><br><span class="line">	        --&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">		&lt;!--</span><br><span class="line">        	作者：java-script@qq.com</span><br><span class="line">        	时间：2017-12-06</span><br><span class="line">        	描述：不定宽高水平居中--盒子--end</span><br><span class="line">        --&gt;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        &lt;!--</span><br><span class="line">        	作者：java-script@qq.com</span><br><span class="line">        	时间：2017-12-06</span><br><span class="line">        	描述：我创建了一个web前端技术群</span><br><span class="line">        	          想入群的童鞋可以添加。</span><br><span class="line">        	          群号码：   198303871  </span><br><span class="line">        --&gt;</span><br><span class="line">		&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">			var i=0;</span><br><span class="line">			btn.onclick=function()&#123;</span><br><span class="line">				if(!i)&#123;</span><br><span class="line">					document.getElementById(&quot;layers&quot;).innerText=&quot;好多测试文字！好多测试文字！好多测试文字！好多测试文字！好多测试文字！好多测试文字！好多测试文字！好多测试文字！好多测试文字！好多测试文字！好多测试文字！&quot;;</span><br><span class="line">				    i=1;</span><br><span class="line">				&#125;else&#123;</span><br><span class="line">					document.getElementById(&quot;layers&quot;).innerText=&quot;很少的测试文字!&quot;;</span><br><span class="line">					i=0;</span><br><span class="line">				&#125;</span><br><span class="line">				</span><br><span class="line">			&#125;</span><br><span class="line">		&lt;/script&gt;</span><br><span class="line">	&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>参考链接：<a href="">http://sandbox.runjs.cn/show/w4djxrmw</a></p>
+<h2 id="奇怪的间隙"><a href="#奇怪的间隙" class="headerlink" title="奇怪的间隙"></a>奇怪的间隙</h2><p>平时在开发的时候我们使用display：inline-block;<br>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">/*--css代码--*/</span><br><span class="line">.ul&#123;</span><br><span class="line">	margin-left: 60px;</span><br><span class="line">&#125;</span><br><span class="line">.ul-li&#123;</span><br><span class="line">	display: inline-block;</span><br><span class="line">	width: 20px;</span><br><span class="line">	background-color: #fff;</span><br><span class="line">	color: #4B546C;</span><br><span class="line">	text-align: center;</span><br><span class="line">&#125;</span><br><span class="line">&lt;!--html代码--&gt;</span><br><span class="line">&lt;ul class=&quot;ul&quot;&gt;</span><br><span class="line">	&lt;li class=&quot;ul-li&quot;&gt;a&lt;/li&gt;</span><br><span class="line">	&lt;li class=&quot;ul-li&quot;&gt;b&lt;/li&gt;</span><br><span class="line">	&lt;li class=&quot;ul-li&quot;&gt;c&lt;/li&gt;</span><br><span class="line">	&lt;li class=&quot;ul-li&quot;&gt;d&lt;/li&gt;</span><br><span class="line">	&lt;li class=&quot;ul-li&quot;&gt;e&lt;/li&gt;</span><br><span class="line">	&lt;li class=&quot;ul-li&quot;&gt;f&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<p>渲染效果</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/2/5/16164ea8f56c90dd?w=330&amp;h=82&amp;f=png&amp;s=1334" alt="">有空白间隙。这些空白间隙就是虚拟空白节点。想要解决这个问题最简单的方式是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--html代码--&gt;</span><br><span class="line">&lt;ul class=&quot;ul&quot;&gt;</span><br><span class="line">   &lt;li class=&quot;ul-li&quot;&gt;a&lt;/li&gt;&lt;!--</span><br><span class="line"> --&gt;&lt;li class=&quot;ul-li&quot;&gt;b&lt;/li&gt;&lt;!--</span><br><span class="line"> --&gt;&lt;li class=&quot;ul-li&quot;&gt;c&lt;/li&gt;&lt;!--</span><br><span class="line"> --&gt;&lt;li class=&quot;ul-li&quot;&gt;d&lt;/li&gt;&lt;!--</span><br><span class="line"> --&gt;&lt;li class=&quot;ul-li&quot;&gt;e&lt;/li&gt;&lt;!--</span><br><span class="line"> --&gt;&lt;li class=&quot;ul-li&quot;&gt;f&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在书写css时，我们应该考虑我们对接数据时书写js，这样有目的是书写css会在你对接数据的时候书写js事半功倍。依旧是那就话能用css处理的何必动用js呢？</p>
+<p>打赏通道–我觉得不会有打赏。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/28/167592f13078d6a8?w=800&amp;h=600&amp;f=jpeg&amp;s=184358" alt=""></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/4/14/162c4b13a41e4a3a?w=323&amp;h=311&amp;f=png&amp;s=83969" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/18/fabudingyue/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小小坤">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/log.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小小坤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/18/fabudingyue/" itemprop="url">发布订阅模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-18T16:50:01+08:00">
+                2017-09-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>  发布-订阅模式又叫观察者模式,它定义对象间的一种一对多的依赖关系,当一个对象的状态发生改变时,所有依赖于它的对象都将得到通知。JavaScript开发中我们一般用事件模型来代替传统的发布-订阅模式</p>
+<h2 id="案例介绍1"><a href="#案例介绍1" class="headerlink" title="案例介绍1"></a>案例介绍1</h2><p>小明最近喜欢上吃老北京烧饼,可是到了卖烧饼的地方发现已经卖完了,而且排队的人还很多.幸运的是卖烧饼那个MM看小明长得帅,告诉小明等一会就有烧饼吃啦!可是小明现在还有约会要去,不知道烧饼能什么时候出锅,总不能因为吃烧饼而不去约会吧!这时候小明灵机一动,说烧饼MM把你电话给我吧!我先去忙,等会打电话问你烧饼好了没有。烧饼MM也没想太多,把电话给小明了。后来小龙也来买烧饼，情况跟小明差不多,小龙也把烧饼MM的电话要走了。可是问题就这来了,小明、小龙一会儿打一个电话给烧饼MM,导致烧饼MM很烦,辞职走了不干了。<br>通过上边的事情我们可以发现,存在好多问题<br>   第一:卖烧饼的MM应该充当发布者<br>   第二:小明小龙的电话应该保存在卖烧饼的用户列表中,如果卖烧饼的MM离职,这用户就会丢失<br>   第三:实际上没有这么笨蛋的销售方式的</p>
+<p>卖烧饼的店主可以把小明、小龙的电话记录下来,等店里有烧饼了在通知小龙小明来拿这就是所谓的发布-订阅模式，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">/*烧饼店*/        </span><br><span class="line">var Sesamecakeshop=&#123;</span><br><span class="line">    clienlist:[],//缓存列表</span><br><span class="line">    addlisten:function(fn)&#123;//增加订阅者</span><br><span class="line">        this.clienlist.push(fn);</span><br><span class="line">    &#125;,</span><br><span class="line">    trigger:function()&#123;//发布消息</span><br><span class="line">        for(var i=0,fn;fn=this.clienlist[i++];)&#123;</span><br><span class="line">            fn.apply(this,arguments);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/*小明发布订阅*/</span><br><span class="line">Sesamecakeshop.addlisten(function(price,taste)&#123;</span><br><span class="line">    console.log(&quot;小明发布的&quot;+price+&quot;元，&quot;+taste+&quot;味道的&quot;);</span><br><span class="line">&#125;);</span><br><span class="line">/*小龙发布订阅*/</span><br><span class="line">Sesamecakeshop.addlisten(function(price,taste)&#123;</span><br><span class="line">    console.log(&quot;小龙发布的&quot;+price+&quot;元，&quot;+taste+&quot;味道的&quot;);</span><br><span class="line">&#125;);        </span><br><span class="line"></span><br><span class="line">Sesamecakeshop.trigger(10,&quot;椒盐&quot;);</span><br></pre></td></tr></table></figure>
+<p> 从代码中可以看出，只有小明，小龙预定了烧饼，烧饼店就可以发布消息告诉小龙与小明。但是有个问题不知道大家发现了没有。小明只喜欢椒盐味道的。而小龙只喜欢焦糖味道的。上面的代码就满足不了客户的需求，给客户一种感觉就是，不管我喜欢不喜欢，你都会发给我。如果发布比较多，客户就会感到厌烦，甚至会想删除订阅。下边是对代码进行改良大家可以看看。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">/*烧饼店*/        </span><br><span class="line">var Sesamecakeshop=&#123;</span><br><span class="line">    clienlist:&#123;&#125;,/*缓存列表*/</span><br><span class="line">    /**</span><br><span class="line">     * 增加订阅者</span><br><span class="line">     * @key &#123;String&#125; 类型</span><br><span class="line">     * @fn &#123;Function&#125; 回掉函数</span><br><span class="line">     * */</span><br><span class="line">    addlisten:function(key,fn)&#123;</span><br><span class="line">        if(!this.clienlist[key])&#123;</span><br><span class="line">            this.clienlist[key]=[];</span><br><span class="line">        &#125;</span><br><span class="line">        this.clienlist[key].push(fn);</span><br><span class="line">    &#125;,</span><br><span class="line">    /**</span><br><span class="line">     * 发布消息</span><br><span class="line">     * */</span><br><span class="line">    trigger:function()&#123;</span><br><span class="line">        var key=[].shift.call(arguments),//取出消息类型</span><br><span class="line">            fns=this.clienlist[key];//取出该类型的对应的消息集合</span><br><span class="line">        if(!fns || fns.length===0)&#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        for(var i=0,fn;fn=fns[i++];)&#123;</span><br><span class="line">            fn.apply(this,arguments);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    /**</span><br><span class="line">     * 删除订阅</span><br><span class="line">     * @key &#123;String&#125; 类型</span><br><span class="line">     * @fn &#123;Function&#125; 回掉函数</span><br><span class="line">     * */</span><br><span class="line">    remove:function(key,fn)&#123;</span><br><span class="line">        var fns=this.clienlist[key];//取出该类型的对应的消息集合</span><br><span class="line">        if(!fns)&#123;//如果对应的key没有订阅直接返回</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        if(!fn)&#123;//如果没有传入具体的回掉，则表示需要取消所有订阅</span><br><span class="line">            fns &amp;&amp; (fns.length=0);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            for(var l=fns.length-1;l&gt;=0;l--)&#123;//遍历回掉函数列表</span><br><span class="line">                if(fn===fns[l])&#123;</span><br><span class="line">                    fns.splice(l,1);//删除订阅者的回掉</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/*小明发布订阅*/</span><br><span class="line">Sesamecakeshop.addlisten(&quot;焦糖&quot;,fn1=function(price,taste)&#123;</span><br><span class="line">    console.log(&quot;小明发布的&quot;+price+&quot;元，&quot;+taste+&quot;味道的&quot;);</span><br><span class="line">&#125;);</span><br><span class="line">/*小龙发布订阅*/</span><br><span class="line">Sesamecakeshop.addlisten(&quot;椒盐&quot;,function(price,taste)&#123;</span><br><span class="line">    console.log(&quot;小龙发布的&quot;+price+&quot;元，&quot;+taste+&quot;味道的&quot;);</span><br><span class="line">&#125;);        </span><br><span class="line"></span><br><span class="line">Sesamecakeshop.trigger(&quot;椒盐&quot;,10,&quot;椒盐&quot;);</span><br><span class="line"></span><br><span class="line">Sesamecakeshop.remove(&quot;焦糖&quot;,fn1);//注意这里是按照地址引用的。如果传入匿名函数则删除不了        </span><br><span class="line">            </span><br><span class="line">Sesamecakeshop.trigger(&quot;焦糖&quot;,40,&quot;焦糖&quot;);</span><br></pre></td></tr></table></figure>
+<p> 删除的时候需要注意的是，如果订阅的时候传递的是匿名函数，删除的时候如果传入的也是匿名函数。则删除不了。因为删除时候是按照地址引用删除的。传进去的两个匿名函数，对应的地址引用是不同的。</p>
+<h2 id="案例介绍2"><a href="#案例介绍2" class="headerlink" title="案例介绍2"></a>案例介绍2</h2><p> 比如咱们常见的用户身份分别有不同的功能，超级管理员拥有最高权限，可以删除修改任意用户。而普通用户则只能修改自己的账户信息。首先是用户身份验证，验证通过之后对应功能才可以显示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">//登录发布-订阅模式</span><br><span class="line">login=&#123;</span><br><span class="line">    clienlist:&#123;&#125;,/*缓存列表*/</span><br><span class="line">    /**</span><br><span class="line">     * 增加订阅者</span><br><span class="line">     * @key &#123;String&#125; 类型</span><br><span class="line">     * @fn &#123;Function&#125; 回掉函数</span><br><span class="line">     * */</span><br><span class="line">    addlisten:function(key,fn)&#123;</span><br><span class="line">        if(!this.clienlist[key])&#123;</span><br><span class="line">            this.clienlist[key]=[];</span><br><span class="line">        &#125;</span><br><span class="line">        this.clienlist[key].push(fn);</span><br><span class="line">    &#125;,</span><br><span class="line">    /**</span><br><span class="line">     * 发布消息</span><br><span class="line">     * */</span><br><span class="line">    trigger:function()&#123;</span><br><span class="line">        var key=[].shift.call(arguments),//取出消息类型</span><br><span class="line">            fns=this.clienlist[key];//取出该类型的对应的消息集合</span><br><span class="line">        if(!fns || fns.length===0)&#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        for(var i=0,fn;fn=fns[i++];)&#123;</span><br><span class="line">            fn.apply(this,arguments);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//超级管理员修改所有用户</span><br><span class="line">var editall=(function()&#123;</span><br><span class="line">    login.addlisten(&quot;loginsucc&quot;,function(data)&#123;</span><br><span class="line">        editall.setview(data);</span><br><span class="line">    &#125;);</span><br><span class="line">    return&#123;</span><br><span class="line">        setview:function(data)&#123;</span><br><span class="line">            console.log(data);</span><br><span class="line">            console.log(&quot;超级管理员修改所有用户&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">//仅仅修改自己</span><br><span class="line">var editOwn=(function()&#123;</span><br><span class="line">    login.addlisten(&quot;loginsucc&quot;,function(data)&#123;</span><br><span class="line">        editOwn.setview(data);</span><br><span class="line">    &#125;);</span><br><span class="line">    return&#123;</span><br><span class="line">        setview:function(data)&#123;</span><br><span class="line">            console.log(data);</span><br><span class="line">            console.log(&quot;仅仅修改自己&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>发布-订阅模式简单封装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">var _Event=(function()&#123;</span><br><span class="line">    var clienlist=&#123;&#125;,</span><br><span class="line">    addlisten,trigger,remove;</span><br><span class="line">    /**</span><br><span class="line">     * 增加订阅者</span><br><span class="line">     * @key &#123;String&#125; 类型</span><br><span class="line">     * @fn &#123;Function&#125; 回掉函数</span><br><span class="line">     * */</span><br><span class="line">    addlisten=function(key,fn)&#123;</span><br><span class="line">        if(!clienlist[key])&#123;</span><br><span class="line">            clienlist[key]=[];</span><br><span class="line">        &#125;</span><br><span class="line">        clienlist[key].push(fn);</span><br><span class="line">    &#125;;</span><br><span class="line">    /**</span><br><span class="line">     * 发布消息</span><br><span class="line">     * */</span><br><span class="line">    trigger=function()&#123;</span><br><span class="line">        var key=[].shift.call(arguments),//取出消息类型</span><br><span class="line">            fns=clienlist[key];//取出该类型的对应的消息集合</span><br><span class="line">        if(!fns || fns.length===0)&#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        for(var i=0,fn;fn=fns[i++];)&#123;</span><br><span class="line">            fn.apply(this,arguments);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    /**</span><br><span class="line">     * 删除订阅</span><br><span class="line">     * @key &#123;String&#125; 类型</span><br><span class="line">     * @fn &#123;Function&#125; 回掉函数</span><br><span class="line">     * */</span><br><span class="line">    remove=function(key,fn)&#123;</span><br><span class="line">        var fns=clienlist[key];//取出该类型的对应的消息集合</span><br><span class="line">        if(!fns)&#123;//如果对应的key没有订阅直接返回</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        if(!fn)&#123;//如果没有传入具体的回掉，则表示需要取消所有订阅</span><br><span class="line">            fns &amp;&amp; (fns.length=0);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            for(var l=fns.length-1;l&gt;=0;l--)&#123;//遍历回掉函数列表</span><br><span class="line">                if(fn===fns[l])&#123;</span><br><span class="line">                    fns.splice(l,1);//删除订阅者的回掉</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    return&#123;</span><br><span class="line">        addlisten:addlisten,</span><br><span class="line">        trigger:trigger,</span><br><span class="line">        remove:remove</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">_Event.addlisten(&quot;jianbing&quot;,function(d,all)&#123;</span><br><span class="line">    console.log(&quot;发布的消息来自：&quot;+d+&quot;，具体信息：&quot;+all);</span><br><span class="line">&#125;);</span><br><span class="line">_Event.addlisten(&quot;jianbing&quot;,function(d,all)&#123;</span><br><span class="line">    console.log(&quot;发布的消息来自：&quot;+d+&quot;，具体信息：&quot;+all);</span><br><span class="line">&#125;)</span><br><span class="line">_Event.trigger(&quot;jianbing&quot;,&quot;小小坤&quot;,&quot;前端工程师，擅长JavaScript，喜欢结交更多的前端技术人员，欢迎喜欢技术的你加QQ群：198303871&quot;)</span><br></pre></td></tr></table></figure>
+<p><img src="https://user-gold-cdn.xitu.io/2017/9/18/d107c914ae84c7a30bc25f7cfcd02448" alt=""></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p> 发布-订阅模式就是常说的观察者模式，在实际开发中非常有用。它的优点是为时间是解耦，为对象之间解构，它的应用非常广泛，既可以在异步编程中也可以帮助我们完成更松的解耦。发布-订阅模式还可以帮助我们实现设计模式，从架构上来看，无论MVC还是MVVC都少不了发布-订阅模式的参与。然而发布-订阅模式也存在一些缺点，创建订阅本身会消耗一定的时间与内存，也许当你订阅一个消息之后，之后可能就不会发生。发布-订阅模式虽然它弱化了对象与对象之间的关系，但是如果过度使用，对象与对象的必要联系就会被深埋，会导致程序难以跟踪与维护。</p>
+<p>打赏通道–我觉得不会有打赏。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/28/167592f13078d6a8?w=800&amp;h=600&amp;f=jpeg&amp;s=184358" alt=""></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/4/14/162c4b13a41e4a3a?w=323&amp;h=311&amp;f=png&amp;s=83969" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/06/mingling/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小小坤">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/log.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小小坤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/06/mingling/" itemprop="url">命令模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-06T16:50:01+08:00">
+                2017-09-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>命令模式是最简单和优雅的模式之一，命令模式中的命令指的是一个执行某些特定的事情的命令。命令模式最常见的应用场景是：有时候需要向某些对象发送请求，但是并不知道请求的接收方是谁，也不知道被请求的操作是什么。此时希望用一种松耦合的方式来设计程序，使得请求发送者与请求接受者能够消除彼此之间的耦合关系。</p>
+<pre><code>下面带大家做一个案例：
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//假设设计一个计算器,包含四个按钮,加,减,乘,除</span><br><span class="line">/**</span><br><span class="line">* 第一步肯定是需要四个按钮</span><br><span class="line">* 第二步则是，给按钮绑定事件</span><br><span class="line">* */</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//传统的书写方式</span><br><span class="line">var plusbtn=document.getElementById(&quot;plus&quot;);//获取加按钮</span><br><span class="line">var reducebtn=document.getElementById(&quot;reduce&quot;);//获取减按钮</span><br><span class="line">var ridebtn=document.getElementById(&quot;ride&quot;);//获取乘按钮</span><br><span class="line">var exceptbtn=document.getElementById(&quot;except&quot;);//获取除按钮</span><br><span class="line"></span><br><span class="line">plusbtn.onclick=function()&#123;</span><br><span class="line">    console.log(&quot;加按钮处理的事情&quot;);</span><br><span class="line">&#125;</span><br><span class="line">reducebtn.onclick=function()&#123;</span><br><span class="line">    console.log(&quot;减按钮处理的事情&quot;);</span><br><span class="line">&#125;</span><br><span class="line">ridebtn.onclick=function()&#123;</span><br><span class="line">    console.log(&quot;乘按钮处理的事情&quot;);</span><br><span class="line">&#125;</span><br><span class="line">exceptbtn.onclick=function()&#123;</span><br><span class="line">    console.log(&quot;除按钮处理的事情&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种方式简单易懂，事件与dom耦合在一起，拓展，修改，只能去修改源码。下面看一下稍微好一点的代码。</p>
+<h2 id="简单的命令模式"><a href="#简单的命令模式" class="headerlink" title="简单的命令模式"></a>简单的命令模式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">var plusbtn=document.getElementById(&quot;plus&quot;);//获取加按钮</span><br><span class="line">var reducebtn=document.getElementById(&quot;reduce&quot;);//获取减按钮</span><br><span class="line">var ridebtn=document.getElementById(&quot;ride&quot;);//获取乘按钮</span><br><span class="line">var exceptbtn=document.getElementById(&quot;except&quot;);//获取除按钮</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 绑定事件</span><br><span class="line"> * @btn &#123;dom&#125; 按钮</span><br><span class="line"> * @command &#123;Object&#125; 事件集合</span><br><span class="line"> * */</span><br><span class="line">function setComd(btn,command)&#123;</span><br><span class="line">    btn.onclick=function()&#123;</span><br><span class="line">        command.execute();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 事件处理集合</span><br><span class="line"> * */</span><br><span class="line">var receiver=&#123;</span><br><span class="line">    plusfn:function()&#123;</span><br><span class="line">       console.log(&quot;加按钮处理的事情&quot;);    </span><br><span class="line">    &#125;,</span><br><span class="line">    reducefn:function()&#123;</span><br><span class="line">       console.log(&quot;减按钮处理的事情&quot;);    </span><br><span class="line">    &#125;,</span><br><span class="line">    ridefn:function()&#123;</span><br><span class="line">       console.log(&quot;乘按钮处理的事情&quot;);    </span><br><span class="line">    &#125;,</span><br><span class="line">    excepfn:function()&#123;</span><br><span class="line">       console.log(&quot;除按钮处理的事情&quot;);    </span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 加函数</span><br><span class="line"> * @receiver &#123;Object&#125; 事件集合</span><br><span class="line"> * */</span><br><span class="line">var plusfn=function(receiver)&#123;</span><br><span class="line">    this.receiver=receiver;</span><br><span class="line">&#125;</span><br><span class="line">plusfn.prototype.execute=function()&#123;</span><br><span class="line">    this.receiver.plusfn();</span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 减函数</span><br><span class="line"> * @receiver &#123;Object&#125; 事件集合</span><br><span class="line"> * */</span><br><span class="line">var reducefn=function(receiver)&#123;</span><br><span class="line">    this.receiver=receiver;</span><br><span class="line">&#125;</span><br><span class="line">reducefn.prototype.execute=function()&#123;</span><br><span class="line">    this.receiver.reducefn();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 乘函数</span><br><span class="line"> * @receiver &#123;Object&#125; 事件集合</span><br><span class="line"> * */</span><br><span class="line">var ridefn=function(receiver)&#123;</span><br><span class="line">    this.receiver=receiver;</span><br><span class="line">&#125;</span><br><span class="line">ridefn.prototype.execute=function()&#123;</span><br><span class="line">    this.receiver.ridefn();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 除函数</span><br><span class="line"> * @receiver &#123;Object&#125; 事件集合</span><br><span class="line"> * */</span><br><span class="line">var excepfn=function(receiver)&#123;</span><br><span class="line">    this.receiver=receiver;</span><br><span class="line">&#125;</span><br><span class="line">excepfn.prototype.execute=function()&#123;</span><br><span class="line">    this.receiver.excepfn();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var newplusfn=new plusfn(receiver);</span><br><span class="line">var newreducefn=new reducefn(receiver);</span><br><span class="line">var newridefn=new ridefn(receiver);</span><br><span class="line">var newexcepfn=new excepfn(receiver);</span><br><span class="line"></span><br><span class="line">setComd(plusbtn,newplusfn);</span><br><span class="line">setComd(reducebtn,newreducefn);</span><br><span class="line">setComd(ridebtn,newridefn);</span><br><span class="line">setComd(exceptbtn,newexcepfn);</span><br></pre></td></tr></table></figure>
+<p>这种面向对象方式书写，也是很简单的命令模式，setComd函数只负责绑定事件，其他事情不管，receiver对象则是事件处理集合，把事件绑定与事件处理很好的解耦。</p>
+<p>也许你就得书写这么多代码实现的功能跟上边的几行代码没有多大区别，你所说的是正确的。命令模式是将过程中的请求进行封装，通过封装调用execute方法，我们可以把运算块包装成型，receiver对象可以被四处传递，所以在调用命令的时候，客户不需要关心事情如何进行的。这就是命令模式。</p>
+<h2 id="撤销命令"><a href="#撤销命令" class="headerlink" title="撤销命令"></a>撤销命令</h2><p> 命令有发送出去的，但有时候由于命令表达不清楚，就会选择撤销。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">var plusbtn=document.getElementById(&quot;plus&quot;);//获取加按钮</span><br><span class="line">var Revoke=document.getElementById(&quot;Revoke&quot;);//获取撤销按钮</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 绑定事件</span><br><span class="line"> * @btn &#123;dom&#125; 按钮</span><br><span class="line"> * @command &#123;Object&#125; 事件集合</span><br><span class="line"> * */</span><br><span class="line">function setComd(btn,command)&#123;</span><br><span class="line">    btn.onclick=function()&#123;</span><br><span class="line">        command.execute();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 事件处理集合</span><br><span class="line"> * */</span><br><span class="line">var receiver=&#123;</span><br><span class="line">    plusfn:function(old,n)&#123;    </span><br><span class="line">       console.log(&quot;之前是:&quot;+old+&quot;加：&quot;+n);</span><br><span class="line">       return old*1+n*1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 加函数</span><br><span class="line"> * @receiver &#123;Object&#125; 事件集合</span><br><span class="line"> * </span><br><span class="line"> * */</span><br><span class="line">var plusfn=function(receiver)&#123;</span><br><span class="line">    this.receiver=receiver;  // </span><br><span class="line">    this._value=null;//最新的值</span><br><span class="line">    this.oldpos=null;//之前的值</span><br><span class="line">&#125;</span><br><span class="line">plusfn.prototype.execute=function()&#123;</span><br><span class="line">    this.oldpos=document.getElementById(&quot;oreder&quot;).innerHTML;//存储之前的值</span><br><span class="line">    this._value=this.receiver.plusfn(document.getElementById(&quot;first&quot;).value,document.getElementById(&quot;secend&quot;).value);//最新的值</span><br><span class="line">    document.getElementById(&quot;oreder&quot;).innerHTML=this._value;</span><br><span class="line">&#125;</span><br><span class="line">plusfn.prototype.undo=function()&#123;</span><br><span class="line">    this._value=this.oldpos;</span><br><span class="line">    console.log(&quot;撤回:&quot;+this._value);</span><br><span class="line">    document.getElementById(&quot;oreder&quot;).innerHTML=this._value;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var newplusfn=new plusfn(receiver);</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 适配器</span><br><span class="line"> * */</span><br><span class="line">var Adapter=&#123;</span><br><span class="line">    execute:function()&#123;</span><br><span class="line">        newplusfn.undo();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">setComd(plusbtn,newplusfn);</span><br><span class="line">   </span><br><span class="line">setComd(Revoke,Adapter);</span><br></pre></td></tr></table></figure>
+<p>这里涉及到知识的是适配器与撤回，撤回的意思就是在你计算之前，保存当前的一个新副本，点击撤销的时候，恢复到原状态。适配器顾名思义就是一个转接器，把两个相互不通的代码链接通。因为setComd函数接收的是一个对象，对象内包含execute方法，所以用Adapter做一个适配。</p>
+<h2 id="命令队列"><a href="#命令队列" class="headerlink" title="命令队列"></a>命令队列</h2><p>  就是把所有命令存放在数组之中，依次执行。现在来回一下，我们回到家里，首先是打开电视，打开音响，打开空调，关门，打开电脑，打开QQ，等一系列的命令，现在我们就来实现它。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 命令队列</span><br><span class="line"> * </span><br><span class="line"> * */</span><br><span class="line"></span><br><span class="line">var MacroCommand=function()&#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        commandList:[],</span><br><span class="line">        add:function(command)&#123;</span><br><span class="line">            this.commandList.push(command);</span><br><span class="line">        &#125;,</span><br><span class="line">        execute:function()&#123;</span><br><span class="line">            for(var i=0,command;command=this.commandList[i++];)&#123;</span><br><span class="line">                command.execute();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var opentv=&#123;</span><br><span class="line">    execute:function()&#123;</span><br><span class="line">        console.log(&quot;打开电视&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var opensound=&#123;</span><br><span class="line">    execute:function()&#123;</span><br><span class="line">        console.log(&quot;打开音响&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var open1=MacroCommand();</span><br><span class="line">open1.add(opentv);</span><br><span class="line">open1.add(opensound);</span><br><span class="line">open1.execute();</span><br></pre></td></tr></table></figure>
+<h2 id="宏命令"><a href="#宏命令" class="headerlink" title="宏命令"></a>宏命令</h2><p>宏命令其实就是命令队列的集合，可以依次执行一批命令。想象一下家里好多设备需要打开，我们则需要一个按钮的万能遥控器触发他们打开。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 强大的宏</span><br><span class="line"> * </span><br><span class="line"> * */</span><br><span class="line"></span><br><span class="line">var MacroCommand=function()&#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        commandList:[],</span><br><span class="line">        add:function(command)&#123;</span><br><span class="line">            this.commandList.push(command);</span><br><span class="line">        &#125;,</span><br><span class="line">        execute:function()&#123;</span><br><span class="line">            for(var i=0,command;command=this.commandList[i++];)&#123;</span><br><span class="line">                command.execute();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var opentv=&#123;</span><br><span class="line">    execute:function()&#123;</span><br><span class="line">        console.log(&quot;打开电视&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var open1=MacroCommand();</span><br><span class="line">open1.add(opentv);</span><br><span class="line"></span><br><span class="line">/*----------------他们是一起的-------------------*/</span><br><span class="line"></span><br><span class="line">var opensound=&#123;</span><br><span class="line">    execute:function()&#123;</span><br><span class="line">        console.log(&quot;打开音响&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var openkt=&#123;</span><br><span class="line">    execute:function()&#123;</span><br><span class="line">        console.log(&quot;打开空调&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var open2=MacroCommand();</span><br><span class="line">open2.add(opensound);</span><br><span class="line">open2.add(openkt);</span><br><span class="line">/*----------------他们是一起的-------------------*/</span><br><span class="line">var closedoor=&#123;</span><br><span class="line">    execute:function()&#123;</span><br><span class="line">        console.log(&quot;关门&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var opencomputer=&#123;</span><br><span class="line">    execute:function()&#123;</span><br><span class="line">        console.log(&quot;打开电脑&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">var openqq=&#123;</span><br><span class="line">    execute:function()&#123;</span><br><span class="line">        console.log(&quot;打开QQ&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var open3=MacroCommand();</span><br><span class="line">open3.add(closedoor);</span><br><span class="line">open3.add(opencomputer);    </span><br><span class="line">open3.add(openqq);</span><br><span class="line">            </span><br><span class="line">var openall=MacroCommand();            </span><br><span class="line">openall.add(open1);            </span><br><span class="line">openall.add(open2);    </span><br><span class="line">openall.add(open3);    </span><br><span class="line"></span><br><span class="line">openall.execute();</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>命令模式是简单设计模式，希望大家能够理解。</p>
+<p>打赏通道–我觉得不会有打赏。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/28/167592f13078d6a8?w=800&amp;h=600&amp;f=jpeg&amp;s=184358" alt=""></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/4/14/162c4b13a41e4a3a?w=323&amp;h=311&amp;f=png&amp;s=83969" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/daili/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小小坤">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/log.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小小坤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/06/daili/" itemprop="url">代理模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-06T16:50:01+08:00">
+                2017-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>代理模式的定义：<br>   为其他对象提供一种代理以控制对这个对象的访问。在某些情况下，一个对象不适合或者不能直接引用另一个对象，而代理对象可以在客户端和目标对象之间起到中介的作用。</p>
+<p>优点：<br> (1).职责清晰<br>真实的角色就是实现实际的业务逻辑，不用关心其他非本职责的事务，通过后期的代理完成一件完成事务，附带的结果就是编程简洁清晰。<br>(2).代理对象可以在客户端和目标对象之间起到中介的作用，这样起到了中介的作用和保护了目标对象的作用。<br>(3).高扩展性</p>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p>在平时的工作中，代理模式与我们息息相关，如：小明的同事是小美，小美是个高颜值，和无可挑剔的曲线身材美女。一次小美在网上网购了一些化装品，由于天猫双十一。十月的工资全部交给了双十一。到了取快递是时候发现自己根本拿不完这么多东西。于是呼，小美对坐在旁边的小明说。明GG帮我拿快递好吗？小明看到小美哀求的眼神，楚楚动人。绅士般的答应到：‘没问题’。小明开开心心的去帮小美拿快递了。<br>从这个案例中可以看出，小明就起到了代理的作用。事情是小美拿快递，由于种种原因，只有让小明代替小美拿快递。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">//快递店</span><br><span class="line">var Expresspoint=&#123;</span><br><span class="line">	//给客户快递</span><br><span class="line">	pass:function()&#123;</span><br><span class="line">		console.log(&apos;执行取快递&apos;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//小明</span><br><span class="line">var xiaoming=&#123;</span><br><span class="line">	//获得消息</span><br><span class="line">	getmsg:function(target)&#123;</span><br><span class="line">		target.pass();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//小美</span><br><span class="line">var xiaomei=&#123;</span><br><span class="line">	//取快递</span><br><span class="line">	getExpress:function(target)&#123;</span><br><span class="line">		//小美告诉小明去取快递</span><br><span class="line">		xiaoming.getmsg(target);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">xiaomei.getExpress(Expresspoint);</span><br></pre></td></tr></table></figure>
+<p>结果小明走到半路发现身体有点不舒服，去了趟厕所花费了几分钟。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">//快递店</span><br><span class="line">var Expresspoint=&#123;</span><br><span class="line">	//给客户快递</span><br><span class="line">	pass:function()&#123;</span><br><span class="line">		console.log(&apos;执行取快递&apos;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//小明</span><br><span class="line">var xiaoming=&#123;</span><br><span class="line">	//取快递</span><br><span class="line">	getmsg:function(target)&#123;</span><br><span class="line">		setTimeout(function()&#123;</span><br><span class="line">			target.pass();</span><br><span class="line">		&#125;,500);//假设500毫秒解决	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//小美</span><br><span class="line">var xiaomei=&#123;</span><br><span class="line">	//取快递</span><br><span class="line">	getExpress:function(target)&#123;</span><br><span class="line">		//小美告诉小明去取快递</span><br><span class="line">		xiaoming.getmsg(target);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">xiaomei.getExpress(Expresspoint);</span><br></pre></td></tr></table></figure>
+<p>从 小明走到半路发现身体有点不舒服来看，小明只是代理者，至于什么时候去帮小美拿快递是小明决定的。比如：小美让小明在快递店买个蛋糕。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">//快递店</span><br><span class="line">var Expresspoint=&#123;</span><br><span class="line">	//给客户快递</span><br><span class="line">	pass:function()&#123;</span><br><span class="line">		console.log(&apos;执行取快递&apos;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//小明</span><br><span class="line">var xiaoming=&#123;</span><br><span class="line">	//取快递</span><br><span class="line">	getmsg:function(target)&#123;</span><br><span class="line">    	var tostr=Object.prototype.toString;</span><br><span class="line">		if(target &amp;&amp; tostr.call(target.pass)===&quot;[object Function]&quot;)&#123;</span><br><span class="line">			target.pass();</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			console.log(&apos;无法满足你的条件&apos;,&apos;代理者直接拒绝小美，快递店保持良好形象&apos;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//小美</span><br><span class="line">var xiaomei=&#123;</span><br><span class="line">	//取快递</span><br><span class="line">	getExpress:function(target)&#123;</span><br><span class="line">		//小美告诉小明去取快递</span><br><span class="line">		xiaoming.getmsg(target);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">//买蛋糕</span><br><span class="line">var Buycake=&#123;</span><br><span class="line">	buy:function()&#123;</span><br><span class="line">	  console.log(&apos;买蛋糕&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">xiaomei.getExpress(Buycake);</span><br></pre></td></tr></table></figure>
+<p>这样代理者小明就起到了保护的作用。保持了快递店的良好形象。这里的小明是不是有点像咱们现实中的经纪人呢！比如拍电影需要先找经纪人，经纪人就是现实中最完美的代理者。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>代理模式是一种非常有意义的模式，代理模式的变体种类也很多这里只是简单介绍，希望你在web前端开发中使用到。</p>
+<p>打赏通道–我觉得不会有打赏。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/28/167592f13078d6a8?w=800&amp;h=600&amp;f=jpeg&amp;s=184358" alt=""></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/4/14/162c4b13a41e4a3a?w=323&amp;h=311&amp;f=png&amp;s=83969" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/06/submit/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小小坤">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/log.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小小坤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/06/submit/" itemprop="url">防止重复提交</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-06T16:50:01+08:00">
+                2017-07-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>在现在的web开发中我们经常使用ajax从后端获取数据，提交数据。对于有些游戏爱好者或者手速甚快的同学来说，一个按钮触发click事件可以触发多次。有经验的前端开发者肯定会使用防止重复提交方式避免重复提交数据。有经验的后端则会在每次提交数据时加vision版本号。如果后端加版本号来验证，则需要前端每次提交时增加版本号这个字段。因此做防止重复提交还是交给伟大的前端同学哈！现在我就把我所使用的方式分享给大家。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">	&lt;head&gt;</span><br><span class="line">		&lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">		&lt;title&gt;防止ajax重复提交&lt;/title&gt;</span><br><span class="line">	&lt;/head&gt;</span><br><span class="line">	&lt;body&gt;</span><br><span class="line">		&lt;button id=&quot;btn&quot;&gt;提交&lt;/button&gt;</span><br><span class="line">		&lt;script&gt;</span><br><span class="line">			</span><br><span class="line">			/**</span><br><span class="line">			 * 模拟ajax提交</span><br><span class="line">			 * @fn 回调函数</span><br><span class="line">			 * */</span><br><span class="line">			function Ajax(fn)&#123;</span><br><span class="line">				setTimeout(function()&#123;</span><br><span class="line">					var data= &#123;result:true,msg:&apos;提交成功！&apos;&#125;;</span><br><span class="line">					fn(data);</span><br><span class="line">				&#125;,2000);</span><br><span class="line">			&#125;</span><br><span class="line">		    /**</span><br><span class="line">		     * btn click 提交事件</span><br><span class="line">		     * </span><br><span class="line">		     * */</span><br><span class="line">			btn.onclick=function()&#123;</span><br><span class="line">                //检查 按钮是否被锁住，锁住直接rerun</span><br><span class="line">				if(btn.getAttribute(&apos;lock&apos;))&#123;</span><br><span class="line">					return;</span><br><span class="line">				&#125;</span><br><span class="line">				//上锁</span><br><span class="line">				btn.setAttribute(&apos;lock&apos;,1);</span><br><span class="line">				//更改状态</span><br><span class="line">				btn.innerText=&apos;提交中...&apos;;</span><br><span class="line">				//模拟ajax提交</span><br><span class="line">				Ajax(function(data)&#123;</span><br><span class="line">					//请求成功</span><br><span class="line">					if(data.result)&#123;</span><br><span class="line">						console.log(&apos;请求成功&apos;);</span><br><span class="line">						//请求成功解锁</span><br><span class="line">						btn.setAttribute(&apos;lock&apos;,&quot;&quot;);</span><br><span class="line">						//还原状态</span><br><span class="line">						btn.innerText=&apos;提交&apos;;</span><br><span class="line">					&#125;else&#123;</span><br><span class="line">						console.log(&apos;请求失败&apos;);</span><br><span class="line">						//请求失败解锁</span><br><span class="line">						btn.setAttribute(&apos;lock&apos;,&quot;&quot;);</span><br><span class="line">						//还原状态</span><br><span class="line">						btn.innerText=&apos;提交&apos;;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;);</span><br><span class="line">			&#125;</span><br><span class="line">		&lt;/script&gt;</span><br><span class="line">	&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>逻辑思路：<br>1.提交数据之前判断当前提交按钮是否存在lock锁<br>2.在ajax提交之前给提交按钮上锁<br>3.ajax成功之后或者失败之后解锁<br>demo连接 <a href="http://sandbox.runjs.cn/show/3jrhzrlh" target="_blank" rel="noopener">http://sandbox.runjs.cn/show/3jrhzrlh</a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>防止重复提交在开发中很实用，希望能够帮到你。</p>
+<p>打赏通道–我觉得不会有打赏。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/28/167592f13078d6a8?w=800&amp;h=600&amp;f=jpeg&amp;s=184358" alt=""></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/4/14/162c4b13a41e4a3a?w=323&amp;h=311&amp;f=png&amp;s=83969" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/log.jpg" alt="小小坤">
+            
+              <p class="site-author-name" itemprop="name">小小坤</p>
+              <p class="site-description motion-element" itemprop="description">前端技术文章，JavaScript设计模式，专注前端10年。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">Artikel</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">Tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小小坤</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
